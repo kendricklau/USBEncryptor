@@ -11,6 +11,7 @@ module decode
 	input wire clk,
 	input wire n_rst,
 	input wire d_plus,
+	input wire d_minus,
 	input wire shift_enable,
 	input wire eop,
 	output wire d_orig
@@ -19,6 +20,7 @@ module decode
 	reg next_stored_bit;
 	reg current_bit;
 	reg next_current_bit;
+	reg d_line;
 
 
 	always_ff @ (posedge clk, negedge n_rst)
@@ -32,9 +34,9 @@ module decode
 			current_bit <= next_current_bit;
 		end
 	end
-
-	assign next_stored_bit = shift_enable ? (d_plus | eop) : stored_bit;
-	assign next_current_bit = d_plus;
+	assign d_line = (d_plus & !d_minus) ? 1 : (!d_plus & d_minus) ? 0 : 1'bz;
+	assign next_stored_bit = shift_enable ? (d_line | eop) : stored_bit;
+	assign next_current_bit = d_line;
 
 	assign d_orig = (!stored_bit & !current_bit) | (stored_bit & current_bit);
 endmodule

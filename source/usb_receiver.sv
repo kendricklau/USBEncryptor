@@ -35,9 +35,9 @@ module usb_receiver
 
 	eop_detect eop_detect1 (.d_plus(d_plus_sync), .d_minus(d_minus_sync), .eop(eop));
 	
-	decode decode1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .shift_enable(shift_enable), .eop(eop), .d_orig(d_orig));
+	decode decode1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .d_minus(d_minus_sync), .shift_enable(shift_enable), .eop(eop), .d_orig(d_orig));
 
-	edge_detect edge_detect1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .d_edge(d_edge));
+	edge_detect edge_detect1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .d_minus(d_minus_sync), .d_edge(d_edge));
 
 	timer timer1 (.clk(clk), .n_rst(n_rst), .d_edge(d_edge), .rcving(rcving), .shift_enable(shift_enable), .byte_received(byte_received));
 		
