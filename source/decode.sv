@@ -34,7 +34,7 @@ module decode
 			current_bit <= next_current_bit;
 		end
 	end
-	assign d_line = (d_plus & !d_minus) ? 1 : (!d_plus & d_minus) ? 0 : 1'bz;
+	assign d_line = (d_plus & !d_minus) ? 1 : (!d_plus & d_minus) ? 0 : stored_bit;
 	assign next_stored_bit = shift_enable ? (d_line | eop) : stored_bit;
 	assign next_current_bit = d_line;
 

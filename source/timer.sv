@@ -51,6 +51,6 @@ module timer
 
 	flex_counter #(.NUM_CNT_BITS(32)) byte_receive (.clk(clk), .n_rst(n_rst), .clear(!rcving), .count_enable(shift_enable), .rollover_val(8), .rollover_flag(async_byte_received));
 
-	flex_counter #(.NUM_CNT_BITS(32)) byte_8_receive (.clk(clk), .n_rst(n_rst), .clear(!rcving), .count_enable(byte_received), .rollover_val(8), .rollover_flag(async_byte_8_received))
+	flex_counter #(.NUM_CNT_BITS(32)) byte_8_receive (.clk(clk), .n_rst(n_rst), .clear(!rcving), .count_enable(byte_received), .rollover_val(8), .rollover_flag(async_byte_8_received));
 
 endmodule

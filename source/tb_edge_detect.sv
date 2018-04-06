@@ -13,6 +13,7 @@ module tb_edge_detect();
 	reg tb_clk;
 	reg tb_n_rst;
 	reg tb_d_plus;
+	reg tb_d_minus;
 	reg tb_d_edge;
 
 	// Clock generation block
@@ -25,7 +26,7 @@ module tb_edge_detect();
 	end
 	
 	// DUT Port map
-	edge_detect DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .d_edge(tb_d_edge));
+	edge_detect DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .d_minus(tb_d_minus), .d_edge(tb_d_edge));
 	
 	// Test bench main process
 	initial

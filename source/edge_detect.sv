@@ -35,7 +35,7 @@ module edge_detect
 		end
 	end
 	
-	assign d_edge = ((!d_prev_plus & d_current_plus) & (!d_prev_minus & d_current_minus)) | ((d_prev_plus & !d_current_plus) & (d_prev_minus & !d_current_minus));
+	assign d_edge = ((!d_prev_plus & d_current_plus) & (d_prev_minus & !d_current_minus)) | ((d_prev_plus & !d_current_plus) & (!d_prev_minus & d_current_minus));
 
 endmodule
 	
