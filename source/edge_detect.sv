@@ -14,28 +14,22 @@ module edge_detect
 	input wire d_minus,
 	output wire d_edge
 );
-	reg d_prev_plus;
-	reg d_current_plus;
-	reg d_prev_minus;
-	reg d_current_minus;
+	reg d_prev;
+	reg d_current;
 
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
 		if (!n_rst)
 		begin
-			d_prev_plus <= 1;
-			d_current_plus <= 1;
-			d_prev_minus <= 1;
-			d_current_minus <= 1;
+			d_prev <= 1;
+			d_current <= 1;
 		end else begin
-			d_current_plus <= d_plus;
-			d_prev_plus <= d_current_plus;
-			d_current_minus <= d_minus;
-			d_prev_minus <= d_current_minus;
+			d_current <= d_plus;
+			d_prev <= d_current;
 		end
 	end
 	
-	assign d_edge = ((!d_prev_plus & d_current_plus) & (d_prev_minus & !d_current_minus)) | ((d_prev_plus & !d_current_plus) & (!d_prev_minus & d_current_minus));
+	assign d_edge = (!d_prev & d_current) | (d_prev & !d_current);
 
 endmodule
 	

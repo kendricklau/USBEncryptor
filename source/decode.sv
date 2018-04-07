@@ -34,11 +34,12 @@ module decode
 			current_bit <= next_current_bit;
 		end
 	end
-	assign d_line = (d_plus & !d_minus) ? 1 : (!d_plus & d_minus) ? 0 : stored_bit;
-	assign next_stored_bit = shift_enable ? (d_line | eop) : stored_bit;
-	assign next_current_bit = d_line;
 
-	assign d_orig = (!stored_bit & !current_bit) | (stored_bit & current_bit);
+	assign d_line = (d_plus & !d_minus) | (!d_plus & d_minus) | (!d_plus & !d_minus);
+	assign next_stored_bit = shift_enable ? (d_plus | eop) : stored_bit;
+	assign next_current_bit = d_plus;
+
+	assign d_orig = d_line ? ((!stored_bit & !current_bit) | (stored_bit & current_bit)) : 1'bz;
 endmodule
 			
 
