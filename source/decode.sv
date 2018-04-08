@@ -4,7 +4,7 @@
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Decode from NRZ encoding
+// Description: Decode from NRZI encoding
 
 module decode
 (
@@ -39,7 +39,8 @@ module decode
 	assign next_stored_bit = shift_enable ? (d_plus | eop) : stored_bit;
 	assign next_current_bit = d_plus;
 
-	assign d_orig = d_line ? ((!stored_bit & !current_bit) | (stored_bit & current_bit)) : 1'bz;
+	//NRZI encoding
+	assign d_orig = d_line ? ((!stored_bit & current_bit) | (stored_bit & !current_bit)) : 1'bz;
 endmodule
 			
 
