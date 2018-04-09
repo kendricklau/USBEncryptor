@@ -74,102 +74,15 @@ module rcu
 					nextstate = EIDLE;
 				end
 			end
-			EIDLE: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 1;
-				if (eop & shift_enable)
-				begin
-					nextstate = EIDLE_WAIT;
-				end else begin
-					nextstate = EIDLE;
-				end
-			end
-			EIDLE_WAIT: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
-				if (d_edge)
-				begin
-					nextstate = EIDLE_WAIT2;
-				end else begin
-					nextstate = EIDLE_WAIT;
-				end
-			end
-			EIDLE_WAIT2: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
-				if (d_edge)
-				begin
-					nextstate = RECEIVE_SYNC;
-				end else begin
-					nextstate = EIDLE_WAIT2;
-				end
-			end
-			RECEIVE_BITS: begin
+			RECEIVE_PID: begin
 				rcving = 1;
 				w_enable = 0;
 				r_error = 0;
 				if (byte_received)
 				begin
-					nextstate = RECEIVED_BYTE;
-				end else if (eop & shift_enable) begin
-					nextstate = EOP_DELAY;
+					nextstate = COMPARE_PID;
 				end else begin
-					nextstate = RECEIVE_BITS;
-				end
-			end
-			RECEIVED_BYTE: begin
-				rcving = 1;
-				w_enable = 1;
-				r_error = 0;
-				nextstate = RECEIVED_BYTE_EOP;
-			end
-			RECEIVED_BYTE_EOP: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 0;
-				if (!eop & shift_enable)
-				begin
-					nextstate = RECEIVE_BITS;
-				end else if (eop & shift_enable) begin
-					nextstate = EDGE_DELAY;
-				end else begin
-					nextstate = RECEIVED_BYTE_EOP;
-				end
-			end
-			EDGE_DELAY: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 0;
-				if (d_edge)
-				begin
-					nextstate = IDLE;
-				end else begin
-					nextstate = EDGE_DELAY;
-				end
-			end
-			EOP_DELAY: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
-				if (d_edge)
-				begin
-					nextstate = EOP_WAIT;
-				end else begin
-					nextstate = EOP_DELAY;
-				end
-			end
-			EOP_WAIT: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
-				if (d_edge)
-				begin
-					nextstate = RECEIVE_SYNC;
-				end else begin
-					nextstate = EOP_WAIT;
+					nextstate = RECEIVE_PID;
 				end
 			end
 		endcase
