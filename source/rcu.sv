@@ -41,7 +41,7 @@ module rcu
 		w_enable = 0;
 		r_error = 0;
 		case (state)
-			IDLE: begin
+			TOKEN_IDLE: begin
 				rcving = 0;
 				w_enable = 0;
 				r_error = 0;
@@ -49,40 +49,40 @@ module rcu
 				begin
 					nextstate = RECEIVE_SYNC;
 				end else begin
-					nextstate = IDLE;
+					nextstate = TOKEN_IDLE;
 				end
 			end
-			RECEIVE_SYNC: begin
+			RECEIVE_TOKEN_SYNC: begin
 				rcving = 1;
 				w_enable = 0;
 				r_error = 0;
 				if (byte_received)
 				begin
-					nextstate = COMPARE_SYNC;
+					nextstate = COMPARE_TOKEN_SYNC;
 				end else begin
-					nextstate = RECEIVE_SYNC;
+					nextstate = RECEIVE_TOKEN_SYNC;
 				end
 			end
-			COMPARE_SYNC: begin
+			COMPARE_TOKEN_SYNC: begin
 				rcving = 1;
 				w_enable = 0;
 				r_error = 0;
 				if (rcv_data == 8'b10000000)
 				begin
-					nextstate = RECEIVE_BITS;
+					nextstate = RECEIVE_TOKEN_PID;
 				end else begin
 					nextstate = EIDLE;
 				end
 			end
-			RECEIVE_PID: begin
+			RECEIVE_TOKEN_PID: begin
 				rcving = 1;
 				w_enable = 0;
 				r_error = 0;
 				if (byte_received)
 				begin
-					nextstate = COMPARE_PID;
+					nextstate = COMPARE_TOKEN_PID;
 				end else begin
-					nextstate = RECEIVE_PID;
+					nextstate = RECEIVE_TOKEN_PID;
 				end
 			end
 		endcase
