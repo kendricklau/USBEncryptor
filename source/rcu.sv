@@ -21,7 +21,7 @@ module rcu
 	input wire [7:0] rcv_pid,
 	input wire [4:0] rcv_crc5,
 	input wire [15:0] rcv_crc16,
-	input wire [63:0] rcv_data
+	input wire [63:0] rcv_data,
 	input wire sync_bits_received,
 	input wire pid_bits_received,
 	input wire crc5_bits_received,
@@ -37,7 +37,7 @@ module rcu
 	output reg r_error
 );
 
-	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_TOKEN_CRC16, COMPARE_TOKEN_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY
+	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
 } state_type;	
 	state_type state;
 	state_type nextstate;
@@ -51,16 +51,11 @@ module rcu
 			state <= nextstate;
 		end
 	end
-
+	
 	always_comb 
 	begin : next_state
 		nextstate = state;
-		sync_rcving = 0;
-		pid_rcving = 0;
-		crc5_rcving = 0;
-		crc16_rcving = 0;
-		data_rcving = 0;
-		eop_rcving = 0;
+		// eop_rcving = 0;
 		w_enable = 0;
 		r_error = 0;
 		case (state)
@@ -82,7 +77,7 @@ module rcu
 				end
 			end
 			COMPARE_TOKEN_SYNC: begin
-				if (rcv_data == 8'b10000000)
+				if (rcv_sync == 8'b10000000)
 				begin
 					nextstate = RECEIVE_TOKEN_PID;
 				end else begin
@@ -98,9 +93,9 @@ module rcu
 				end
 			end
 			COMPARE_TOKEN_PID: begin
-				if (rcv_data == 8'b10010110)
+				if (rcv_pid == 8'b10010110)
 				begin
-					nextstate = RECEIVE_TOKEN_EOP;
+					nextstate = RECEIVE_TOKEN_CRC5;
 				end else begin
 					nextstate = EIDLE;
 				end
@@ -114,7 +109,7 @@ module rcu
 				end
 			end
 			COMPARE_TOKEN_CRC5: begin
-				if (crc5_valid)
+				if (1)
 				begin
 					nextstate = RECEIVE_TOKEN_EOP;
 				end else begin
@@ -122,7 +117,7 @@ module rcu
 				end
 			end
 			RECEIVE_TOKEN_EOP: begin
-				if (eop & crc5_shift_enable)
+				if (eop)
 				begin
 					nextstate = EOP_TOKEN_DELAY;
 				end else begin
@@ -156,7 +151,7 @@ module rcu
 				end
 			end
 			COMPARE_DATA_SYNC: begin
-				if (rcv_data == 8'b10000000)
+				if (rcv_sync == 8'b10000000)
 				begin
 					nextstate = RECEIVE_DATA_PID;
 				end else begin
@@ -172,7 +167,7 @@ module rcu
 				end
 			end
 			COMPARE_DATA_PID: begin
-				if (rcv_data == 8'b00111100)
+				if (rcv_pid == 8'b00111100)
 				begin
 					nextstate = RECEIVE_DATA_BITS;
 				end else begin
@@ -188,14 +183,14 @@ module rcu
 				end
 			end
 			COMPARE_DATA_BITS: begin
-				if (data_valid)
+				if (1)
 				begin
 					nextstate = RECEIVE_DATA_EOP;
 				end else begin
 					nextstate = EIDLE;
 				end
 			end
-			RECEIVE_TOKEN_CRC16: begin
+			RECEIVE_DATA_CRC16: begin
 				if (crc16_bits_received)
 				begin
 					nextstate = COMPARE_TOKEN_CRC5;
@@ -203,8 +198,8 @@ module rcu
 					nextstate = RECEIVE_TOKEN_CRC5;
 				end
 			end
-			COMPARE_TOKEN_CRC16: begin
-				if (crc16_valid)
+			COMPARE_DATA_CRC16: begin
+				if (1)
 				begin
 					nextstate = RECEIVE_TOKEN_EOP;
 				end else begin
@@ -212,7 +207,7 @@ module rcu
 				end
 			end
 			RECEIVE_DATA_EOP: begin
-				if (eop & crc16_shift_enable)
+				if (eop)
 				begin
 					nextstate = EOP_DATA_DELAY;
 				end else begin
@@ -264,13 +259,13 @@ module rcu
 			COMPARE_HANDSHAKE_PID: begin
 				if (rcv_pid == 8'b00101101)
 				begin
-					nextstate = RECEIVE_HANDSHAKE_BITS;
+					nextstate = RECEIVE_HANDSHAKE_EOP;
 				end else begin
 					nextstate = EIDLE;
 				end
 			end
 			RECEIVE_HANDSHAKE_EOP: begin
-				if (eop & pid_shift_enable)
+				if (eop)
 				begin
 					nextstate = EOP_HANDSHAKE_DELAY;
 				end else begin

@@ -14,6 +14,10 @@ module timer
 	input wire n_rst,
 	input wire d_edge,
 	input wire sync_rcving,
+	input wire pid_rcving,
+	input wire crc5_rcving,
+	input wire crc16_rcving,
+	input wire data_rcving,
 
 	output wire sync_shift_enable,
 	output wire pid_shift_enable,
@@ -25,7 +29,7 @@ module timer
 	output wire pid_bits_received,
 	output wire crc5_bits_received,
 	output wire crc16_bits_received,
-	output wire data_bits_received,
+	output wire data_bits_received
 );
 	reg [31:0] sync_count_out;
 	reg [31:0] pid_count_out;
@@ -98,11 +102,11 @@ module timer
 	flex_counter #(.NUM_CNT_BITS(32)) crc16_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(crc16_rcving), .rollover_val(8), .count_out(crc16_count_out));
 	flex_counter #(.NUM_CNT_BITS(32)) data_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(data_rcving), .rollover_val(8), .count_out(data_count_out));
 
-	assign sync_shift_enable = (count_out == 4'b0100);
-	assign pid_shift_enable = (count_out == 4'b0100);
-	assign crc5_shift_enable = (count_out == 4'b0100);
-	assign crc16_shift_enable = (count_out == 4'b0100);
-	assign data_shift_enable = (count_out == 4'b0100);
+	assign sync_shift_enable = (sync_count_out == 4'b0100);
+	assign pid_shift_enable = (pid_count_out == 4'b0100);
+	assign crc5_shift_enable = (crc5_count_out == 4'b0100);
+	assign crc16_shift_enable = (crc16_count_out == 4'b0100);
+	assign data_shift_enable = (data_count_out == 4'b0100);
 
 	flex_counter #(.NUM_CNT_BITS(32)) sync_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!sync_rcving), .count_enable(sync_shift_enable), .rollover_val(8), .rollover_flag(async_sync_bits_received));
 	flex_counter #(.NUM_CNT_BITS(32)) pid_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!pid_rcving), .count_enable(pid_shift_enable), .rollover_val(8), .rollover_flag(async_pid_bits_received));

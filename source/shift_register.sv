@@ -27,6 +27,6 @@ module shift_register
 	flex_stp_sr #(.NUM_BITS(8), .SHIFT_MSB(0)) pid_shift_reg (.clk(clk), .n_rst(n_rst), .shift_enable(pid_shift_enable), .serial_in(d_orig), .parallel_out(rcv_pid));
 	flex_stp_sr #(.NUM_BITS(5), .SHIFT_MSB(0)) crc5_shift_reg (.clk(clk), .n_rst(n_rst), .shift_enable(crc5_shift_enable), .serial_in(d_orig), .parallel_out(rcv_crc5));
 	flex_stp_sr #(.NUM_BITS(16), .SHIFT_MSB(0)) crc16_shift_reg (.clk(clk), .n_rst(n_rst), .shift_enable(crc16_shift_enable), .serial_in(d_orig), .parallel_out(rcv_crc16));
-	flex_stp_sr #(.NUM_BITS(64), .SHIFT_MSB(0)) sync_shift_reg (.clk(clk), .n_rst(n_rst), .shift_enable(data_shift_enable), .serial_in(d_orig), .parallel_out(rcv_data));
+	flex_stp_sr #(.NUM_BITS(64), .SHIFT_MSB(0)) data_shift_reg (.clk(clk), .n_rst(n_rst), .shift_enable(data_shift_enable), .serial_in(d_orig), .parallel_out(rcv_data));
 
 endmodule

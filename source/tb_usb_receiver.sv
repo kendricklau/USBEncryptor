@@ -15,11 +15,12 @@ module tb_usb_receiver();
 	reg tb_d_plus; // input
 	reg tb_d_minus; // input
 	reg tb_r_enable; // input
+	reg [7:0] rcv_sync; // output
+	reg [7:0] rcv_pid; // output
+	reg [4:0] rcv_crc5; // output
+	reg [15:0] rcv_crc16; // output
+	reg [63:0] rcv_data; // output
 	reg [7:0] tb_r_data;
-	reg tb_empty;
-	reg tb_full;
-	reg tb_rcving;
-	reg tb_r_error;
 	reg [7:0] tb_d_data;
 	reg [63:0] tb_packet_data;
 	reg tb_d_prev;
@@ -34,7 +35,7 @@ module tb_usb_receiver();
 	end
 	
 	// DUT Port map
-	usb_receiver DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .d_minus(tb_d_minus), .r_enable(tb_r_enable), .r_data(tb_r_data), .empty(tb_empty), .full(tb_full), .rcving(tb_rcving), .r_error(tb_r_error));
+	usb_receiver DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .d_minus(tb_d_minus), .rcv_sync(rcv_sync), .rcv_pid(rcv_pid), .rcv_crc5(rcv_crc5), .rcv_crc16(rcv_crc16), .rcv_data(rcv_data));
 	
 	// Test bench main process
 	initial
@@ -75,6 +76,20 @@ module tb_usb_receiver();
 		end
 		//send IN PID byte
 		tb_d_data = 8'b01001110; // 10010110
+		foreach(tb_d_data[i]) begin
+			tb_d_plus = tb_d_data[i];
+			tb_d_minus = !tb_d_data[i];
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		//send IN CRC5 bits
+		tb_d_data = 5'b00110; // 10010110
 		foreach(tb_d_data[i]) begin
 			tb_d_plus = tb_d_data[i];
 			tb_d_minus = !tb_d_data[i];
@@ -145,6 +160,29 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+		// send CRC16 bytes
+		tb_packet_data = 16'b1111000011110000; //00111100 DATA0
+		tb_d_prev = tb_d_plus;
+		foreach(tb_packet_data[i]) begin
+			if (tb_packet_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_packet_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
 		// send Data 8 byte
 		tb_packet_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
 		tb_d_prev = tb_d_plus;
@@ -188,7 +226,7 @@ module tb_usb_receiver();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		@(posedge tb_clk);
-		@(posedge tb_clk);f
+		@(posedge tb_clk);
 
 		// Handshake Packet
 		// advance to receive sync
