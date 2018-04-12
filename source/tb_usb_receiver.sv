@@ -25,7 +25,13 @@ module tb_usb_receiver();
 	reg [4:0] tb_crc5_data;
 	reg [15:0] tb_crc16_data;
 	reg [63:0] tb_packet_data;
+	reg [7:0] temp_tb_sync_data;
+	reg [7:0] temp_tb_pid_data;
+	reg [4:0] temp_tb_crc5_data;
+	reg [15:0] temp_tb_crc16_data;
+	reg [63:0] temp_tb_packet_data;
 	reg tb_d_prev;
+	integer i;
 
 	// Clock generation block
 	always
@@ -65,6 +71,10 @@ module tb_usb_receiver();
 
 		//send sync byte
 		tb_sync_data = 8'b10000000; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
 		tb_d_prev = tb_d_plus;
 		foreach(tb_sync_data[i]) begin
 			if (tb_sync_data[i] == 1)
