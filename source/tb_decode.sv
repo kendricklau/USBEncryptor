@@ -13,6 +13,7 @@ module tb_decode();
 	reg tb_clk;
 	reg tb_n_rst;
 	reg tb_d_plus;
+	reg tb_d_minus;
 	reg tb_shift_enable;
 	reg tb_eop;
 	reg tb_d_orig;
@@ -27,7 +28,7 @@ module tb_decode();
 	end
 	
 	// DUT Port map
-	decode DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .shift_enable(tb_shift_enable), .eop(tb_eop), .d_orig(tb_d_orig));
+	decode DUT(.clk(tb_clk), .n_rst(tb_n_rst), .d_plus(tb_d_plus), .d_minus(tb_d_minus), .shift_enable(tb_shift_enable), .eop(tb_eop), .d_orig(tb_d_orig));
 	
 	// Test bench main process
 	initial
