@@ -20,10 +20,18 @@ module tb_usb_receiver();
 	reg [4:0] rcv_crc5; // output
 	reg [15:0] rcv_crc16; // output
 	reg [63:0] rcv_data; // output
-	reg [7:0] tb_r_data;
-	reg [7:0] tb_d_data;
-	reg [63:0] tb_packet_data;
+	reg [7:0] tb_sync_data;
+	reg [7:0] tb_pid_data;
+	reg [4:0] tb_crc5_data;
+	reg [15:0] tb_crc16_data;
+	reg [63:0] tb_data_data;
+	reg [7:0] temp_tb_sync_data;
+	reg [7:0] temp_tb_pid_data;
+	reg [4:0] temp_tb_crc5_data;
+	reg [15:0] temp_tb_crc16_data;
+	reg [63:0] temp_tb_data_data;
 	reg tb_d_prev;
+	integer i;
 
 	// Clock generation block
 	always
@@ -60,11 +68,25 @@ module tb_usb_receiver();
 		@(posedge tb_clk);
 		tb_d_plus = 1;
 		tb_d_minus = 0;
+
 		//send sync byte
-		tb_d_data = 8'b11111110; //10000000 changes=1
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
+		tb_sync_data = 8'b10000000; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 			@(posedge tb_clk);
@@ -75,10 +97,23 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 		end
 		//send IN PID byte
-		tb_d_data = 8'b01001110; // 10010110
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
+		tb_pid_data = 8'b10010110; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 			@(posedge tb_clk);
@@ -89,10 +124,23 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_d_data = 5'b00110; // 10010110
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
+		tb_crc5_data = 5'b10000; //00111100 DATA0
+		for(i = 0; i < 6; i++) begin
+			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+		end
+		tb_crc5_data = temp_tb_crc5_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_crc5_data[i]) begin
+			if (tb_crc5_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc5_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 			@(posedge tb_clk);
@@ -132,11 +180,25 @@ module tb_usb_receiver();
 		@(posedge tb_clk);
 		tb_d_plus = 1;
 		tb_d_minus = 0;
+
 		// send sync byte
-		tb_d_data = 8'b11111110; //10000000 changes=1
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 			@(posedge tb_clk);
@@ -146,11 +208,25 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+
 		// send IN PID byte
-		tb_d_data = 8'b00101000; //00111100 DATA0
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
+		tb_pid_data = 8'b00111100; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 			@(posedge tb_clk);
@@ -160,16 +236,21 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+
 		// send CRC16 bytes
-		tb_packet_data = 16'b1111000011110000; //00111100 DATA0
+		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		for(i = 0; i < 16; i++) begin
+			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
+		end
+		tb_crc16_data = temp_tb_crc16_data;
 		tb_d_prev = tb_d_plus;
-		foreach(tb_packet_data[i]) begin
-			if (tb_packet_data[i] == 1)
+		foreach(tb_crc16_data[i]) begin
+			if (tb_crc16_data[i] == 1)
 			begin
 				tb_d_plus = !tb_d_prev;
 				tb_d_minus = !tb_d_plus;
 				tb_d_prev = !tb_d_prev;
-			end else if (tb_packet_data[i] == 0)
+			end else if (tb_crc16_data[i] == 0)
 			begin
 				tb_d_plus = tb_d_prev;
 				tb_d_minus = !tb_d_plus;
@@ -183,16 +264,21 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+
 		// send Data 8 byte
-		tb_packet_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
+		tb_data_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
+		for(i = 0; i < 64; i++) begin
+			temp_tb_data_data[63-i] = tb_data_data[i];
+		end
+		tb_data_data = temp_tb_data_data;
 		tb_d_prev = tb_d_plus;
-		foreach(tb_packet_data[i]) begin
-			if (tb_packet_data[i] == 1)
+		foreach(tb_data_data[i]) begin
+			if (tb_data_data[i] == 1)
 			begin
 				tb_d_plus = !tb_d_prev;
 				tb_d_minus = !tb_d_plus;
 				tb_d_prev = !tb_d_prev;
-			end else if (tb_packet_data[i] == 0)
+			end else if (tb_data_data[i] == 0)
 			begin
 				tb_d_plus = tb_d_prev;
 				tb_d_minus = !tb_d_plus;
@@ -206,6 +292,7 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+
 		// send EOP and then IDLE
 		tb_d_plus = 0;
 		tb_d_minus = 0;
@@ -236,30 +323,21 @@ module tb_usb_receiver();
 		@(posedge tb_clk);
 		tb_d_plus = 1;
 		tb_d_minus = 0;
+
 		//send sync byte
-		tb_d_data = 8'b11111110; //10000000 changes=1
-		foreach(tb_d_data[i]) begin
-			tb_d_plus = tb_d_data[i];
-			tb_d_minus = !tb_d_data[i];
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
 		end
-		//send IN PID byte
-		tb_d_data = 8'b00101101; // 10010110
+		tb_sync_data = temp_tb_sync_data;
 		tb_d_prev = tb_d_plus;
-		foreach(tb_d_data[i]) begin
-			if (tb_d_data[i] == 1)
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 1)
 			begin
 				tb_d_plus = !tb_d_prev;
 				tb_d_minus = !tb_d_plus;
 				tb_d_prev = !tb_d_prev;
-			end else if (tb_packet_data[i] == 0)
+			end else if (tb_sync_data[i] == 0)
 			begin
 				tb_d_plus = tb_d_prev;
 				tb_d_minus = !tb_d_plus;
@@ -273,6 +351,35 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 			@(posedge tb_clk);
 		end
+
+		//send IN PID byte
+		tb_pid_data = 8'b00101101; // 10010110
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus = !tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus = tb_d_prev;
+				tb_d_minus = !tb_d_plus;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
 		// send EOP and then IDLE
 		tb_d_plus = 0;
 		tb_d_minus = 0;
@@ -294,9 +401,5 @@ module tb_usb_receiver();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		@(posedge tb_clk);
-
-		tb_r_enable = 1;
-		@(posedge tb_clk);
-		tb_r_enable = 0;
 	end
 endmodule
