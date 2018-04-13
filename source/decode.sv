@@ -38,9 +38,19 @@ module decode
 			current_bit <= next_current_bit;
 		end
 	end
-
+	always_comb
+	begin
+		if(eop)
+		begin
+			next_stored_bit = 1'b1;
+		end else if (sync_shift_enable | pid_shift_enable | crc5_shift_enable | crc16_shift_enable | data_shift_enable) begin
+			next_stored_bit = d_plus;
+		end else begin
+			next_stored_bit = stored_bit;
+		end
+	end
 	assign d_line = (d_plus & !d_minus) | (!d_plus & d_minus) | (!d_plus & !d_minus);
-	assign next_stored_bit = (sync_shift_enable | pid_shift_enable | crc5_shift_enable | crc16_shift_enable | data_shift_enable) ? (d_plus | eop) : stored_bit;
+	// assign next_stored_bit = ((sync_shift_enable | pid_shift_enable | crc5_shift_enable | crc16_shift_enable | data_shift_enable) ? (d_plus | eop) : stored_bit) | (eop ?;
 	assign next_current_bit = d_plus;
 
 	//NRZI encoding

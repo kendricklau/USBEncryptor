@@ -185,7 +185,7 @@ module rcu
 			COMPARE_DATA_BITS: begin
 				if (1)
 				begin
-					nextstate = RECEIVE_DATA_EOP;
+					nextstate = RECEIVE_DATA_CRC16;
 				end else begin
 					nextstate = EIDLE;
 				end
@@ -193,15 +193,15 @@ module rcu
 			RECEIVE_DATA_CRC16: begin
 				if (crc16_bits_received)
 				begin
-					nextstate = COMPARE_TOKEN_CRC5;
+					nextstate = COMPARE_DATA_CRC16;
 				end else begin
-					nextstate = RECEIVE_TOKEN_CRC5;
+					nextstate = RECEIVE_DATA_CRC16;
 				end
 			end
 			COMPARE_DATA_CRC16: begin
 				if (1)
 				begin
-					nextstate = RECEIVE_TOKEN_EOP;
+					nextstate = RECEIVE_DATA_EOP;
 				end else begin
 					nextstate = EIDLE;
 				end
@@ -219,7 +219,7 @@ module rcu
 				begin
 					nextstate = HANDSHAKE_IDLE;
 				end else begin
-					nextstate = EOP_TOKEN_DELAY;
+					nextstate = EOP_DATA_DELAY;
 				end
 			end
 
