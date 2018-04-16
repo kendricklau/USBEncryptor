@@ -242,7 +242,7 @@ module tcu
 				nextstate = EOP_HANDSHAKE_DELAY1;
 			end
 			EOP_HANDSHAKE_DELAY1: begin
-				nextstate =  EOP_HANDSHAKE_DELAY2;
+				nextstate = EOP_HANDSHAKE_DELAY2;
 			end
 			EOP_HANDSHAKE_DELAY2: begin
 				nextstate =  TOKEN_IDLE;

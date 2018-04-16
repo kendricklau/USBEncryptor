@@ -1,5 +1,5 @@
 // $Id: $
-// File name:   timer.sv
+// File name:   t_timer.sv
 // Created:     2/21/2018
 // Author:      Kendrick Lau
 // Lab Section: 337-02
