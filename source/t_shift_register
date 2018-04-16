@@ -20,22 +20,18 @@ module t_shift_register
 	input wire crc5_load_enable,
 	input wire crc16_load_enable,
 	input wire data_load_enable,
-	input wire [7:0] rcving_sync,
-	input wire [7:0] rcving_pid,
-	input wire [4:0] rcving_crc5,
-	input wire [15:0] rcving_crc16,
-	input wire [63:0] rcving_data,
-	output wire transmit_sync,
-	output wire transmit_pid,
-	output wire transmit_crc5,
-	output wire transmit_crc16,
-	output wire transmit_data
+	input wire [7:0] trans_sync,
+	input wire [7:0] trans_pid,
+	input wire [4:0] trans_crc5,
+	input wire [15:0] trans_crc16,
+	input wire [63:0] trans_data,
+	output wire d_orig
 );
 
-	flex_pts_sr #(.NUM_BITS(8), .SHIFT_MSB(0)) sync_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(sync_load_enable), .shift_enable(sync_shift_enable), .parallel_in(rcving_sync), .serial_out(transmit_sync));
-	flex_pts_sr #(.NUM_BITS(8), .SHIFT_MSB(0)) pid_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(pid_load_enable), .shift_enable(pid_shift_enable), .parallel_in(rcving_pid), .serial_out(transmit_pid));
-	flex_pts_sr #(.NUM_BITS(5), .SHIFT_MSB(0)) crc5_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(crc5_load_enable), .shift_enable(crc5_shift_enable), .parallel_in(rcving_crc5), .serial_out(transmit_crc5));
-	flex_pts_sr #(.NUM_BITS(16), .SHIFT_MSB(0)) crc16_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(crc16_load_enable), .shift_enable(crc16_shift_enable), .parallel_in(rcving_crc16), .serial_out(transmit_crc16));
-	flex_pts_sr #(.NUM_BITS(64), .SHIFT_MSB(0)) data_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(data_load_enable), .shift_enable(data_shift_enable), .parallel_in(rcving_data), .serial_out(transmit_data));
+	flex_pts_sr #(.NUM_BITS(8), .SHIFT_MSB(0)) sync_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(sync_load_enable), .shift_enable(sync_shift_enable), .parallel_in(trans_sync), .serial_out(d_orig));
+	flex_pts_sr #(.NUM_BITS(8), .SHIFT_MSB(0)) pid_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(pid_load_enable), .shift_enable(pid_shift_enable), .parallel_in(trans_pid), .serial_out(d_orig));
+	flex_pts_sr #(.NUM_BITS(5), .SHIFT_MSB(0)) crc5_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(crc5_load_enable), .shift_enable(crc5_shift_enable), .parallel_in(trans_crc5), .serial_out(d_orig));
+	flex_pts_sr #(.NUM_BITS(16), .SHIFT_MSB(0)) crc16_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(crc16_load_enable), .shift_enable(crc16_shift_enable), .parallel_in(trans_crc16), .serial_out(d_orig));
+	flex_pts_sr #(.NUM_BITS(64), .SHIFT_MSB(0)) data_shift_reg (.clk(clk), .n_rst(n_rst), .load_enable(data_load_enable), .shift_enable(data_shift_enable), .parallel_in(trans_data), .serial_out(d_orig));
 
 endmodule
