@@ -10,7 +10,7 @@ module des_controller
 (
 	input wire clk,
 	input wire n_rst,
-	input wire full,
+	input wire receive,
 	input wire empty,
 	//figure out output signals
 	input wire encrypt_sync,
@@ -39,7 +39,7 @@ module des_controller
 		nextstate = state;
 		case (state)
 			IDLE: begin
-				if (full == 1)
+				if (transmit == 1)
 				begin
 					nextstate = LOAD;
 				end else begin
