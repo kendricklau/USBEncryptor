@@ -20,7 +20,7 @@ module usb_receiver
 	reg eop,
 	reg sync_shift_enable,
 	reg pid_shift_enable,
-	reg crc5_shift_enable,
+	reg crc5_shift_enable,g
 	reg crc16_shift_enable,
 	reg data_shift_enable,
 	reg sync_load_enable,
