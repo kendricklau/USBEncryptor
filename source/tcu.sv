@@ -11,12 +11,6 @@ module tcu
 	input wire clk,
 	input wire n_rst,
 	input wire status,
-	// input wire sync_shift_enable,
-	// input wire pid_shift_enable,
-	// input wire crc5_shift_enable,
-	// input wire crc16_shift_enable,
-	// input wire data_shift_enable,
-	
 	input wire sync_bits_transmitted,
 	input wire pid_bits_transmitted,
 	input wire crc5_bits_transmitted,
