@@ -12,15 +12,33 @@ module rcu
 	input wire n_rst,
 	input wire d_edge,
 	input wire eop,
-	input wire shift_enable,
-	input wire [7:0] rcv_data,
-	input wire byte_received,
-	output reg rcving,
+	input wire sync_shift_enable,
+	input wire pid_shift_enable,
+	input wire crc5_shift_enable,
+	input wire crc16_shift_enable,
+	input wire data_shift_enable,
+	input wire [7:0] rcv_sync,
+	input wire [7:0] rcv_pid,
+	input wire [4:0] rcv_crc5,
+	input wire [15:0] rcv_crc16,
+	input wire [63:0] rcv_data,
+	input wire sync_bits_received,
+	input wire pid_bits_received,
+	input wire crc5_bits_received,
+	input wire crc16_bits_received,
+	input wire data_bits_received,
+	output reg sync_rcving,
+	output reg pid_rcving,
+	output reg crc5_rcving,
+	output reg crc16_rcving,
+	output reg data_rcving,
+	// output reg eop_rcving,
 	output reg w_enable,
 	output reg r_error
 );
 
-	typedef enum logic [4:0] {IDLE, RECEIVE_SYNC, COMPARE_SYNC, EIDLE, EIDLE_WAIT, EIDLE_WAIT2, RECEIVE_BITS, RECEIVED_BYTE, RECEIVED_BYTE_EOP, EDGE_DELAY, EOP_DELAY, EOP_WAIT} state_type;	
+	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
+} state_type;	
 	state_type state;
 	state_type nextstate;
 
@@ -28,150 +46,248 @@ module rcu
 	begin
 		if (!n_rst)
 		begin
-			state <= IDLE;
+			state <= TOKEN_IDLE;
 		end else begin
 			state <= nextstate;
 		end
 	end
-
+	
 	always_comb 
 	begin : next_state
 		nextstate = state;
-		rcving = 0;
+		// eop_rcving = 0;
 		w_enable = 0;
 		r_error = 0;
 		case (state)
-			IDLE: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 0;
+			// Start receiving Token packet
+			TOKEN_IDLE: begin
 				if (d_edge)
 				begin
-					nextstate = RECEIVE_SYNC;
+					nextstate = RECEIVE_TOKEN_SYNC;
 				end else begin
-					nextstate = IDLE;
+					nextstate = TOKEN_IDLE;
 				end
 			end
-			RECEIVE_SYNC: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 0;
-				if (byte_received)
+			RECEIVE_TOKEN_SYNC: begin
+				if (sync_bits_received)
 				begin
-					nextstate = COMPARE_SYNC;
+					nextstate = COMPARE_TOKEN_SYNC;
 				end else begin
-					nextstate = RECEIVE_SYNC;
+					nextstate = RECEIVE_TOKEN_SYNC;
 				end
 			end
-			COMPARE_SYNC: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 0;
-				if (rcv_data == 8'b10000000)
+			COMPARE_TOKEN_SYNC: begin
+				if (rcv_sync == 8'b10000000)
 				begin
-					nextstate = RECEIVE_BITS;
+					nextstate = RECEIVE_TOKEN_PID;
 				end else begin
 					nextstate = EIDLE;
 				end
 			end
-			EIDLE: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 1;
-				if (eop & shift_enable)
+			RECEIVE_TOKEN_PID: begin
+				if (pid_bits_received)
 				begin
-					nextstate = EIDLE_WAIT;
+					nextstate = COMPARE_TOKEN_PID;
+				end else begin
+					nextstate = RECEIVE_TOKEN_PID;
+				end
+			end
+			COMPARE_TOKEN_PID: begin
+				if (rcv_pid == 8'b10010110)
+				begin
+					nextstate = RECEIVE_TOKEN_CRC5;
 				end else begin
 					nextstate = EIDLE;
 				end
 			end
-			EIDLE_WAIT: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
+			RECEIVE_TOKEN_CRC5: begin
+				if (crc5_bits_received)
+				begin
+					nextstate = COMPARE_TOKEN_CRC5;
+				end else begin
+					nextstate = RECEIVE_TOKEN_CRC5;
+				end
+			end
+			COMPARE_TOKEN_CRC5: begin
+				if (1)
+				begin
+					nextstate = RECEIVE_TOKEN_EOP;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_TOKEN_EOP: begin
+				if (eop)
+				begin
+					nextstate = EOP_TOKEN_DELAY;
+				end else begin
+					nextstate = RECEIVE_TOKEN_EOP;
+				end
+			end
+			EOP_TOKEN_DELAY: begin
 				if (d_edge)
 				begin
-					nextstate = EIDLE_WAIT2;
+					nextstate = DATA_IDLE;
 				end else begin
-					nextstate = EIDLE_WAIT;
+					nextstate = EOP_TOKEN_DELAY;
 				end
 			end
-			EIDLE_WAIT2: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
+
+			// Start receiving of Data Packet
+			DATA_IDLE: begin
 				if (d_edge)
 				begin
-					nextstate = RECEIVE_SYNC;
+					nextstate = RECEIVE_DATA_SYNC;
 				end else begin
-					nextstate = EIDLE_WAIT2;
+					nextstate = DATA_IDLE;
 				end
 			end
-			RECEIVE_BITS: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 0;
-				if (byte_received)
+			RECEIVE_DATA_SYNC: begin
+				if (sync_bits_received)
 				begin
-					nextstate = RECEIVED_BYTE;
-				end else if (eop & shift_enable) begin
-					nextstate = EOP_DELAY;
+					nextstate = COMPARE_DATA_SYNC;
 				end else begin
-					nextstate = RECEIVE_BITS;
+					nextstate = RECEIVE_DATA_SYNC;
 				end
 			end
-			RECEIVED_BYTE: begin
-				rcving = 1;
-				w_enable = 1;
-				r_error = 0;
-				nextstate = RECEIVED_BYTE_EOP;
-			end
-			RECEIVED_BYTE_EOP: begin
-				rcving = 1;
-				w_enable = 0;
-				r_error = 0;
-				if (!eop & shift_enable)
+			COMPARE_DATA_SYNC: begin
+				if (rcv_sync == 8'b10000000)
 				begin
-					nextstate = RECEIVE_BITS;
-				end else if (eop & shift_enable) begin
-					nextstate = EDGE_DELAY;
+					nextstate = RECEIVE_DATA_PID;
 				end else begin
-					nextstate = RECEIVED_BYTE_EOP;
+					nextstate = EIDLE;
 				end
 			end
-			EDGE_DELAY: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 0;
+			RECEIVE_DATA_PID: begin
+				if (pid_bits_received)
+				begin
+					nextstate = COMPARE_DATA_PID;
+				end else begin
+					nextstate = RECEIVE_DATA_PID;
+				end
+			end
+			COMPARE_DATA_PID: begin
+				if (rcv_pid == 8'b00111100)
+				begin
+					nextstate = RECEIVE_DATA_BITS;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_DATA_BITS: begin
+				if (data_bits_received)
+				begin
+					nextstate = COMPARE_DATA_BITS;
+				end else begin
+					nextstate = RECEIVE_DATA_BITS;
+				end
+			end
+			COMPARE_DATA_BITS: begin
+				if (1)
+				begin
+					nextstate = RECEIVE_DATA_CRC16;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_DATA_CRC16: begin
+				if (crc16_bits_received)
+				begin
+					nextstate = COMPARE_DATA_CRC16;
+				end else begin
+					nextstate = RECEIVE_DATA_CRC16;
+				end
+			end
+			COMPARE_DATA_CRC16: begin
+				if (1)
+				begin
+					nextstate = RECEIVE_DATA_EOP;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_DATA_EOP: begin
+				if (eop)
+				begin
+					nextstate = EOP_DATA_DELAY;
+				end else begin
+					nextstate = RECEIVE_DATA_EOP;
+				end
+			end
+			EOP_DATA_DELAY: begin
 				if (d_edge)
 				begin
-					nextstate = IDLE;
+					nextstate = HANDSHAKE_IDLE;
 				end else begin
-					nextstate = EDGE_DELAY;
+					nextstate = EOP_DATA_DELAY;
 				end
 			end
-			EOP_DELAY: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
+
+			// Start receiving of Handshake Packet
+			HANDSHAKE_IDLE: begin
 				if (d_edge)
 				begin
-					nextstate = EOP_WAIT;
+					nextstate = RECEIVE_HANDSHAKE_SYNC;
 				end else begin
-					nextstate = EOP_DELAY;
+					nextstate = HANDSHAKE_IDLE;
 				end
 			end
-			EOP_WAIT: begin
-				rcving = 0;
-				w_enable = 0;
-				r_error = 1;
+			RECEIVE_HANDSHAKE_SYNC: begin
+				if (sync_bits_received)
+				begin
+					nextstate = COMPARE_HANDSHAKE_SYNC;
+				end else begin
+					nextstate = RECEIVE_HANDSHAKE_SYNC;
+				end
+			end
+			COMPARE_HANDSHAKE_SYNC: begin
+				if (rcv_sync == 8'b10000000)
+				begin
+					nextstate = RECEIVE_HANDSHAKE_PID;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_HANDSHAKE_PID: begin
+				if (pid_bits_received)
+				begin
+					nextstate = COMPARE_HANDSHAKE_PID;
+				end else begin
+					nextstate = RECEIVE_HANDSHAKE_PID;
+				end
+			end
+			COMPARE_HANDSHAKE_PID: begin
+				if (rcv_pid == 8'b00101101)
+				begin
+					nextstate = RECEIVE_HANDSHAKE_EOP;
+				end else begin
+					nextstate = EIDLE;
+				end
+			end
+			RECEIVE_HANDSHAKE_EOP: begin
+				if (eop)
+				begin
+					nextstate = EOP_HANDSHAKE_DELAY;
+				end else begin
+					nextstate = RECEIVE_HANDSHAKE_EOP;
+				end
+			end
+			EOP_HANDSHAKE_DELAY: begin
 				if (d_edge)
 				begin
-					nextstate = RECEIVE_SYNC;
+					nextstate = TOKEN_IDLE;
 				end else begin
-					nextstate = EOP_WAIT;
+					nextstate = EOP_HANDSHAKE_DELAY;
 				end
 			end
 		endcase
 	end
+
+	assign sync_rcving = ((state == RECEIVE_TOKEN_SYNC) | (state == COMPARE_TOKEN_SYNC) | (state == RECEIVE_DATA_SYNC) | (state == COMPARE_DATA_SYNC) | (state == RECEIVE_HANDSHAKE_SYNC) | (state == COMPARE_HANDSHAKE_SYNC)) ? 1 : 0;
+	assign pid_rcving = ((state == RECEIVE_TOKEN_PID) | (state == COMPARE_TOKEN_PID) | (state == RECEIVE_DATA_PID) | (state == COMPARE_DATA_PID) | (state == RECEIVE_HANDSHAKE_PID) | (state == COMPARE_HANDSHAKE_PID)) ? 1 : 0;
+	assign crc5_rcving = ((state == RECEIVE_TOKEN_CRC5) | (state == COMPARE_TOKEN_CRC5)) ? 1 : 0;
+	assign crc16_rcving = ((state == RECEIVE_DATA_CRC16) | (state == COMPARE_DATA_CRC16)) ? 1 : 0;
+	assign data_rcving = ((state == RECEIVE_DATA_BITS) | (state == COMPARE_DATA_BITS)) ? 1 : 0;
+	// assign eop_rcving = ((state == RECEIVE_TOKEN_EOP) | (state == RECEIVE_DATA_EOP) | (state == RECEIVE_HANDSHAKE_EOP)) ? 1 : 0;
+
 endmodule

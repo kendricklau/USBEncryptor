@@ -13,44 +13,105 @@ module timer
 	input wire clk,
 	input wire n_rst,
 	input wire d_edge,
-	input wire rcving,
-	output wire shift_enable,
-	output wire byte_received,
-	output wire byte_8_received
+	input wire sync_rcving,
+	input wire pid_rcving,
+	input wire crc5_rcving,
+	input wire crc16_rcving,
+	input wire data_rcving,
+
+	output wire sync_shift_enable,
+	output wire pid_shift_enable,
+	output wire crc5_shift_enable,
+	output wire crc16_shift_enable,
+	output wire data_shift_enable,
+
+	output wire sync_bits_received,
+	output wire pid_bits_received,
+	output wire crc5_bits_received,
+	output wire crc16_bits_received,
+	output wire data_bits_received
 );
-	reg [31:0] count_out;
-	reg async_byte_received;
-	reg current_byte_received;
-	reg prev_byte_received;
-	reg async_byte_8_received;
-	reg current_byte_8_received;
-	reg prev_byte_8_received;
+	reg [31:0] sync_count_out;
+	reg [31:0] pid_count_out;
+	reg [31:0] crc5_count_out;
+	reg [31:0] crc16_count_out;
+	reg [31:0] data_count_out;
+
+	reg async_sync_bits_received = 0;
+	reg current_sync_bits_received;
+	reg prev_sync_bits_received;
+
+	reg async_pid_bits_received = 0;
+	reg current_pid_bits_received;
+	reg prev_pid_bits_received;
+
+	reg async_crc5_bits_received = 0;
+	reg current_crc5_bits_received;
+	reg prev_crc5_bits_received;
+
+	reg async_crc16_bits_received = 0;
+	reg current_crc16_bits_received;
+	reg prev_crc16_bits_received;
+
+	reg async_data_bits_received = 0;
+	reg current_data_bits_received;
+	reg prev_data_bits_received;
 
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
 		if (!n_rst)
 		begin
-			current_byte_received <= 0;
-			prev_byte_received <= 0;
-			current_byte_8_received <= 0;
-			prev_byte_8_received <= 0;
+			current_sync_bits_received <= 0;
+			prev_sync_bits_received <= 0;
+			async_sync_bits_received <= 0;
+			current_pid_bits_received <= 0;
+			prev_pid_bits_received <= 0;
+			async_pid_bits_received <= 0;
+			current_crc5_bits_received <= 0;
+			prev_crc5_bits_received <= 0;
+			async_crc5_bits_received <= 0;
+			current_crc16_bits_received <= 0;
+			prev_crc16_bits_received <= 0;
+			async_crc16_bits_received <= 0;
+			current_data_bits_received <= 0;
+			prev_data_bits_received <= 0;
+			async_data_bits_received <= 0;
 		end else begin
-			prev_byte_received <= current_byte_received;
-			current_byte_received <= async_byte_received;
-			prev_byte_8_received <= current_byte_8_received;
-			current_byte_8_received <= async_byte_8_received;
+			prev_sync_bits_received <= current_sync_bits_received;
+			current_sync_bits_received <= async_sync_bits_received;
+			prev_pid_bits_received <= current_pid_bits_received;
+			current_pid_bits_received <= async_pid_bits_received;
+			prev_crc5_bits_received <= current_crc5_bits_received;
+			current_crc5_bits_received <= async_crc5_bits_received;
+			prev_crc16_bits_received <= current_crc16_bits_received;
+			current_crc16_bits_received <= async_crc16_bits_received;
+			prev_data_bits_received <= current_data_bits_received;
+			current_data_bits_received <= async_data_bits_received;
 		end
 	end
 
-	assign byte_received = (current_byte_received & !prev_byte_received);
-	assign byte_8_received = (current_byte_8_received & !prev_byte_8_received);
+	assign sync_bits_received = (current_sync_bits_received & !prev_sync_bits_received);
+	assign pid_bits_received = (current_pid_bits_received & !prev_pid_bits_received);
+	assign crc5_bits_received = (current_crc5_bits_received & !prev_crc5_bits_received);
+	assign crc16_bits_received = (current_crc16_bits_received & !prev_crc16_bits_received);
+	assign data_bits_received = (current_data_bits_received & !prev_data_bits_received);
 
-	flex_counter #(.NUM_CNT_BITS(32)) bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(rcving), .rollover_val(8), .count_out(count_out));
+	flex_counter #(.NUM_CNT_BITS(32)) sync_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(sync_rcving), .rollover_val(8), .count_out(sync_count_out));
+	flex_counter #(.NUM_CNT_BITS(32)) pid_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(pid_rcving), .rollover_val(8), .count_out(pid_count_out));
+	flex_counter #(.NUM_CNT_BITS(32)) crc5_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(crc5_rcving), .rollover_val(8), .count_out(crc5_count_out));
+	flex_counter #(.NUM_CNT_BITS(32)) crc16_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(crc16_rcving), .rollover_val(8), .count_out(crc16_count_out));
+	flex_counter #(.NUM_CNT_BITS(32)) data_bit_shift (.clk(clk), .n_rst(n_rst), .clear(d_edge), .count_enable(data_rcving), .rollover_val(8), .count_out(data_count_out));
 
-	assign shift_enable = (count_out == 4'b0011);
+	assign sync_shift_enable = (sync_count_out == 4'b0100);
+	assign pid_shift_enable = (pid_count_out == 4'b0100);
+	assign crc5_shift_enable = (crc5_count_out == 4'b0100);
+	assign crc16_shift_enable = (crc16_count_out == 4'b0100);
+	assign data_shift_enable = (data_count_out == 4'b0100);
 
-	flex_counter #(.NUM_CNT_BITS(32)) byte_receive (.clk(clk), .n_rst(n_rst), .clear(!rcving), .count_enable(shift_enable), .rollover_val(8), .rollover_flag(async_byte_received));
-
-	flex_counter #(.NUM_CNT_BITS(32)) byte_8_receive (.clk(clk), .n_rst(n_rst), .clear(!rcving), .count_enable(byte_received), .rollover_val(8), .rollover_flag(async_byte_8_received));
+	flex_counter #(.NUM_CNT_BITS(32)) sync_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!sync_rcving), .count_enable(sync_shift_enable), .rollover_val(8), .rollover_flag(async_sync_bits_received));
+	flex_counter #(.NUM_CNT_BITS(32)) pid_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!pid_rcving), .count_enable(pid_shift_enable), .rollover_val(8), .rollover_flag(async_pid_bits_received));
+	flex_counter #(.NUM_CNT_BITS(32)) crc5_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!crc5_rcving), .count_enable(crc5_shift_enable), .rollover_val(5), .rollover_flag(async_crc5_bits_received));
+	flex_counter #(.NUM_CNT_BITS(32)) crc16_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!crc16_rcving), .count_enable(crc16_shift_enable), .rollover_val(16), .rollover_flag(async_crc16_bits_received));
+	flex_counter #(.NUM_CNT_BITS(32)) data_bits_receive (.clk(clk), .n_rst(n_rst), .clear(!data_rcving), .count_enable(data_shift_enable), .rollover_val(64), .rollover_flag(async_data_bits_received));
 
 endmodule
