@@ -29,12 +29,12 @@ module tcu
 	output reg crc16_transmitting,
 	output reg data_transmitting,
 	output reg eop_transmitting,
-	output reg sync_load,
-	output reg pid_load,
-	output reg crc5_load,
-	output reg crc16_load,
-	output reg data_load,
-	output reg eop_load,
+	output reg sync_load_enable,
+	output reg pid_load_enable,
+	output reg crc5_load_enable,
+	output reg crc16_load_enable,
+	output reg data_load_enable,
+	output reg eop_load_enable,
 	output wire [7:0] trans_sync,
 	output wire [7:0] trans_pid,
 	output wire [4:0] trans_crc5,
@@ -257,11 +257,11 @@ module tcu
 	assign data_transmitting = ((state == TRANSMIT_DATA_BITS)) ? 1 : 0;
 	assign eop_transmitting = ((state == TRANSMIT_TOKEN_EOP) | (state == TRANSMIT_DATA_EOP) | (state == TRANSMIT_HANDSHAKE_EOP)) ? 1 : 0;
 
-	assign sync_load = ((state == LOAD_TOKEN_SYNC) | (state == LOAD_DATA_SYNC) | (state == LOAD_HANDSHAKE_SYNC)) ? 1 : 0;
-	assign pid_load = ((state == LOAD_TOKEN_PID) | (state == LOAD_DATA_PID) | (state == LOAD_HANDSHAKE_PID)) ? 1 : 0;
-	assign crc5_load = ((state == LOAD_TOKEN_CRC5)) ? 1 : 0;
-	assign crc16_load = ((state == LOAD_DATA_CRC16)) ? 1 : 0;
-	assign data_load = ((state == LOAD_DATA_BITS)) ? 1 : 0;
-	assign eop_load = ((state == LOAD_TOKEN_EOP) | (state == LOAD_DATA_EOP) | (state == LOAD_HANDSHAKE_EOP)) ? 1 : 0;
+	assign sync_load_enable = ((state == LOAD_TOKEN_SYNC) | (state == LOAD_DATA_SYNC) | (state == LOAD_HANDSHAKE_SYNC)) ? 1 : 0;
+	assign pid_load_enable = ((state == LOAD_TOKEN_PID) | (state == LOAD_DATA_PID) | (state == LOAD_HANDSHAKE_PID)) ? 1 : 0;
+	assign crc5_load_enable = ((state == LOAD_TOKEN_CRC5)) ? 1 : 0;
+	assign crc16_load_enable = ((state == LOAD_DATA_CRC16)) ? 1 : 0;
+	assign data_load_enable = ((state == LOAD_DATA_BITS)) ? 1 : 0;
+	assign eop_load_enable = ((state == LOAD_TOKEN_EOP) | (state == LOAD_DATA_EOP) | (state == LOAD_HANDSHAKE_EOP)) ? 1 : 0;
 );
 endmodule

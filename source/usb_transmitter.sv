@@ -11,18 +11,125 @@ module usb_receiver
 	input wire clk,
 	input wire n_rst,
 	input wire [4:0] status,
-	input wire [63:0] rcv_data,
+	input wire [63:0] trans_data,
 	output wire d_plus,
 	output wire d_minus
 );
-	
-	encode encode1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .d_minus(d_minus_sync), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .eop(eop), .d_orig(d_orig));
+	reg d_orig,
+	reg idle,
+	reg eop,
+	reg sync_shift_enable,
+	reg pid_shift_enable,
+	reg crc5_shift_enable,
+	reg crc16_shift_enable,
+	reg data_shift_enable,
+	reg sync_load_enable,
+	reg pid_load_enable,
+	reg crc5_load_enable,
+	reg crc16_load_enable,
+	reg data_load_enable,
+	reg d_edge, // do i need this?
+	reg sync_transmitting,
+	reg pid_transmitting,
+	reg crc5_transmitting,
+	reg crc16_transmitting,
+	reg data_transmitting,
+	reg sync_bits_transmitted,
+	reg pid_bits_transmitted,
+	reg crc5_bits_transmitted,
+	reg crc16_bits_transmitted,
+	reg data_bits_transmitted
+	reg [7:0] trans_sync,
+	reg [7:0] trans_pid,
+	reg [4:0] trans_crc5,
+	reg [15:0] trans_crc16,
+	reg [63:0] trans_data,
 
-	t_shift_register t_shift_register1 (.clk(clk), .n_rst(n_rst), .d_plus(d_plus_sync), .d_minus(d_minus_sync), .d_edge(d_edge));
+	encode encode1 (
+		.clk(clk), 
+		.n_rst(n_rst), 
+		.d_orig(d_orig), 
+		.idle(idle), 
+		.eop(eop), 
+		.sync_shift_enable(sync_shift_enable), 
+		.pid_shift_enable(pid_shift_enable), 
+		.crc5_shift_enable(crc5_shift_enable), 
+		.crc16_shift_enable(crc16_shift_enable), 
+		.data_shift_enable(data_shift_enable), 
+		.d_plus(d_plus), 
+		.d_minus(d_minus)
+		);
 
-	t_timer t_timer1 (.clk(clk), .n_rst(n_rst), .d_edge(d_edge), .sync_rcving(sync_rcving),  .pid_rcving(pid_rcving), .crc5_rcving(crc5_rcving), .crc16_rcving(crc16_rcving), .data_rcving(data_rcving), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .sync_bits_received(sync_bits_received), .pid_bits_received(pid_bits_received), .crc5_bits_received(crc5_bits_received), .crc16_bits_received(crc16_bits_received), .data_bits_received(data_bits_received));
+	t_shift_register t_shift_register1 (
+		.clk(clk),
+		.n_rst(n_rst),
+		.sync_shift_enable(sync_shift_enable),
+		.pid_shift_enable(pid_shift_enable),
+		.crc5_shift_enable(crc5_shift_enable),
+		.crc16_shift_enable(crc16_shift_enable),
+		.data_shift_enable(data_shift_enable),
+		.sync_load_enable(sync_load_enable),
+		.pid_load_enable(pid_load_enable),
+		.crc5_load_enable(crc5_load_enable),
+		.crc16_load_enable(crc16_load_enable),
+		.data_load_enable(data_load_enable),
+		.trans_sync(trans_sync),
+		.trans_pid(trans_pid),
+		.trans_crc5(trans_crc5),
+		.trans_crc16(trans_crc16),
+		.trans_data(trans_data),
+		.d_orig(d_orig)
+		);
 
-	tcu tcu1 (.clk(clk), .n_rst(n_rst), .d_edge(d_edge), .eop(eop), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .rcv_sync(rcv_sync), .rcv_pid(rcv_pid), .rcv_crc5(rcv_crc5), .rcv_crc16(rcv_crc16), .rcv_data(rcv_data), .sync_bits_received(sync_bits_received), .pid_bits_received(pid_bits_received), .crc5_bits_received(crc5_bits_received), .crc16_bits_received(crc16_bits_received), .data_bits_received(data_bits_received), .sync_rcving(sync_rcving), .pid_rcving(pid_rcving), .crc5_rcving(crc5_rcving), .crc16_rcving(crc16_rcving), .data_rcving(data_rcving), .w_enable(w_enable), .r_error(r_error));
+	t_timer t_timer1 (
+		.clk(clk),
+		.n_rst(n_rst),
+		.d_edge(d_edge),
+		.sync_transmitting(sync_transmitting),
+		.pid_transmitting(pid_transmitting),
+		.crc5_transmitting(crc5_transmitting),
+		.crc16_transmitting(crc16_transmitting),
+		.data_transmitting(data_transmitting),
+		.sync_shift_enable(sync_shift_enable),
+		.pid_shift_enable(pid_shift_enable),
+		.crc5_shift_enable(crc5_shift_enable),
+		.crc16_shift_enable(crc16_shift_enable),
+		.data_shift_enable(data_shift_enable),
+		.sync_bits_transmitted(sync_bits_transmitted),
+		.pid_bits_transmitted(pid_bits_transmitted),
+		.crc5_bits_transmitted(crc5_bits_transmitted),
+		.crc16_bits_transmitted(crc16_bits_transmitted),
+		.data_bits_transmitted(data_bits_transmitted)
+		);
+
+	tcu tcu1 (
+		.clk(clk),
+		.n_rst(n_rst),
+		.status(status),
+		.sync_bits_transmitted(sync_bits_transmitted),
+		.pid_bits_transmitted(pid_bits_transmitted),
+		.crc5_bits_transmitted(crc5_bits_transmitted),
+		.crc16_bits_transmitted(crc16_bits_transmitted),
+		.data_bits_transmitted(data_bits_transmitted),
+		.eop_bits_transmitted(eop_bits_transmitted),
+		.sync_transmitting(sync_transmitting),
+		.pid_transmitting(pid_transmitting),
+		.crc5_transmitting(crc5_transmitting),
+		.crc16_transmitting(crc16_transmitting),
+		.data_transmitting(data_transmitting),
+		.eop_transmitting(eop_transmitting),
+		.sync_load_enable(sync_load_enable),
+		.pid_load_enable(pid_load_enable),
+		.crc5_load_enable(crc5_load_enable),
+		.crc16_load_enable(crc16_load_enable),
+		.data_load_enable(data_load_enable),
+		.eop_load_enable(eop_load_enable),
+		.trans_sync(trans_sync),
+		.trans_pid(trans_pid),
+		.trans_crc5(trans_crc5),
+		.trans_crc16(trans_crc16),
+		.trans_data(trans_data)
+		);
 
 endmodule
 
