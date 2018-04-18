@@ -69,11 +69,11 @@ module key_generator
 		end
 	endfunction
 
-	assign key0 = 64h'CA3A_3E98_9AA7_AE58;
+	assign key0 = 64'hCA3A_3E98_9AA7_AE58;
 	//generate the 2nd and 3rd keys
-	assign key1 = key0 ^ '1 ^ 64h'DE45_AC29_45FE_96E3; //value is EB80_6D4E_20A6_C744
+	assign key1 = key0 ^ '1 ^ 64'hDE45_AC29_45FE_96E3; //value is EB80_6D4E_20A6_C744
 	assign rkey1 = rev(key1);
-	assign key2 = key1 ^ 64h'CAF3_385A_438B_D219; //value is 2173_5514_632D_155D
+	assign key2 = key1 ^ 64'hCAF3_385A_438B_D219; //value is 2173_5514_632D_155D
 	
 	always_ff @(posedge clk, negedge n_rst)
 	begin : keyOutReg
@@ -95,10 +95,10 @@ module key_generator
 		if (key_rollover == 1)
 		begin
 			keyNext = key0;
-		end else if ((key_count == 2b'0) & (cnt_rollover == 1))
+		end else if ((key_count == 2'b0) & (cnt_rollover == 1))
 		begin
 			keyNext = rkey1;
-		end else if ((key_count == 2b'01) & (cnt_rollover == 1))
+		end else if ((key_count == 2'b01) & (cnt_rollover == 1))
 		begin
 			keyNext = key2;
 		end
@@ -121,6 +121,6 @@ module key_generator
 		end
 	end
 
-	assign subkey = perm2({left,right})
+	assign subkey = perm2({left,right});
 
 endmodule

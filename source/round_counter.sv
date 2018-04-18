@@ -4,7 +4,7 @@ module round_counter
 	input wire n_rst,
 	input wire count_enable,
 	output reg [4:0] round_count,
-	output reg cnt_rollover,
+	output reg cnt_rollover
 );
 
 reg [4:0] next_count = 0;
@@ -36,13 +36,13 @@ begin
 	begin
 		if (next_rollover == 0 && count_enable == 1)	
 		begin
-			next_count = (count_out + 1);	
+			next_count = (round_count + 1);	
 		end
 		else if (cnt_rollover == 1 && count_enable == 1)
 		begin
 			next_count = 0;
 		end
-		if (next_count == 5b'10000 && count_enable == 1)
+		if (next_count == 5'b10000 && count_enable == 1)
 		begin
 			next_rollover = 1;
 		end

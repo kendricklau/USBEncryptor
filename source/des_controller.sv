@@ -12,6 +12,7 @@ module des_controller
 	input wire n_rst,
 	input wire receive,
 	input wire empty,
+	input wire key_rollover,
 	//figure out output signals
 	input wire encrypt_sync,
 	output wire count_enable,
@@ -20,7 +21,8 @@ module des_controller
 	output wire data_out
 );
 
-	typedef enum logic [3:0] {IDLE, LOAD, PERMUTE WAIT, START_ROUND, KEYGEN, ROUND_COMP, CHECK_DONE, INV_PERMUTE_WAIT, DATA_READY} state_type; //maybe save room for some ERROR states
+	reg count_enable_reg, des_start_reg, data_out_reg;
+	typedef enum logic [3:0] {IDLE, LOAD, PERMUTE_WAIT, START_ROUND, KEYGEN, ROUND_COMP, CHECK_DONE, INV_PERMUTE_WAIT, DATA_READY} state_type; //maybe save room for some ERROR states
 	state_type state;
 	state_type nextstate;
 
@@ -70,7 +72,7 @@ module des_controller
 			CHECK_DONE: begin
 				if (key_rollover == 1)
 				begin
-					nextstate = INV_PERMUTE;
+					nextstate = INV_PERMUTE_WAIT;
 				end else begin
 					nextstate = START_ROUND;
 				end
@@ -93,24 +95,27 @@ module des_controller
 	
 	always_comb 
 	begin: outLogic
-		count_enable = 0;
-		des_start = 0;
-		data_out = 0;
+		count_enable_reg = 0;
+		des_start_reg = 0;
+		data_out_reg = 0;
 		case (state)
 			
 			PERMUTE_WAIT: begin
-				des_start = 1
+				des_start_reg = 1;
 			end
 
 			START_ROUND: begin
-				count_enable = 1;
+				count_enable_reg = 1;
 			end
 
 			DATA_READY: begin
-				data_out = 1;
+				data_out_reg = 1;
 			end	
 		endcase
 	end
 
 	assign reverse = encrypt_sync;
+	assign count_enable = count_enable_reg;
+	assign data_out = data_out_reg;
+	assign des_start = des_start_reg;
 endmodule

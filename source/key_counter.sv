@@ -2,12 +2,12 @@ module key_counter
 (
 	input wire clk,
 	input wire n_rst,
-	input wire count_enable
+	input wire count_enable,
 	output reg [1:0] key_count,
 	output reg key_rollover
 );
 
-reg [1:0] compare_val = 2'b11
+reg [1:0] compare_val = 2'b11;
 reg next_count = 0;
 reg next_rollover = 0;
 
@@ -37,13 +37,13 @@ begin
 	begin
 		if (next_rollover == 0 && count_enable == 1)	
 		begin
-			next_count = (count_out + 1);	
+			next_count = (key_count + 1);	
 		end
 		else if (key_rollover == 1 && count_enable == 1)
 		begin
 			next_count = 0;
 		end
-		if (next_count == rollover_val && count_enable == 1)
+		if (next_count == key_rollover && count_enable == 1)
 		begin
 			next_rollover = 1;
 		end
