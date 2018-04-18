@@ -20,7 +20,6 @@ module des_controller
 	output wire data_out
 );
 	reg transmit;
-	reg key_rollover;
 
 	typedef enum logic [3:0] {IDLE, LOAD, PERMUTE_WAIT, START_ROUND, KEYGEN, ROUND_COMP, CHECK_DONE, INV_PERMUTE_WAIT, DATA_READY} state_type; //maybe save room for some ERROR states
 	state_type state;

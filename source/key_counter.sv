@@ -2,7 +2,7 @@ module key_counter
 (
 	input wire clk,
 	input wire n_rst,
-	input wire count_enable
+	input wire count_enable,
 	output reg [1:0] key_count,
 	output reg key_rollover
 );
@@ -10,6 +10,8 @@ module key_counter
 reg [1:0] compare_val = 2'b11;
 reg next_count = 0;
 reg next_rollover = 0;
+reg rollover_val;
+reg count_out;
 
 
 always_ff @ (posedge clk, negedge n_rst)

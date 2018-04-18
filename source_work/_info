@@ -109,6 +109,29 @@ r1
 !s90 -sv|-work|source_work|source/flex_pts_sr.sv|
 !i113 0
 R6
+vkey_counter
+R1
+!s110 1524023444
+!i10b 1
+!s100 :U>7_Z1VY_KcIF<doAR?z0
+IczdLBif6CBlAGU:nN@^:h1
+R2
+!s105 key_counter_sv_unit
+S1
+R0
+w1524023440
+8source/key_counter.sv
+Fsource/key_counter.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1524023444.153305
+!s107 source/key_counter.sv|
+!s90 -sv|-work|source_work|source/key_counter.sv|
+!i113 0
+R6
 vkey_generator
 R1
 !s110 1524023159
@@ -153,6 +176,29 @@ r1
 !s108 1524022883.667407
 !s107 source/permutation.sv|
 !s90 -sv|-work|source_work|source/permutation.sv|
+!i113 0
+R6
+vround_counter
+R1
+!s110 1524023512
+!i10b 1
+!s100 Z7;fbN8DLeiWOe23za<ki0
+I3dnX16KfJc[neJg>Y7XLm0
+R2
+!s105 round_counter_sv_unit
+S1
+R0
+w1524023509
+8source/round_counter.sv
+Fsource/round_counter.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1524023512.438362
+!s107 source/round_counter.sv|
+!s90 -sv|-work|source_work|source/round_counter.sv|
 !i113 0
 R6
 vt_shift_register
