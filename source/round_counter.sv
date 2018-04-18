@@ -2,13 +2,12 @@ module round_counter
 (
 	input wire clk,
 	input wire n_rst,
-	input wire count_enable
-	output reg [3:0] round_count,
+	input wire count_enable,
+	output reg [4:0] round_count,
 	output reg cnt_rollover,
 );
 
-reg [3:0] compare_val = 4'b1111
-reg [3:0] next_count = 0;
+reg [4:0] next_count = 0;
 reg next_rollover = 0;
 
 
@@ -17,7 +16,7 @@ begin
 	if (n_rst == 0)
 	begin
 		//<Flip-Flop Signal Name> <= <reset value>;
-		count_out <= '0;
+		round_count <= '0;
 		cnt_rollover <= '0;
 	end
 	else 
@@ -43,7 +42,7 @@ begin
 		begin
 			next_count = 0;
 		end
-		if (next_count == rollover_val && count_enable == 1)
+		if (next_count == 5b'10000 && count_enable == 1)
 		begin
 			next_rollover = 1;
 		end

@@ -39,7 +39,7 @@ module des_controller
 		nextstate = state;
 		case (state)
 			IDLE: begin
-				if (transmit == 1)
+				if (receive == 1)
 				begin
 					nextstate = LOAD;
 				end else begin
