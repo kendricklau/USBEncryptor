@@ -121,6 +121,6 @@ module key_generator
 		end
 	end
 
-	assign subkey = perm2({left,right});
+	assign subkey = perm2({left,right})
 
 endmodule
