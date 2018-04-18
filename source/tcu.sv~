@@ -16,7 +16,6 @@ module tcu
 	input logic crc5_bits_transmitted,
 	input logic crc16_bits_transmitted,
 	input logic data_bits_transmitted,
-	output logic idle_transmitting,
 	output logic sync_transmitting,
 	output logic pid_transmitting,
 	output logic crc5_transmitting,

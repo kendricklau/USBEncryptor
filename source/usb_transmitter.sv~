@@ -117,6 +117,7 @@ module usb_transmitter
 		.crc5_bits_transmitted(crc5_bits_transmitted),
 		.crc16_bits_transmitted(crc16_bits_transmitted),
 		.data_bits_transmitted(data_bits_transmitted),
+		.eop_bits_transmitted(eop_bits_transmitted),
 		.idle_transmitting(idle_transmitting),
 		.sync_transmitting(sync_transmitting),
 		.pid_transmitting(pid_transmitting),
