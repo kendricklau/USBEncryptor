@@ -2,15 +2,16 @@ module round_counter
 (
 	input wire clk,
 	input wire n_rst,
-	input wire count_enable
+	input wire count_enable,
 	output reg [3:0] round_count,
-	output reg cnt_rollover,
+	output reg cnt_rollover
 );
 
-reg [3:0] compare_val = 4'b1111
+reg [3:0] compare_val = 4'b1111;
 reg [3:0] next_count = 0;
 reg next_rollover = 0;
-
+reg count_out;
+reg rollover_val;
 
 always_ff @ (posedge clk, negedge n_rst)
 begin

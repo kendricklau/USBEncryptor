@@ -1,0 +1,12 @@
+QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
+Start time: 23:55:08 on Apr 17,2018
+vlog -sv -work source_work source/des_controller.sv 
+-- Compiling module des_controller
+** Error: source/des_controller.sv(98): (vlog-2110) Illegal reference to net "count_enable".
+** Error: source/des_controller.sv(99): (vlog-2110) Illegal reference to net "des_start".
+** Error: source/des_controller.sv(100): (vlog-2110) Illegal reference to net "data_out".
+** Error: source/des_controller.sv(104): (vlog-2110) Illegal reference to net "des_start".
+** Error: source/des_controller.sv(108): (vlog-2110) Illegal reference to net "count_enable".
+** Error: source/des_controller.sv(112): (vlog-2110) Illegal reference to net "data_out".
+End time: 23:55:09 on Apr 17,2018, Elapsed time: 0:00:01
+Errors: 6, Warnings: 0

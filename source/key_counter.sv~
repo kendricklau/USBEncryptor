@@ -11,7 +11,6 @@ reg [1:0] compare_val = 2'b11;
 reg next_count = 0;
 reg next_rollover = 0;
 reg rollover_val;
-reg count_out;
 
 
 always_ff @ (posedge clk, negedge n_rst)

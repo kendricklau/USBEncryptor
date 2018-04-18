@@ -53,6 +53,9 @@ module rcu
 	always_comb 
 	begin : next_state
 		nextstate = state;
+		// eop_rcving = 0;
+		w_enable = 0;
+		r_error = 0;
 		case (state)
 			// Start receiving Token packet
 			TOKEN_IDLE: begin
