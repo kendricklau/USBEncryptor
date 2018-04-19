@@ -7,7 +7,7 @@ module key_counter
 	output reg key_rollover
 );
 
-reg [1:0] compare_val = 2'b11;
+reg [1:0] compare_val = 2'b11
 reg next_count = 0;
 reg next_rollover = 0;
 

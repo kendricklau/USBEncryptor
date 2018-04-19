@@ -1,0 +1,7 @@
+QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
+Start time: 23:46:20 on Apr 17,2018
+vlog -sv -work source_work source/key_counter.sv 
+-- Compiling module key_counter
+** Error: source/key_counter.sv(6): near "output": syntax error, unexpected output, expecting ')'
+End time: 23:46:20 on Apr 17,2018, Elapsed time: 0:00:00
+Errors: 1, Warnings: 0

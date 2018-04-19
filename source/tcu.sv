@@ -10,7 +10,7 @@ module tcu
 (
 	input logic clk,
 	input logic n_rst,
-	input logic status,
+	input logic trans_data_ready,
 	input logic sync_bits_transmitted,
 	input logic pid_bits_transmitted,
 	input logic crc5_bits_transmitted,
@@ -31,7 +31,8 @@ module tcu
 	output logic [7:0] trans_sync,
 	output logic [7:0] trans_pid,
 	output logic [4:0] trans_crc5,
-	output logic [15:0] trans_crc16
+	output logic [15:0] trans_crc16,
+	output logic handshake_ack
 	// output logic [63:0] trans_data
 );
 
@@ -85,7 +86,7 @@ module tcu
 		case (state)
 			// Start receiving Token packet
 			TOKEN_IDLE: begin
-				if (status == 1'b1)
+				if (trans_data_ready == 1'b1)
 				begin
 					nextstate = LOAD_TOKEN_SYNC;
 				end else begin
@@ -255,4 +256,6 @@ module tcu
 	assign crc5_load_enable = ((state == LOAD_TOKEN_CRC5)) ? 1 : 0;
 	assign crc16_load_enable = ((state == LOAD_DATA_CRC16)) ? 1 : 0;
 	assign data_load_enable = ((state == LOAD_DATA_BITS)) ? 1 : 0;
+
+	assign handshake_ack = ((state == EOP_HANDSHAKE_DELAY1)) ? 1 : 0;
 endmodule
