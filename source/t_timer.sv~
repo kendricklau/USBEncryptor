@@ -8,7 +8,7 @@
 // 
 
 
-module timer
+module t_timer
 (
 	input wire clk,
 	input wire n_rst,
@@ -63,19 +63,14 @@ module timer
 		begin
 			current_sync_bits_transmitted <= 0;
 			prev_sync_bits_transmitted <= 0;
-			async_sync_bits_transmitted <= 0;
 			current_pid_bits_transmitted <= 0;
 			prev_pid_bits_transmitted <= 0;
-			async_pid_bits_transmitted <= 0;
 			current_crc5_bits_transmitted <= 0;
 			prev_crc5_bits_transmitted <= 0;
-			async_crc5_bits_transmitted <= 0;
 			current_crc16_bits_transmitted <= 0;
 			prev_crc16_bits_transmitted <= 0;
-			async_crc16_bits_transmitted <= 0;
 			current_data_bits_transmitted <= 0;
 			prev_data_bits_transmitted <= 0;
-			async_data_bits_transmitted <= 0;
 		end else begin
 			prev_sync_bits_transmitted <= current_sync_bits_transmitted;
 			current_sync_bits_transmitted <= async_sync_bits_transmitted;

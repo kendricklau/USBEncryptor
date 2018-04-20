@@ -24,7 +24,6 @@ module usb_receiver
 	reg eop;
 	reg d_orig;
 	reg d_edge;
-	reg w_enable;
 	reg sync_shift_enable;
 	reg pid_shift_enable;
 	reg crc5_shift_enable;
@@ -40,7 +39,6 @@ module usb_receiver
 	reg crc5_rcving;
 	reg crc16_rcving;
 	reg data_rcving;
-	reg r_error;
 
 	sync_high sync_high1 (.clk(clk), .n_rst(n_rst), .async_in(d_plus), .sync_out(d_plus_sync));
 	sync_low sync_low1 (.clk(clk), .n_rst(n_rst), .async_in(d_minus), .sync_out(d_minus_sync));

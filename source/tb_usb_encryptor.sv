@@ -16,6 +16,7 @@ module tb_usb_encryptor();
 	reg tb_d_minus_in; // input
 	reg tb_d_plus_out;
 	reg tb_d_minus_out;
+	reg tb_encrypt;
 	reg [7:0] rcv_sync; // output
 	reg [7:0] rcv_pid; // output
 	reg [4:0] rcv_crc5; // output
@@ -53,7 +54,7 @@ module tb_usb_encryptor();
 		tb_n_rst = 0;
 		tb_d_plus_in = 1;
 		tb_d_minus_in = 0;
-		tb_r_enable = 0;
+		tb_encrypt = 1;
 	
 		// do asynch reset
 		@(negedge tb_clk);
@@ -238,34 +239,6 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 
-		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
-		for(i = 0; i < 16; i++) begin
-			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
-		end
-		tb_crc16_data = temp_tb_crc16_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_crc16_data[i]) begin
-			if (tb_crc16_data[i] == 1)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_crc16_data[i] == 0)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
 		// send Data 8 byte
 		tb_data_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
 		for(i = 0; i < 64; i++) begin
@@ -294,6 +267,33 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 
+		// send CRC16 bytes
+		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		for(i = 0; i < 16; i++) begin
+			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
+		end
+		tb_crc16_data = temp_tb_crc16_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_crc16_data[i]) begin
+			if (tb_crc16_data[i] == 1)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc16_data[i] == 0)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
 		// send EOP and then IDLE
 		tb_d_plus_in = 0;
 		tb_d_minus_in = 0;

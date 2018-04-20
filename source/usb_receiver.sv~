@@ -24,7 +24,6 @@ module usb_receiver
 	reg eop;
 	reg d_orig;
 	reg d_edge;
-	reg w_enable;
 	reg sync_shift_enable;
 	reg pid_shift_enable;
 	reg crc5_shift_enable;
@@ -40,7 +39,6 @@ module usb_receiver
 	reg crc5_rcving;
 	reg crc16_rcving;
 	reg data_rcving;
-	reg r_error;
 
 	sync_high sync_high1 (.clk(clk), .n_rst(n_rst), .async_in(d_plus), .sync_out(d_plus_sync));
 	sync_low sync_low1 (.clk(clk), .n_rst(n_rst), .async_in(d_minus), .sync_out(d_minus_sync));
@@ -55,7 +53,7 @@ module usb_receiver
 		
 	shift_register shift_register1 (.clk(clk), .n_rst(n_rst), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .d_orig(d_orig), .rcv_sync(rcv_sync), .rcv_pid(rcv_pid), .rcv_crc5(rcv_crc5), .rcv_crc16(rcv_crc16), .rcv_data(rcv_data));
 
-	rcu rcu1 (.clk(clk), .n_rst(n_rst), .d_edge(d_edge), .eop(eop), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .rcv_sync(rcv_sync), .rcv_pid(rcv_pid), .rcv_crc5(rcv_crc5), .rcv_crc16(rcv_crc16), .rcv_data(rcv_data), .sync_bits_received(sync_bits_received), .pid_bits_received(pid_bits_received), .crc5_bits_received(crc5_bits_received), .crc16_bits_received(crc16_bits_received), .data_bits_received(data_bits_received), .sync_rcving(sync_rcving), .pid_rcving(pid_rcving), .crc5_rcving(crc5_rcving), .crc16_rcving(crc16_rcving), .data_rcving(data_rcving), .w_enable(w_enable), .r_error(r_error));
+	rcu rcu1 (.clk(clk), .n_rst(n_rst), .d_edge(d_edge), .eop(eop), .sync_shift_enable(sync_shift_enable), .pid_shift_enable(pid_shift_enable), .crc5_shift_enable(crc5_shift_enable), .crc16_shift_enable(crc16_shift_enable), .data_shift_enable(data_shift_enable), .rcv_sync(rcv_sync), .rcv_pid(rcv_pid), .rcv_crc5(rcv_crc5), .rcv_crc16(rcv_crc16), .rcv_data(rcv_data), .sync_bits_received(sync_bits_received), .pid_bits_received(pid_bits_received), .crc5_bits_received(crc5_bits_received), .crc16_bits_received(crc16_bits_received), .data_bits_received(data_bits_received), .sync_rcving(sync_rcving), .pid_rcving(pid_rcving), .crc5_rcving(crc5_rcving), .crc16_rcving(crc16_rcving), .data_rcving(data_rcving), .rcv_data_ready(rcv_data_ready));
 
 endmodule
 

@@ -1,9 +1,9 @@
 QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 20:30:53 on Apr 19,2018
+Start time: 00:15:26 on Apr 20,2018
 vlog -sv -work source_work source/usb_receiver.sv 
 -- Compiling module usb_receiver
 
 Top level modules:
 	usb_receiver
-End time: 20:30:54 on Apr 19,2018, Elapsed time: 0:00:01
+End time: 00:15:26 on Apr 20,2018, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

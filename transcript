@@ -9,58 +9,48 @@
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
 # vsim -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work.tb_usb_encryptor 
-# Start time: 20:41:59 on Apr 19,2018
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Note: (vopt-143) Recognized 1 FSM in module "rcu(fast)".
-# ** Note: (vopt-143) Recognized 1 FSM in module "tcu(fast)".
-# ** Warning: source/timer.sv(99): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(99): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(100): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(100): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(101): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(101): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(102): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(102): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(103): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(103): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(111): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(111): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(112): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(112): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(113): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(113): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(114): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(114): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(115): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(115): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(99): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(99): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(100): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(100): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(101): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(101): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(102): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(102): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(103): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(103): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(111): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(111): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(112): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(112): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(113): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(113): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(114): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(114): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(115): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(115): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Note: (vopt-143) Recognized 1 FSM in module "des_controller(fast)".
-# ** Warning: source/encryptor_core.sv(65): (vopt-2685) [TFMPC] - Too few port connections for 'DES_CONTROLLER'.  Expected 10, found 9.
-# ** Warning: source/encryptor_core.sv(65): (vopt-2718) [TFMPC] - Missing connection for port 'key_rollover'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2685) [TFMPC] - Too few port connections for 'A1'.  Expected 10, found 6.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc16'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc5'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_pid'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_sync'.
+# Start time: 00:17:16 on Apr 20,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: source/timer.sv(94): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(94): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/timer.sv(95): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(95): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/timer.sv(96): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(96): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/timer.sv(97): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(97): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/timer.sv(98): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(98): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/timer.sv(106): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(106): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/timer.sv(107): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(107): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/timer.sv(108): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(108): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/timer.sv(109): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(109): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/timer.sv(110): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/timer.sv(110): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/t_timer.sv(94): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(94): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/t_timer.sv(95): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(95): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/t_timer.sv(96): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(96): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/t_timer.sv(97): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(97): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/t_timer.sv(98): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(98): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: source/t_timer.sv(106): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(106): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/t_timer.sv(107): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(107): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/t_timer.sv(108): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(108): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/t_timer.sv(109): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(109): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: source/t_timer.sv(110): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
+# ** Warning: source/t_timer.sv(110): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
 # Loading sv_std.std
 # Loading work.tb_usb_encryptor(fast)
 # Loading work.usb_encryptor(fast)
@@ -94,132 +84,6 @@
 # Loading work.flex_pts_sr(fast__3)
 # Loading work.t_timer(fast)
 # Loading work.tcu(fast)
-# ** Warning: (vsim-3839) source/timer.sv(56): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_data_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(52): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc16_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(48): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc5_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(44): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_pid_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(40): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_sync_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(78): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_data_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(75): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc16_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(72): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc5_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(69): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_pid_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(66): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_sync_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(56): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_data_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(52): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc16_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(48): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc5_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(44): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_pid_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(40): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_sync_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(78): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_data_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(75): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc16_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(72): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc5_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(69): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_pid_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(66): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_sync_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
 # ** Warning: (vsim-8634) Code was not compiled with coverage options.
-run 20000 
-run 20000 ns
-add wave -position insertpoint  \
-sim:/tb_usb_encryptor/tb_clk \
-sim:/tb_usb_encryptor/tb_n_rst \
-sim:/tb_usb_encryptor/tb_d_plus_in \
-sim:/tb_usb_encryptor/tb_d_minus_in \
-sim:/tb_usb_encryptor/tb_d_plus_out \
-sim:/tb_usb_encryptor/tb_d_minus_out
-restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading sv_std.std
-# Loading work.tb_usb_encryptor(fast)
-# Loading work.usb_encryptor(fast)
-# Loading work.usb_receiver(fast)
-# Loading work.sync_high(fast)
-# Loading work.sync_low(fast)
-# Loading work.eop_detect(fast)
-# Loading work.decode(fast)
-# Loading work.edge_detect(fast)
-# Loading work.timer(fast)
-# Loading work.flex_counter(fast)
-# Loading work.shift_register(fast)
-# Loading work.flex_stp_sr(fast)
-# Loading work.flex_stp_sr(fast__1)
-# Loading work.flex_stp_sr(fast__2)
-# Loading work.flex_stp_sr(fast__3)
-# Loading work.rcu(fast)
-# Loading work.encryptor_core(fast)
-# Loading work.permutation(fast)
-# Loading work.des_round_computations(fast)
-# Loading work.key_generator(fast)
-# Loading work.key_counter(fast)
-# Loading work.round_counter(fast)
-# Loading work.des_controller(fast)
-# Loading work.usb_transmitter(fast)
-# Loading work.encode(fast)
-# Loading work.t_shift_register(fast)
-# Loading work.flex_pts_sr(fast)
-# Loading work.flex_pts_sr(fast__1)
-# Loading work.flex_pts_sr(fast__2)
-# Loading work.flex_pts_sr(fast__3)
-# Loading work.t_timer(fast)
-# Loading work.tcu(fast)
-# ** Warning: (vsim-3839) source/timer.sv(56): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_data_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(52): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc16_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(48): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc5_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(44): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_pid_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(40): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_sync_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(78): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_data_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(75): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc16_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(72): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_crc5_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(69): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_pid_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/timer.sv(66): Variable '/tb_usb_encryptor/DUT/A1/timer1/async_sync_bits_received', driven via a port connection, is multiply driven. See source/timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/A1/timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(56): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_data_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(52): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc16_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(48): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc5_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(44): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_pid_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(40): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_sync_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(78): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_data_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(115).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(75): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc16_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(114).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(72): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_crc5_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(113).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(69): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_pid_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(112).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-3839) source/t_timer.sv(66): Variable '/tb_usb_encryptor/DUT/C1/t_timer1/async_sync_bits_transmitted', driven via a port connection, is multiply driven. See source/t_timer.sv(111).
-#         Region: /tb_usb_encryptor/DUT/C1/t_timer1
-# ** Warning: (vsim-8634) Code was not compiled with coverage options.
-run 20000 ns
-# End time: 20:52:12 on Apr 19,2018, Elapsed time: 0:10:13
-# Errors: 0, Warnings: 136
+# End time: 00:17:27 on Apr 20,2018, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 41
