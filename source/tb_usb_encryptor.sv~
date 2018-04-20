@@ -16,6 +16,7 @@ module tb_usb_encryptor();
 	reg tb_d_minus_in; // input
 	reg tb_d_plus_out;
 	reg tb_d_minus_out;
+	reg tb_r_enable; // input
 	reg [7:0] rcv_sync; // output
 	reg [7:0] rcv_pid; // output
 	reg [4:0] rcv_crc5; // output
