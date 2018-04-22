@@ -39,6 +39,7 @@ module rcu
 } state_type;	
 	state_type state;
 	state_type nextstate;
+	logic crc_valid;
 
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
@@ -285,5 +286,7 @@ module rcu
 	assign data_rcving = ((state == RECEIVE_DATA_BITS) | (state == COMPARE_DATA_BITS)) ? 1 : 0;
 	
 	assign rcv_data_ready = ((state == EOP_HANDSHAKE_DELAY)) ? 1 : 0;
+
+	crc crc1 (.clk(clk), 
 
 endmodule

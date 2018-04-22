@@ -117,7 +117,7 @@ module tcu
 				end
 			end
 			LOAD_TOKEN_CRC5: begin
-				trans_crc5 = 5'b11111;
+				// trans_crc5 = 5'b11111;
 				nextstate = TRANSMIT_TOKEN_CRC5;
 			end
 			TRANSMIT_TOKEN_CRC5: begin
@@ -257,4 +257,6 @@ module tcu
 	assign data_load_enable = ((state == LOAD_DATA_BITS)) ? 1 : 0;
 
 	assign handshake_ack = ((state == EOP_HANDSHAKE_DELAY1)) ? 1 : 0;
+
+	crc5_gen crc5 (.clk(clk), .n_rst(n_rst), .rcv_data(trans_pid) .trans_crc5(trans_crc));
 endmodule
