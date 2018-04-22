@@ -30,6 +30,7 @@ module tcu
 	output logic data_load_enable,
 	output logic [7:0] trans_sync,
 	output logic [7:0] trans_pid,
+	input logic [63:0] trans_data,
 	output logic [4:0] trans_crc5,
 	output logic [15:0] trans_crc16,
 	output logic handshake_ack
@@ -178,7 +179,7 @@ module tcu
 				end
 			end
 			LOAD_DATA_CRC16: begin
-				trans_crc16 = 16'b1111111111111111;
+				//trans_crc16 = 16'b1111111111111111;
 				nextstate = TRANSMIT_DATA_CRC16;
 			end
 			TRANSMIT_DATA_CRC16: begin
@@ -258,5 +259,6 @@ module tcu
 
 	assign handshake_ack = ((state == EOP_HANDSHAKE_DELAY1)) ? 1 : 0;
 
-	crc5_gen crc5 (.clk(clk), .n_rst(n_rst), .rcv_data(trans_pid) .trans_crc5(trans_crc));
+	crc5_gen crc5 (.clk(clk), .n_rst(n_rst), .rcv_data(trans_pid), .trans_crc(trans_crc5));
+	crc16_gen crc16 (.clk(clk), .n_rst(n_rst), .rcv_data(trans_data), .trans_crc(trans_crc16));
 endmodule

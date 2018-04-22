@@ -287,6 +287,4 @@ module rcu
 	
 	assign rcv_data_ready = ((state == EOP_HANDSHAKE_DELAY)) ? 1 : 0;
 
-	crc crc1 (.clk(clk), 
-
 endmodule

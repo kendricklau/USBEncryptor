@@ -15,7 +15,7 @@ module tb_usb_transmitter();
 	reg tb_d_plus; // output
 	reg tb_d_minus; // output
 	reg [63:0] tb_trans_data;
-	reg tb_status;
+	reg tb_trans_data_ready;
 	integer i;
 
 	// Clock generation block
@@ -28,7 +28,7 @@ module tb_usb_transmitter();
 	end
 	
 	// DUT Port map
-	usb_transmitter DUT(.clk(tb_clk), .n_rst(tb_n_rst), .status(tb_status), .trans_data(tb_trans_data), .d_plus(tb_d_plus), .d_minus(tb_d_minus));
+	usb_transmitter DUT(.clk(tb_clk), .n_rst(tb_n_rst), .trans_data_ready(tb_trans_data_ready), .trans_data(tb_trans_data), .d_plus(tb_d_plus), .d_minus(tb_d_minus));
 	
 	// Test bench main process
 	initial
@@ -36,7 +36,7 @@ module tb_usb_transmitter();
 		// initialize
 		tb_n_rst = 0;
 		tb_trans_data = '0;
-		tb_status = 0;
+		tb_trans_data_ready = 0;
 	
 		// do asynch reset
 		@(negedge tb_clk);
@@ -47,7 +47,7 @@ module tb_usb_transmitter();
 		// Token Packet
 		// advance to receive sync
 		@(posedge tb_clk);
-		tb_status = 1;
+		tb_trans_data_ready = 1;
 
 		//send sync byte
 		tb_trans_data = 64'b1000100010001000100010001000100010001000100010001000100010001000;

@@ -1,5 +1,5 @@
 // $Id: $
-// File name:   crc.sv
+// File name:   crc5_gen.sv
 // Created:     2/19/2018
 // Author:      Kendrick Lau
 // Lab Section: 337-02
@@ -17,7 +17,7 @@ module crc5_gen
 	reg [7:0] d;
     	reg [4:0] c;
     	reg [4:0] new_crc;
-	reg next_crc;
+	reg [4:0] next_crc;
   	
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
@@ -25,7 +25,8 @@ module crc5_gen
 		begin
 			trans_crc <= '0;
 		end else begin
-			trans_crc <= next_crc	
+			trans_crc <= next_crc;
+		end
 	end
 
 	always_comb
