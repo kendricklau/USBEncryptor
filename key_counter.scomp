@@ -1,9 +1,0 @@
-QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 22:50:21 on Apr 22,2018
-vlog -sv -work source_work source/key_counter.sv 
--- Compiling module key_counter
-
-Top level modules:
-	key_counter
-End time: 22:50:21 on Apr 22,2018, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
