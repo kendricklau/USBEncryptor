@@ -23,7 +23,7 @@ dc_shell-t -x "source -echo do_mapping.tcl"
 Initializing...
 Initializing gui preferences from file  /home/ecegrid/a/mg45/.synopsys_dv_prefs.tcl
 # Step 1:  Read in the source file
-analyze -format sverilog -lib WORK {encode.sv t_shift_register.sv t_timer.sv tcu.sv permutation.sv des_round_computations.sv key_generator.sv key_counter.sv round_counter.sv des_controller.sv sync_high.sv sync_low.sv eop_detect.sv decode.sv edge_detect.sv timer.sv shift_register.sv rcu.sv usb_receiver.sv encryptor_core.sv usb_transmitter.sv flex_counter.sv flex_pts_sr.sv crc5_gen.sv crc16_gen.sv crc5_valid.sv crc16_valid.sv usb_encryptor.sv}
+analyze -format sverilog -lib WORK {encode.sv t_shift_register.sv t_timer.sv tcu.sv permutation.sv des_round_computations.sv key_generator.sv key_counter.sv round_counter.sv des_controller.sv sync_high.sv sync_low.sv eop_detect.sv decode.sv edge_detect.sv timer.sv shift_register.sv rcu.sv usb_receiver.sv encryptor_core.sv usb_transmitter.sv flex_counter.sv flex_pts_sr.sv flex_stp_sr.sv crc5_gen.sv crc16_gen.sv crc5_valid.sv crc16_valid.sv usb_encryptor.sv}
 Running PRESTO HDLC
 Compiling source file ./source/encode.sv
 Compiling source file ./source/t_shift_register.sv
@@ -32,5 +32,523 @@ Compiling source file ./source/tcu.sv
 Compiling source file ./source/permutation.sv
 Compiling source file ./source/des_round_computations.sv
 Compiling source file ./source/key_generator.sv
+Warning:  ./source/key_generator.sv:75: the undeclared symbol 'rkey1' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ./source/key_counter.sv
+Warning:  ./source/key_counter.sv:10: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/key_counter.sv:11: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/key_counter.sv:12: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/round_counter.sv
+Warning:  ./source/round_counter.sv:10: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/round_counter.sv:11: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/des_controller.sv
+Compiling source file ./source/sync_high.sv
+Compiling source file ./source/sync_low.sv
+Compiling source file ./source/eop_detect.sv
+Compiling source file ./source/decode.sv
+Compiling source file ./source/edge_detect.sv
+Compiling source file ./source/timer.sv
+Compiling source file ./source/shift_register.sv
+Compiling source file ./source/rcu.sv
+Compiling source file ./source/usb_receiver.sv
+Compiling source file ./source/encryptor_core.sv
+Compiling source file ./source/usb_transmitter.sv
+Warning:  ./source/usb_transmitter.sv:94: the undeclared symbol 'd_edge' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ./source/flex_counter.sv
+Compiling source file ./source/flex_pts_sr.sv
+Compiling source file ./source/flex_stp_sr.sv
+Compiling source file ./source/crc5_gen.sv
+Warning:  ./source/crc5_gen.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc5_gen.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/crc16_gen.sv
+Warning:  ./source/crc16_gen.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc16_gen.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/crc5_valid.sv
+Warning:  ./source/crc5_valid.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc5_valid.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc5_valid.sv:22: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/crc16_valid.sv
+Warning:  ./source/crc16_valid.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc16_valid.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc16_valid.sv:22: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Compiling source file ./source/usb_encryptor.sv
+Presto compilation completed successfully.
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/dw_foundation.sldb'
+elaborate usb_encryptor -lib WORK
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/gtech.db'
+Loading db file '/package/eda/synopsys/syn-K-2015.06-SP1/libraries/syn/standard.sldb'
+  Loading link library 'osu05_stdcells'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'usb_encryptor'.
+Information: Building the design 'usb_receiver'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'encryptor_core'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'usb_transmitter'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'sync_high'. (HDL-193)
 
-Received Signal 1 from: PID=40896 (UID=2207)
+Inferred memory devices in process
+	in routine sync_high line 18 in file
+		'./source/sync_high.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine sync_high line 30 in file
+		'./source/sync_high.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    sync_out_reg     | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'sync_low'. (HDL-193)
+
+Inferred memory devices in process
+	in routine sync_low line 18 in file
+		'./source/sync_low.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine sync_low line 30 in file
+		'./source/sync_low.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    sync_out_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'eop_detect'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'decode'. (HDL-193)
+Warning:  ./source/decode.sv:57: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine decode line 30 in file
+		'./source/decode.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   current_bit_reg   | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|   stored_bit_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+
+Inferred tri-state devices in process
+	in routine decode line 57 in file
+		'./source/decode.sv'.
+=================================================
+| Register Name |       Type       | Width | MB |
+=================================================
+|  d_orig_tri   | Tri-State Buffer |   1   | N  |
+=================================================
+Presto compilation completed successfully.
+Information: Building the design 'edge_detect'. (HDL-193)
+
+Inferred memory devices in process
+	in routine edge_detect line 20 in file
+		'./source/edge_detect.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    d_current_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|     d_prev_reg      | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'timer'. (HDL-193)
+
+Inferred memory devices in process
+	in routine timer line 60 in file
+		'./source/timer.sv'.
+===========================================================================================
+|          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================================
+|   prev_data_bits_received_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_sync_bits_received_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_sync_bits_received_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  current_pid_bits_received_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_pid_bits_received_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_crc5_bits_received_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_crc5_bits_received_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_crc16_bits_received_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  prev_crc16_bits_received_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_data_bits_received_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===========================================================================================
+Presto compilation completed successfully.
+Information: Building the design 'shift_register'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'rcu'. (HDL-193)
+Warning:  ./source/rcu.sv:291: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:292: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:293: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:294: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:295: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:297: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:298: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:299: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 57 in file
+	'./source/rcu.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            60            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine rcu line 47 in file
+		'./source/rcu.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'permutation'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'des_round_computations'. (HDL-193)
+
+Statistics for case statements in always block at line 646 in file
+	'./source/des_round_computations.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            23            |    auto/auto     |
+|            96            |    auto/auto     |
+|           169            |    auto/auto     |
+|           242            |    auto/auto     |
+|           316            |    auto/auto     |
+|           389            |    auto/auto     |
+|           462            |    auto/auto     |
+|           535            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine des_round_computations line 634 in file
+		'./source/des_round_computations.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      left_reg       | Flip-flop |  33   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      right_reg      | Flip-flop |  33   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'key_generator'. (HDL-193)
+Warning:  ./source/key_generator.sv:63: Value of function 'rev' is used before being assigned; the synthesized result may not match simulations. (ELAB-393)
+Error:  ./source/key_generator.sv:67: Internal error.  (VER-37)
+*** Presto compilation terminated with 1 errors. ***
+Information: Building the design 'key_counter'. (HDL-193)
+
+Inferred memory devices in process
+	in routine key_counter line 15 in file
+		'./source/key_counter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  key_rollover_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    key_count_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'round_counter'. (HDL-193)
+
+Inferred memory devices in process
+	in routine round_counter line 14 in file
+		'./source/round_counter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  cnt_rollover_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   round_count_reg   | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'des_controller'. (HDL-193)
+
+Statistics for case statements in always block at line 39 in file
+	'./source/des_controller.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            42            |     no/auto      |
+===============================================
+
+Statistics for case statements in always block at line 96 in file
+	'./source/des_controller.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           101            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine des_controller line 29 in file
+		'./source/des_controller.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'encode'. (HDL-193)
+
+Inferred memory devices in process
+	in routine encode line 26 in file
+		'./source/encode.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     d_minus_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     d_plus_reg      | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 't_shift_register'. (HDL-193)
+
+Inferred memory devices in process
+	in routine t_shift_register line 42 in file
+		'./source/t_shift_register.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     d_orig_reg      | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 't_timer'. (HDL-193)
+
+Inferred memory devices in process
+	in routine t_timer line 60 in file
+		'./source/t_timer.sv'.
+==============================================================================================
+|           Register Name            |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==============================================================================================
+|   prev_data_bits_transmitted_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_sync_bits_transmitted_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_sync_bits_transmitted_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  current_pid_bits_transmitted_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_pid_bits_transmitted_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_crc5_bits_transmitted_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   prev_crc5_bits_transmitted_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_crc16_bits_transmitted_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  prev_crc16_bits_transmitted_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| current_data_bits_transmitted_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+==============================================================================================
+Presto compilation completed successfully.
+Information: Building the design 'tcu'. (HDL-193)
+Warning:  ./source/tcu.sv:246: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:247: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:248: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:249: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:250: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:251: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:252: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:254: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:255: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:256: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:257: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:258: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/tcu.sv:260: signed to unsigned assignment occurs. (VER-318)
+
+Statistics for case statements in always block at line 83 in file
+	'./source/tcu.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            86            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine tcu line 73 in file
+		'./source/tcu.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine tcu line 83 in file
+		'./source/tcu.sv'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|    trans_pid_reg    | Latch |   8   |  Y  | N  | N  | N  | -  | -  | -  |
+|   trans_sync_reg    | Latch |   8   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  ./source/tcu.sv:83: Netlist for always_comb block contains a latch. (ELAB-974)
+Presto compilation completed successfully.
+Information: Building the design 'flex_counter' instantiated from design 'timer' with
+	the parameters "NUM_CNT_BITS=32". (HDL-193)
+
+Inferred memory devices in process
+	in routine flex_counter_NUM_CNT_BITS32 line 22 in file
+		'./source/flex_counter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  rollover_flag_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    count_out_reg    | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_stp_sr' instantiated from design 'shift_register' with
+	the parameters "NUM_BITS=8,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_stp_sr.sv:28: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_stp_sr_NUM_BITS8_SHIFT_MSB0 line 21 in file
+		'./source/flex_stp_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  parallel_out_reg   | Flip-flop |   8   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_stp_sr' instantiated from design 'shift_register' with
+	the parameters "NUM_BITS=5,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_stp_sr.sv:28: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_stp_sr_NUM_BITS5_SHIFT_MSB0 line 21 in file
+		'./source/flex_stp_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  parallel_out_reg   | Flip-flop |   5   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_stp_sr' instantiated from design 'shift_register' with
+	the parameters "NUM_BITS=16,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_stp_sr.sv:28: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_stp_sr_NUM_BITS16_SHIFT_MSB0 line 21 in file
+		'./source/flex_stp_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  parallel_out_reg   | Flip-flop |  16   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_stp_sr' instantiated from design 'shift_register' with
+	the parameters "NUM_BITS=64,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_stp_sr.sv:28: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_stp_sr_NUM_BITS64_SHIFT_MSB0 line 21 in file
+		'./source/flex_stp_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  parallel_out_reg   | Flip-flop |  64   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'crc5_valid'. (HDL-193)
+
+Inferred memory devices in process
+	in routine crc5_valid line 24 in file
+		'./source/crc5_valid.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    crc_valid_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine crc5_valid line 34 in file
+		'./source/crc5_valid.sv'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+| next_crc_valid_reg  | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  ./source/crc5_valid.sv:34: Netlist for always_comb block contains a latch. (ELAB-974)
+Presto compilation completed successfully.
+Information: Building the design 'crc16_valid'. (HDL-193)
+
+Inferred memory devices in process
+	in routine crc16_valid line 24 in file
+		'./source/crc16_valid.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    crc_valid_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine crc16_valid line 34 in file
+		'./source/crc16_valid.sv'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+| next_crc_valid_reg  | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  ./source/crc16_valid.sv:34: Netlist for always_comb block contains a latch. (ELAB-974)
+Presto compilation completed successfully.
+Information: Building the design 'flex_pts_sr' instantiated from design 't_shift_register' with
+	the parameters "NUM_BITS=8,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_pts_sr.sv:33: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+Warning:  ./source/flex_pts_sr.sv:45: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_pts_sr_NUM_BITS8_SHIFT_MSB0 line 24 in file
+		'./source/flex_pts_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| parallel_in_tmp_reg | Flip-flop |   8   |  Y  | N  | N  | Y  | N  | N  | N  |
+|   serial_out_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_pts_sr' instantiated from design 't_shift_register' with
+	the parameters "NUM_BITS=5,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_pts_sr.sv:33: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+Warning:  ./source/flex_pts_sr.sv:45: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_pts_sr_NUM_BITS5_SHIFT_MSB0 line 24 in file
+		'./source/flex_pts_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| parallel_in_tmp_reg | Flip-flop |   5   |  Y  | N  | N  | Y  | N  | N  | N  |
+|   serial_out_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_pts_sr' instantiated from design 't_shift_register' with
+	the parameters "NUM_BITS=16,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_pts_sr.sv:33: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+Warning:  ./source/flex_pts_sr.sv:45: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_pts_sr_NUM_BITS16_SHIFT_MSB0 line 24 in file
+		'./source/flex_pts_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| parallel_in_tmp_reg | Flip-flop |  16   |  Y  | N  | N  | Y  | N  | N  | N  |
+|   serial_out_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'flex_pts_sr' instantiated from design 't_shift_register' with
+	the parameters "NUM_BITS=64,SHIFT_MSB=0". (HDL-193)
+Warning:  ./source/flex_pts_sr.sv:33: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+Warning:  ./source/flex_pts_sr.sv:45: Statement unreachable (Branch condition impossible to meet).  (VER-61)
+
+Inferred memory devices in process
+	in routine flex_pts_sr_NUM_BITS64_SHIFT_MSB0 line 24 in file
+		'./source/flex_pts_sr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| parallel_in_tmp_reg | Flip-flop |  64   |  Y  | N  | N  | Y  | N  | N  | N  |
+|   serial_out_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'crc5_gen'. (HDL-193)
