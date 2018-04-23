@@ -35,28 +35,28 @@ module key_generator
 	function [57:0] perm1;
 		input [63:0] inNum;
 		begin
-			perm1 = {inNum[56],inNum[48],inNum[40],inNum[32],inNum[24],inNum[16],inNum[8],
-					inNum[0],inNum[57],inNum[49],inNum[41],inNum[33],inNum[25],inNum[17],
-					inNum[9],inNum[1],inNum[58],inNum[50],inNum[42],inNum[34],inNum[26],
-					inNum[18],inNum[10],inNum[2],inNum[59],inNum[51],inNum[43],inNum[35],
-					inNum[62],inNum[54],inNum[46],inNum[38],inNum[30],inNum[22],inNum[14],
-					inNum[6],inNum[61],inNum[53],inNum[45],inNum[37],inNum[29],inNum[21],
-					inNum[13],inNum[5],inNum[60],inNum[52],inNum[44],inNum[36],inNum[28],
-					inNum[20],inNum[12],inNum[4],inNum[27],inNum[19],inNum[20],inNum[3]};
+			perm1 = {inNum[7],inNum[15],inNum[23],inNum[31],inNum[39],inNum[47],inNum[55],
+					inNum[63],inNum[6],inNum[14],inNum[22],inNum[30],inNum[38],inNum[46],
+					inNum[54],inNum[62],inNum[5],inNum[13],inNum[21],inNum[29],inNum[37],
+					inNum[45],inNum[53],inNum[61],inNum[4],inNum[12],inNum[20],inNum[28],
+					inNum[1],inNum[9],inNum[17],inNum[25],inNum[33],inNum[41],inNum[49],
+					inNum[57],inNum[2],inNum[10],inNum[8],inNum[16],inNum[24],inNum[32],
+					inNum[50],inNum[58],inNum[3],inNum[11],inNum[19],inNum[27],inNum[35],
+					inNum[43],inNum[51],inNum[59],inNum[36],inNum[44],inNum[52],inNum[60]};
 		end
 	endfunction
 	
 	function [47:0] perm2;
 		input [55:0] inNum;
 		begin
-			perm2 = {inNum[13],inNum[16],inNum[10],inNum[23],inNum[0],inNum[4],
-					inNum[2],inNum[27],inNum[14],inNum[5],inNum[20],inNum[9],
-					inNum[22],inNum[18],inNum[11],inNum[3],inNum[25],inNum[7],
-					inNum[15],inNum[6],inNum[26],inNum[19],inNum[12],inNum[1],
-					inNum[40],inNum[51],inNum[30],inNum[36],inNum[46],inNum[54],
-					inNum[29],inNum[39],inNum[50],inNum[44],inNum[32],inNum[47],
-					inNum[43],inNum[48],inNum[38],inNum[55],inNum[33],inNum[52],
-					inNum[45],inNum[41],inNum[49],inNum[35],inNum[28],inNum[31]};
+			perm2 = {inNum[42],inNum[39],inNum[45],inNum[32],inNum[55],inNum[51],
+					inNum[53],inNum[28],inNum[41],inNum[50],inNum[35],inNum[46],
+					inNum[33],inNum[37],inNum[44],inNum[52],inNum[30],inNum[48],
+					inNum[40],inNum[49],inNum[27],inNum[36],inNum[43],inNum[54],
+					inNum[15],inNum[4],inNum[25],inNum[19],inNum[9],inNum[1],
+					inNum[26],inNum[16],inNum[5],inNum[11],inNum[23],inNum[8],
+					inNum[12],inNum[7],inNum[17],inNum[0],inNum[22],inNum[3],
+					inNum[10],inNum[14],inNum[6],inNum[20],inNum[27],inNum[24]};
 		end
 	endfunction
 
