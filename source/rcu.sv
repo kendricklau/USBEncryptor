@@ -39,6 +39,7 @@ module rcu
 } state_type;	
 	state_type state;
 	state_type nextstate;
+	logic crc_valid;
 
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
