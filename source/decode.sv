@@ -54,7 +54,7 @@ module decode
 	assign next_current_bit = d_plus;
 
 	//NRZI encoding
-	assign d_orig = d_line ? ((!stored_bit & current_bit) | (stored_bit & !current_bit)) : 1'bz;
+	assign d_orig = d_line ? (((!stored_bit & !current_bit) | (stored_bit & current_bit)) ? 1 : 0) : 1'bz;
 endmodule
 			
 

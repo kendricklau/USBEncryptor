@@ -1,0 +1,9 @@
+QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
+Start time: 20:30:54 on Apr 19,2018
+vlog -sv -work source_work source/encryptor_core.sv 
+-- Compiling module encryptor_core
+
+Top level modules:
+	encryptor_core
+End time: 20:30:54 on Apr 19,2018, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

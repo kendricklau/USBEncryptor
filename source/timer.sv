@@ -37,23 +37,23 @@ module timer
 	reg [31:0] crc16_count_out;
 	reg [31:0] data_count_out;
 
-	reg async_sync_bits_received = 0;
+	reg async_sync_bits_received;
 	reg current_sync_bits_received;
 	reg prev_sync_bits_received;
 
-	reg async_pid_bits_received = 0;
+	reg async_pid_bits_received;
 	reg current_pid_bits_received;
 	reg prev_pid_bits_received;
 
-	reg async_crc5_bits_received = 0;
+	reg async_crc5_bits_received;
 	reg current_crc5_bits_received;
 	reg prev_crc5_bits_received;
 
-	reg async_crc16_bits_received = 0;
+	reg async_crc16_bits_received;
 	reg current_crc16_bits_received;
 	reg prev_crc16_bits_received;
 
-	reg async_data_bits_received = 0;
+	reg async_data_bits_received;
 	reg current_data_bits_received;
 	reg prev_data_bits_received;
 
@@ -63,19 +63,14 @@ module timer
 		begin
 			current_sync_bits_received <= 0;
 			prev_sync_bits_received <= 0;
-			async_sync_bits_received <= 0;
 			current_pid_bits_received <= 0;
 			prev_pid_bits_received <= 0;
-			async_pid_bits_received <= 0;
 			current_crc5_bits_received <= 0;
 			prev_crc5_bits_received <= 0;
-			async_crc5_bits_received <= 0;
 			current_crc16_bits_received <= 0;
 			prev_crc16_bits_received <= 0;
-			async_crc16_bits_received <= 0;
 			current_data_bits_received <= 0;
 			prev_data_bits_received <= 0;
-			async_data_bits_received <= 0;
 		end else begin
 			prev_sync_bits_received <= current_sync_bits_received;
 			current_sync_bits_received <= async_sync_bits_received;

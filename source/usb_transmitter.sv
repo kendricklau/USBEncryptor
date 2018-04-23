@@ -10,10 +10,11 @@ module usb_transmitter
 (
 	input logic clk,
 	input logic n_rst,
-	input logic status,
+	input logic trans_data_ready,
 	input logic [63:0] trans_data,
 	output logic d_plus,
-	output logic d_minus
+	output logic d_minus,
+	output logic handshake_ack
 );
 	reg d_orig;
 	reg idle;
@@ -111,7 +112,7 @@ module usb_transmitter
 	tcu tcu1 (
 		.clk(clk),
 		.n_rst(n_rst),
-		.status(status),
+		.trans_data_ready(trans_data_ready),
 		.sync_bits_transmitted(sync_bits_transmitted),
 		.pid_bits_transmitted(pid_bits_transmitted),
 		.crc5_bits_transmitted(crc5_bits_transmitted),
@@ -132,7 +133,8 @@ module usb_transmitter
 		.trans_sync(trans_sync),
 		.trans_pid(trans_pid),
 		.trans_crc5(trans_crc5),
-		.trans_crc16(trans_crc16)
+		.trans_crc16(trans_crc16),
+		.handshake_ack(handshake_ack)
 		);
 
 endmodule

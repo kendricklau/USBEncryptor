@@ -12,10 +12,10 @@ module encryptor_core
 	input wire n_rst,
 	input wire rcv_data_ready,
 	input wire encrypt,
-	input wire packet_ack,
+	input wire handshake_ack,
 	input wire [63:0] rcv_data,
 	output wire [63:0] trans_data,
-	output wire transmit_signal
+	output wire trans_data_ready
 );
 	wire [63:0] des_curr, des_in;
 	wire des_start, reverse, cnt_rollover, key_rollover, count_enable, encrypt_sync;
@@ -34,7 +34,7 @@ module encryptor_core
 		.clk(clk),
 		.n_rst(n_rst),
 		.des_start(des_start),
-		.des_in(.des_in),
+		.des_in(des_in),
 		.subkey(subkey),
 		.des_curr(des_curr));
 	
@@ -66,12 +66,12 @@ module encryptor_core
 		.clk(clk),
 		.n_rst(n_rst),
 		.receive(rcv_data_ready),
-		.empty(packet_ack),
+		.empty(handshake_ack),
 		.encrypt_sync(encrypt_sync),
 		.count_enable(count_enable),
 		.reverse(reverse),
 		.des_start(des_start),
-		.data_out(transmit_signal));
+		.data_out(trans_data_ready));
 
 	sync_high ENCRYPT_SYNC (
 		.clk(clk),

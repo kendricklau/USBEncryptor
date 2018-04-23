@@ -8,33 +8,31 @@
 
 module rcu
 (
-	input wire clk,
-	input wire n_rst,
-	input wire d_edge,
-	input wire eop,
-	input wire sync_shift_enable,
-	input wire pid_shift_enable,
-	input wire crc5_shift_enable,
-	input wire crc16_shift_enable,
-	input wire data_shift_enable,
-	input wire [7:0] rcv_sync,
-	input wire [7:0] rcv_pid,
-	input wire [4:0] rcv_crc5,
-	input wire [15:0] rcv_crc16,
-	input wire [63:0] rcv_data,
-	input wire sync_bits_received,
-	input wire pid_bits_received,
-	input wire crc5_bits_received,
-	input wire crc16_bits_received,
-	input wire data_bits_received,
-	output reg sync_rcving,
-	output reg pid_rcving,
-	output reg crc5_rcving,
-	output reg crc16_rcving,
-	output reg data_rcving,
-	// output reg eop_rcving,
-	output reg w_enable,
-	output reg r_error
+	input logic clk,
+	input logic n_rst,
+	input logic d_edge,
+	input logic eop,
+	input logic sync_shift_enable,
+	input logic pid_shift_enable,
+	input logic crc5_shift_enable,
+	input logic crc16_shift_enable,
+	input logic data_shift_enable,
+	input logic [7:0] rcv_sync,
+	input logic [7:0] rcv_pid,
+	input logic [4:0] rcv_crc5,
+	input logic [15:0] rcv_crc16,
+	input logic [63:0] rcv_data,
+	input logic sync_bits_received,
+	input logic pid_bits_received,
+	input logic crc5_bits_received,
+	input logic crc16_bits_received,
+	input logic data_bits_received,
+	output logic sync_rcving,
+	output logic pid_rcving,
+	output logic crc5_rcving,
+	output logic crc16_rcving,
+	output logic data_rcving,
+	output logic rcv_data_ready
 );
 
 	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
@@ -55,9 +53,6 @@ module rcu
 	always_comb 
 	begin : next_state
 		nextstate = state;
-		// eop_rcving = 0;
-		w_enable = 0;
-		r_error = 0;
 		case (state)
 			// Start receiving Token packet
 			TOKEN_IDLE: begin
@@ -288,6 +283,7 @@ module rcu
 	assign crc5_rcving = ((state == RECEIVE_TOKEN_CRC5) | (state == COMPARE_TOKEN_CRC5)) ? 1 : 0;
 	assign crc16_rcving = ((state == RECEIVE_DATA_CRC16) | (state == COMPARE_DATA_CRC16)) ? 1 : 0;
 	assign data_rcving = ((state == RECEIVE_DATA_BITS) | (state == COMPARE_DATA_BITS)) ? 1 : 0;
-	// assign eop_rcving = ((state == RECEIVE_TOKEN_EOP) | (state == RECEIVE_DATA_EOP) | (state == RECEIVE_HANDSHAKE_EOP)) ? 1 : 0;
+	
+	assign rcv_data_ready = ((state == EOP_HANDSHAKE_DELAY)) ? 1 : 0;
 
 endmodule
