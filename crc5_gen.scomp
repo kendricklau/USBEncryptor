@@ -1,9 +1,9 @@
 QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 22:34:40 on Apr 21,2018
+Start time: 21:02:06 on Apr 22,2018
 vlog -sv -work source_work source/crc5_gen.sv 
 -- Compiling module crc5_gen
 
 Top level modules:
 	crc5_gen
-End time: 22:34:40 on Apr 21,2018, Elapsed time: 0:00:00
+End time: 21:02:06 on Apr 22,2018, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

@@ -10,15 +10,17 @@ module crc5_gen
 (
 	input logic clk,
 	input logic n_rst,
-	input logic [7:0] rcv_data,
+	input wire [7:0] rcv_data,
+	input logic data_ready,
 	output logic [4:0] trans_crc
 );
-	reg [4:0] crc = 5'b10011;
-	reg [7:0] d;
-    	reg [4:0] c;
-    	reg [4:0] new_crc;
-	reg [4:0] next_crc;
-  	
+	logic [7:0] rcv_data_temp;
+	logic [5:0] crc_poly = 6'b100101;
+	reg [12:0] data_rcv = '0;
+  	logic [4:0] next_crc;
+	integer i;
+
+
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
 		if (!n_rst)
@@ -31,14 +33,27 @@ module crc5_gen
 
 	always_comb
 	begin
-    		d = rcv_data;
-    		c = crc;
-	        new_crc[0] = d[6] ^ d[5] ^ d[3] ^ d[0] ^ c[0] ^ c[2] ^ c[3];
-	        new_crc[1] = d[7] ^ d[6] ^ d[4] ^ d[1] ^ c[1] ^ c[3] ^ c[4];
-	        new_crc[2] = d[7] ^ d[6] ^ d[3] ^ d[2] ^ d[0] ^ c[0] ^ c[3] ^ c[4];
-	        new_crc[3] = d[7] ^ d[4] ^ d[3] ^ d[1] ^ c[0] ^ c[1] ^ c[4];
-	        new_crc[4] = d[5] ^ d[4] ^ d[2] ^ c[1] ^ c[2];
-	        next_crc = new_crc;
+		if (data_ready) 
+		begin
+			rcv_data_temp = rcv_data;
+			data_rcv = {rcv_data_temp, 5'b0};
+	    		for(i=0; i<8; i++) begin
+				if(data_rcv[12-i] == 1'b1)
+				begin
+					data_rcv[12-i] = data_rcv[12-i] ^ crc_poly[5];
+					data_rcv[12-i-1] = data_rcv[12-i-1] ^ crc_poly[4];
+					data_rcv[12-i-2] = data_rcv[12-i-2] ^ crc_poly[3];
+					data_rcv[12-i-3] = data_rcv[12-i-3] ^ crc_poly[2];
+					data_rcv[12-i-4] = data_rcv[12-i-4] ^ crc_poly[1];
+					data_rcv[12-i-5] = data_rcv[12-i-5] ^ crc_poly[0];
+				end
+				if(data_rcv[12:5] == 8'b00000000)
+				begin
+					i=8;
+				end
+			end
+		end
+		next_crc = data_rcv[4:0];
   	end
 endmodule
 			

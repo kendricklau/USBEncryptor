@@ -1,4 +1,4 @@
-// $Id: $
+// $Id: 
 // File name:   crc16_gen.sv
 // Created:     2/19/2018
 // Author:      Kendrick Lau
@@ -10,15 +10,17 @@ module crc16_gen
 (
 	input logic clk,
 	input logic n_rst,
-	input logic [63:0] rcv_data,
+	input wire [63:0] rcv_data,
+	input logic data_ready,
 	output logic [15:0] trans_crc
 );
-	reg [15:0] crc = 16'b1100000000000101;
-	reg [63:0] d;
-    	reg [15:0] c;
-    	reg [15:0] new_crc;
-	reg [15:0] next_crc;
-  	
+	logic [63:0] rcv_data_temp;
+	logic [16:0] crc_poly = 17'b11000000000000101;
+	reg [79:0] data_rcv = '0;
+  	logic [15:0] next_crc;
+	integer i;
+
+
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
 		if (!n_rst)
@@ -31,25 +33,38 @@ module crc16_gen
 
 	always_comb
 	begin
-    		d = rcv_data;
-    		c = crc;
-	        new_crc[0] = d[63] ^ d[62] ^ d[61] ^ d[60] ^ d[55] ^ d[54] ^ d[53] ^ d[52] ^ d[51] ^ d[50] ^ d[49] ^ d[48] ^ d[47] ^ d[46] ^ d[45] ^ d[43] ^ d[41] ^ d[40] ^ d[39] ^ d[38] ^ d[37] ^ d[36] ^ d[35] ^ d[34] ^ d[33] ^ d[32] ^ d[31] ^ d[30] ^ d[27] ^ d[26] ^ d[25] ^ d[24] ^ d[23] ^ d[22] ^ d[21] ^ d[20] ^ d[19] ^ d[18] ^ d[17] ^ d[16] ^ d[15] ^ d[13] ^ d[12] ^ d[11] ^ d[10] ^ d[9] ^ d[8] ^ d[7] ^ d[6] ^ d[5] ^ d[4] ^ d[3] ^ d[2] ^ d[1] ^ d[0] ^ c[0] ^ c[1] ^ c[2] ^ c[3] ^ c[4] ^ c[5] ^ c[6] ^ c[7] ^ c[12] ^ c[13] ^ c[14] ^ c[15];
-    new_crc[1] = d[63] ^ d[62] ^ d[61] ^ d[56] ^ d[55] ^ d[54] ^ d[53] ^ d[52] ^ d[51] ^ d[50] ^ d[49] ^ d[48] ^ d[47] ^ d[46] ^ d[44] ^ d[42] ^ d[41] ^ d[40] ^ d[39] ^ d[38] ^ d[37] ^ d[36] ^ d[35] ^ d[34] ^ d[33] ^ d[32] ^ d[31] ^ d[28] ^ d[27] ^ d[26] ^ d[25] ^ d[24] ^ d[23] ^ d[22] ^ d[21] ^ d[20] ^ d[19] ^ d[18] ^ d[17] ^ d[16] ^ d[14] ^ d[13] ^ d[12] ^ d[11] ^ d[10] ^ d[9] ^ d[8] ^ d[7] ^ d[6] ^ d[5] ^ d[4] ^ d[3] ^ d[2] ^ d[1] ^ c[0] ^ c[1] ^ c[2] ^ c[3] ^ c[4] ^ c[5] ^ c[6] ^ c[7] ^ c[8] ^ c[13] ^ c[14] ^ c[15];
-    new_crc[2] = d[61] ^ d[60] ^ d[57] ^ d[56] ^ d[46] ^ d[42] ^ d[31] ^ d[30] ^ d[29] ^ d[28] ^ d[16] ^ d[14] ^ d[1] ^ d[0] ^ c[8] ^ c[9] ^ c[12] ^ c[13];
-    new_crc[3] = d[62] ^ d[61] ^ d[58] ^ d[57] ^ d[47] ^ d[43] ^ d[32] ^ d[31] ^ d[30] ^ d[29] ^ d[17] ^ d[15] ^ d[2] ^ d[1] ^ c[9] ^ c[10] ^ c[13] ^ c[14];
-    new_crc[4] = d[63] ^ d[62] ^ d[59] ^ d[58] ^ d[48] ^ d[44] ^ d[33] ^ d[32] ^ d[31] ^ d[30] ^ d[18] ^ d[16] ^ d[3] ^ d[2] ^ c[0] ^ c[10] ^ c[11] ^ c[14] ^ c[15];
-    new_crc[5] = d[63] ^ d[60] ^ d[59] ^ d[49] ^ d[45] ^ d[34] ^ d[33] ^ d[32] ^ d[31] ^ d[19] ^ d[17] ^ d[4] ^ d[3] ^ c[1] ^ c[11] ^ c[12] ^ c[15];
-    new_crc[6] = d[61] ^ d[60] ^ d[50] ^ d[46] ^ d[35] ^ d[34] ^ d[33] ^ d[32] ^ d[20] ^ d[18] ^ d[5] ^ d[4] ^ c[2] ^ c[12] ^ c[13];
-    new_crc[7] = d[62] ^ d[61] ^ d[51] ^ d[47] ^ d[36] ^ d[35] ^ d[34] ^ d[33] ^ d[21] ^ d[19] ^ d[6] ^ d[5] ^ c[3] ^ c[13] ^ c[14];
-    new_crc[8] = d[63] ^ d[62] ^ d[52] ^ d[48] ^ d[37] ^ d[36] ^ d[35] ^ d[34] ^ d[22] ^ d[20] ^ d[7] ^ d[6] ^ c[0] ^ c[4] ^ c[14] ^ c[15];
-    new_crc[9] = d[63] ^ d[53] ^ d[49] ^ d[38] ^ d[37] ^ d[36] ^ d[35] ^ d[23] ^ d[21] ^ d[8] ^ d[7] ^ c[1] ^ c[5] ^ c[15];
-    new_crc[10] = d[54] ^ d[50] ^ d[39] ^ d[38] ^ d[37] ^ d[36] ^ d[24] ^ d[22] ^ d[9] ^ d[8] ^ c[2] ^ c[6];
-    new_crc[11] = d[55] ^ d[51] ^ d[40] ^ d[39] ^ d[38] ^ d[37] ^ d[25] ^ d[23] ^ d[10] ^ d[9] ^ c[3] ^ c[7];
-    new_crc[12] = d[56] ^ d[52] ^ d[41] ^ d[40] ^ d[39] ^ d[38] ^ d[26] ^ d[24] ^ d[11] ^ d[10] ^ c[4] ^ c[8];
-    new_crc[13] = d[57] ^ d[53] ^ d[42] ^ d[41] ^ d[40] ^ d[39] ^ d[27] ^ d[25] ^ d[12] ^ d[11] ^ c[5] ^ c[9];
-    new_crc[14] = d[58] ^ d[54] ^ d[43] ^ d[42] ^ d[41] ^ d[40] ^ d[28] ^ d[26] ^ d[13] ^ d[12] ^ c[6] ^ c[10];
-    new_crc[15] = d[63] ^ d[62] ^ d[61] ^ d[60] ^ d[59] ^ d[54] ^ d[53] ^ d[52] ^ d[51] ^ d[50] ^ d[49] ^ d[48] ^ d[47] ^ d[46] ^ d[45] ^ d[44] ^ d[42] ^ d[40] ^ d[39] ^ d[38] ^ d[37] ^ d[36] ^ d[35] ^ d[34] ^ d[33] ^ d[32] ^ d[31] ^ d[30] ^ d[29] ^ d[26] ^ d[25] ^ d[24] ^ d[23] ^ d[22] ^ d[21] ^ d[20] ^ d[19] ^ d[18] ^ d[17] ^ d[16] ^ d[15] ^ d[14] ^ d[12] ^ d[11] ^ d[10] ^ d[9] ^ d[8] ^ d[7] ^ d[6] ^ d[5] ^ d[4] ^ d[3] ^ d[2] ^ d[1] ^ d[0] ^ c[0] ^ c[1] ^ c[2] ^ c[3] ^ c[4] ^ c[5] ^ c[6] ^ c[11] ^ c[12] ^ c[13] ^ c[14] ^ c[15];
-    next_crc = new_crc;
+		if (data_ready) 
+		begin
+			rcv_data_temp = rcv_data;
+			data_rcv = {rcv_data_temp, 16'b0};
+	    		for(i=0; i<64; i++) begin
+				if(data_rcv[79-i] == 1'b1)
+				begin
+					data_rcv[79-i] = data_rcv[79-i] ^ crc_poly[16];
+					data_rcv[79-i-1] = data_rcv[79-i-1] ^ crc_poly[15];
+					data_rcv[79-i-2] = data_rcv[79-i-2] ^ crc_poly[14];
+					data_rcv[79-i-3] = data_rcv[79-i-3] ^ crc_poly[13];
+					data_rcv[79-i-4] = data_rcv[79-i-4] ^ crc_poly[12];
+					data_rcv[79-i-5] = data_rcv[79-i-5] ^ crc_poly[11];
+					data_rcv[79-i-6] = data_rcv[79-i-6] ^ crc_poly[10];
+					data_rcv[79-i-7] = data_rcv[79-i-7] ^ crc_poly[9];
+					data_rcv[79-i-8] = data_rcv[79-i-8] ^ crc_poly[8];
+					data_rcv[79-i-9] = data_rcv[79-i-9] ^ crc_poly[7];
+					data_rcv[79-i-10] = data_rcv[79-i-10] ^ crc_poly[6];
+					data_rcv[79-i-11] = data_rcv[79-i-11] ^ crc_poly[5];
+					data_rcv[79-i-12] = data_rcv[79-i-12] ^ crc_poly[4];
+					data_rcv[79-i-13] = data_rcv[79-i-13] ^ crc_poly[3];
+					data_rcv[79-i-14] = data_rcv[79-i-14] ^ crc_poly[2];
+					data_rcv[79-i-15] = data_rcv[79-i-15] ^ crc_poly[1];
+					data_rcv[79-i-16] = data_rcv[79-i-16] ^ crc_poly[0];
+				end
+				if(data_rcv[79:16] == 64'd0)
+				begin
+					i=64;
+				end
+			end
+		end
+		next_crc = data_rcv[15:0];
   	end
 endmodule
 			

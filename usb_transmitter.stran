@@ -9,9 +9,8 @@
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
 # vsim -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work.tb_usb_transmitter 
-# Start time: 22:56:30 on Apr 21,2018
+# Start time: 21:13:34 on Apr 22,2018
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Note: (vopt-143) Recognized 1 FSM in module "tcu(fast)".
 # Loading sv_std.std
 # Loading work.tb_usb_transmitter(fast)
 # Loading work.usb_transmitter(fast)
@@ -27,7 +26,7 @@
 # Loading work.crc5_gen(fast)
 # Loading work.crc16_gen(fast)
 # ** Warning: (vsim-8634) Code was not compiled with coverage options.
-add wave -position insertpoint sim:/tb_usb_transmitter/DUT/tcu1/*
+add wave -position insertpoint sim:/tb_usb_transmitter/DUT/tcu1/crc16/*
 run 20000 ns
-# End time: 23:00:17 on Apr 21,2018, Elapsed time: 0:03:47
+# End time: 21:14:50 on Apr 22,2018, Elapsed time: 0:01:16
 # Errors: 0, Warnings: 1
