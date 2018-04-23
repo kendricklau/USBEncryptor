@@ -15,22 +15,40 @@ VIbEZ3SM_:j<Q2bBWMfT8:2
 =1-c81f66bd10e7-5ad969cd-2e097-9b70
 o-quiet -auto_acc_if_foreign -work source_work -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim +acc
 n@_opt
-OL;O;10.3b;59
+Z1 OL;O;10.3b;59
+R0
+T_opt1
+!s110 1524452135
+V?61gcF?SJoXLe7SnjKZ2P1
+04 14 4 work tb_key_counter fast 0
+=1-5cb9017b479f-5add4b27-bae85-962d
+Z2 o-quiet -auto_acc_if_foreign -work source_work/ -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim +acc
+n@_opt1
+R1
+R0
+T_opt2
+!s110 1524453686
+VkAceP3zmO`bzAIOnhjR;92
+04 16 4 work tb_round_counter fast 0
+=1-5cb9017b479f-5add5136-754d1-691
+R2
+n@_opt2
+R1
 vdecode
-Z1 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
-Z2 !s110 1524183127
+Z3 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+Z4 !s110 1524183127
 !i10b 1
 !s100 zJ696<iX<5<7g^h>S:IF21
 I@Tg1J[iXJl20C^C6NOZ?O3
-Z3 V`JN@9S9cnhjKRR_L]QIcM3
+Z5 V`JN@9S9cnhjKRR_L]QIcM3
 !s105 decode_sv_unit
 S1
 R0
-Z4 w1524020878
+Z6 w1524020878
 8source/decode.sv
 Fsource/decode.sv
 L0 9
-Z5 OL;L;10.3b;59
+Z7 OL;L;10.3b;59
 r1
 !s85 0
 31
@@ -38,22 +56,22 @@ r1
 !s107 source/decode.sv|
 !s90 -sv|-work|source_work|source/decode.sv|
 !i113 0
-Z6 o-sv -work source_work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 o-sv -work source_work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 vdes_controller
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 ]lSRbz6@O`W^<NDbHiUzd1
 Ioo7@[M:f_9dRhfNdJG==20
-R3
+R5
 !s105 des_controller_sv_unit
 S1
 R0
-Z7 w1524181642
+Z9 w1524181642
 8source/des_controller.sv
 Fsource/des_controller.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -61,22 +79,22 @@ r1
 !s107 source/des_controller.sv|
 !s90 -sv|-work|source_work|source/des_controller.sv|
 !i113 0
-R6
+R8
 vdes_round_computations
-R1
-Z8 !s110 1524183126
+R3
+Z10 !s110 1524183126
 !i10b 1
 !s100 Pz6e3nd^C<4T:UL1JT8Rl2
 IBCi4QQTf9hfGIZ10A;]Qm3
-R3
+R5
 !s105 des_round_computations_sv_unit
 S1
 R0
-R4
+R6
 8source/des_round_computations.sv
 Fsource/des_round_computations.sv
-Z9 L0 11
-R5
+Z11 L0 11
+R7
 r1
 !s85 0
 31
@@ -84,22 +102,22 @@ r1
 !s107 source/des_round_computations.sv|
 !s90 -sv|-work|source_work|source/des_round_computations.sv|
 !i113 0
-R6
+R8
 vedge_detect
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 Pn@Be_L_hI<HzVajKiL8n3
 Ih@?`7?8MdGz62jaRh^Oe?0
-R3
+R5
 !s105 edge_detect_sv_unit
 S1
 R0
-R4
+R6
 8source/edge_detect.sv
 Fsource/edge_detect.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -107,22 +125,22 @@ r1
 !s107 source/edge_detect.sv|
 !s90 -sv|-work|source_work|source/edge_detect.sv|
 !i113 0
-R6
-vencode
-R1
 R8
+vencode
+R3
+R10
 !i10b 1
 !s100 mkF>SI9CP;ARKcXSm1RUg3
 I9NlRlVk;SL`7KM>E^2LI71
-R3
+R5
 !s105 encode_sv_unit
 S1
 R0
-R4
+R6
 8source/encode.sv
 Fsource/encode.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -130,14 +148,14 @@ r1
 !s107 source/encode.sv|
 !s90 -sv|-work|source_work|source/encode.sv|
 !i113 0
-R6
+R8
 vencryptor_core
-R1
-Z10 !s110 1524184254
+R3
+Z12 !s110 1524184254
 !i10b 1
 !s100 WAJ=3=?h:o<=a3<ecAjf<1
 I<Lk_RdF6J7?ILn9W<4>fg1
-R3
+R5
 !s105 encryptor_core_sv_unit
 S1
 R0
@@ -145,7 +163,7 @@ w1524183837
 8source/encryptor_core.sv
 Fsource/encryptor_core.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -153,22 +171,22 @@ r1
 !s107 source/encryptor_core.sv|
 !s90 -sv|-work|source_work|source/encryptor_core.sv|
 !i113 0
-R6
+R8
 veop_detect
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 VJcSU:NSJ52?UG5eHK<kg0
 IcOXHLFk1c_64cP=F:6hY<3
-R3
+R5
 !s105 eop_detect_sv_unit
 S1
 R0
-Z11 w1522779489
+Z13 w1522779489
 8source/eop_detect.sv
 Fsource/eop_detect.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -176,22 +194,22 @@ r1
 !s107 source/eop_detect.sv|
 !s90 -sv|-work|source_work|source/eop_detect.sv|
 !i113 0
-R6
+R8
 vflex_counter
-R1
-R10
+R3
+R12
 !i10b 1
 !s100 l88m=F0XgDmEn5f4`I>Pd3
 Ieb7m>I3C5WT0Ic[5?9@W;1
-R3
+R5
 !s105 flex_counter_sv_unit
 S1
 R0
-R4
+R6
 8source/flex_counter.sv
 Fsource/flex_counter.sv
 L0 8
-R5
+R7
 r1
 !s85 0
 31
@@ -199,22 +217,22 @@ r1
 !s107 source/flex_counter.sv|
 !s90 -sv|-work|source_work|source/flex_counter.sv|
 !i113 0
-R6
+R8
 vflex_pts_sr
-R1
+R3
 !s110 1524184273
 !i10b 1
 !s100 VkFedk;X;GgPan1W7HV800
 Ii^UjG:IaUS0mk4UX<:XP:1
-R3
+R5
 !s105 flex_pts_sr_sv_unit
 S1
 R0
-R4
+R6
 8source/flex_pts_sr.sv
 Fsource/flex_pts_sr.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -222,22 +240,22 @@ r1
 !s107 source/flex_pts_sr.sv|
 !s90 -sv|-work|source_work|source/flex_pts_sr.sv|
 !i113 0
-R6
+R8
 vflex_stp_sr
-R1
-R10
+R3
+R12
 !i10b 1
 !s100 @_QNlBHSmjOCKU0XE[8Z11
 I@N0bm3UJ:YOc>J=W0o5BZ3
-R3
+R5
 !s105 flex_stp_sr_sv_unit
 S1
 R0
-R11
+R13
 8source/flex_stp_sr.sv
 Fsource/flex_stp_sr.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -245,45 +263,45 @@ r1
 !s107 source/flex_stp_sr.sv|
 !s90 -sv|-work|source_work|source/flex_stp_sr.sv|
 !i113 0
-R6
+R8
 vkey_counter
-R1
-R2
-!i10b 1
-!s100 5lIjYUOK=1kVVS4OiAN1=1
-IaHDOK=8?K;k;E5A2EZE>C1
 R3
+!s110 1524451821
+!i10b 1
+!s100 ]8<jGo26KC6XBES^UGbbl1
+I85O?RV`53E<U30PT<iE@i1
+R5
 !s105 key_counter_sv_unit
 S1
-R0
-R7
+Z14 d/home/ecegrid/a/mg46/ece337/USBEncryptor
+w1524451796
 8source/key_counter.sv
 Fsource/key_counter.sv
 L0 1
-R5
+R7
 r1
 !s85 0
 31
-!s108 1524183127.116696
+!s108 1524451821.183296
 !s107 source/key_counter.sv|
 !s90 -sv|-work|source_work|source/key_counter.sv|
 !i113 0
-R6
+R8
 vkey_generator
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 W1j^9B@lgldSBClK0ODgc1
 IL^zRMKCOW4]8RLVBHFz;j2
-R3
+R5
 !s105 key_generator_sv_unit
 S1
 R0
-R7
+R9
 8source/key_generator.sv
 Fsource/key_generator.sv
-R9
-R5
+R11
+R7
 r1
 !s85 0
 31
@@ -291,22 +309,22 @@ r1
 !s107 source/key_generator.sv|
 !s90 -sv|-work|source_work|source/key_generator.sv|
 !i113 0
-R6
-vpermutation
-R1
 R8
+vpermutation
+R3
+R10
 !i10b 1
 !s100 GM<h:V:XI?bX6hON2IGSA3
 IH:NYJYeL<l5JW3YgYAj]l2
-R3
+R5
 !s105 permutation_sv_unit
 S1
 R0
-R4
+R6
 8source/permutation.sv
 Fsource/permutation.sv
-R9
-R5
+R11
+R7
 r1
 !s85 0
 31
@@ -314,14 +332,14 @@ r1
 !s107 source/permutation.sv|
 !s90 -sv|-work|source_work|source/permutation.sv|
 !i113 0
-R6
+R8
 vrcu
-R1
+R3
 !s110 1524184253
 !i10b 1
 !s100 <l8cLMm8Y1?eF6OACdl6g1
 IYXIhQKS:B]IN>l>9H;D4M2
-R3
+R5
 !s105 rcu_sv_unit
 S1
 R0
@@ -329,7 +347,7 @@ w1524184252
 8source/rcu.sv
 Fsource/rcu.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -337,45 +355,45 @@ r1
 !s107 source/rcu.sv|
 !s90 -sv|-work|source_work|source/rcu.sv|
 !i113 0
-R6
+R8
 vround_counter
-R1
-R2
-!i10b 1
-!s100 Nbg4:[XTK?a<SejIRDnFS3
-I@HPfHdR@4T6ihnzHN[^IB1
 R3
+!s110 1524453681
+!i10b 1
+!s100 gJNChMl;MBlEZ;CXBOZH61
+IDEG1L98jCakk9R>AkMn`N1
+R5
 !s105 round_counter_sv_unit
 S1
-R0
-R7
+R14
+w1524453653
 8source/round_counter.sv
 Fsource/round_counter.sv
 L0 1
-R5
+R7
 r1
 !s85 0
 31
-!s108 1524183127.263902
+!s108 1524453681.113084
 !s107 source/round_counter.sv|
 !s90 -sv|-work|source_work|source/round_counter.sv|
 !i113 0
-R6
+R8
 vshift_register
-R1
+R3
 !s110 1524183128
 !i10b 1
 !s100 ike=Gz;I:P0jLiB[M:]953
 Ik<fGoNjTFoDj56g62=Iz60
-R3
+R5
 !s105 shift_register_sv_unit
 S1
 R0
-R4
+R6
 8source/shift_register.sv
 Fsource/shift_register.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -383,22 +401,22 @@ r1
 !s107 source/shift_register.sv|
 !s90 -sv|-work|source_work|source/shift_register.sv|
 !i113 0
-R6
+R8
 vsync_high
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 ib;m99H2MR_bSeR[]W<KI1
 IBE6Af5JSS<W6W3lMFB;ZU2
-R3
+R5
 !s105 sync_high_sv_unit
 S1
 R0
-R11
+R13
 8source/sync_high.sv
 Fsource/sync_high.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -406,22 +424,22 @@ r1
 !s107 source/sync_high.sv|
 !s90 -sv|-work|source_work|source/sync_high.sv|
 !i113 0
-R6
+R8
 vsync_low
-R1
-R2
+R3
+R4
 !i10b 1
 !s100 XWi9GS>KUAh=lg8IRdjJj1
 IVoBaNWI;C4?F7L^REBSWl2
-R3
+R5
 !s105 sync_low_sv_unit
 S1
 R0
-R11
+R13
 8source/sync_low.sv
 Fsource/sync_low.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -429,22 +447,22 @@ r1
 !s107 source/sync_low.sv|
 !s90 -sv|-work|source_work|source/sync_low.sv|
 !i113 0
-R6
-vt_shift_register
-R1
 R8
+vt_shift_register
+R3
+R10
 !i10b 1
 !s100 Nb5GcQdD`A2ZE0IEM9T;<2
 I91R_PKY[nz5l?R>b?OYVD0
-R3
+R5
 !s105 t_shift_register_sv_unit
 S1
 R0
-R4
+R6
 8source/t_shift_register.sv
 Fsource/t_shift_register.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -452,22 +470,22 @@ r1
 !s107 source/t_shift_register.sv|
 !s90 -sv|-work|source_work|source/t_shift_register.sv|
 !i113 0
-R6
+R8
 vt_timer
-R1
-Z12 !s110 1524197832
+R3
+Z15 !s110 1524197832
 !i10b 1
 !s100 N=1d[k_T1TP;6EczTHeL?0
 IT0Ni6oY5b@Iz5nYhJ6`?k3
-R3
+R5
 !s105 t_timer_sv_unit
 S1
 R0
 w1524197783
 8source/t_timer.sv
 Fsource/t_timer.sv
-R9
-R5
+R11
+R7
 r1
 !s85 0
 31
@@ -475,14 +493,60 @@ r1
 !s107 source/t_timer.sv|
 !s90 -sv|-work|source_work|source/t_timer.sv|
 !i113 0
-R6
+R8
+vtb_key_counter
+R3
+!s110 1524452130
+!i10b 1
+!s100 ARCa0z<6HYkjINCnHzREQ0
+I83>_k?mJl_h1Ialk?dzAL2
+R5
+!s105 tb_key_counter_sv_unit
+S1
+R14
+w1524452128
+8source/tb_key_counter.sv
+Fsource/tb_key_counter.sv
+R11
+R7
+r1
+!s85 0
+31
+!s108 1524452130.665742
+!s107 source/tb_key_counter.sv|
+!s90 -sv|-work|source_work|source/tb_key_counter.sv|
+!i113 0
+R8
+vtb_round_counter
+R3
+!s110 1524453476
+!i10b 1
+!s100 8oEAjF;o9UG2LA]9ULZ>b3
+IN^J?cbFod8L<_JcE2E@nI1
+R5
+!s105 tb_round_counter_sv_unit
+S1
+R14
+w1524453474
+8source/tb_round_counter.sv
+Fsource/tb_round_counter.sv
+R11
+R7
+r1
+!s85 0
+31
+!s108 1524453476.885695
+!s107 source/tb_round_counter.sv|
+!s90 -sv|-work|source_work|source/tb_round_counter.sv|
+!i113 0
+R8
 vtb_usb_encryptor
-R1
+R3
 !s110 1524197287
 !i10b 1
 !s100 k`E5Z]gXjCz@5U9RA1mGz3
 IMl;UeL?a:@XR51P9j@D0L2
-R3
+R5
 !s105 tb_usb_encryptor_sv_unit
 S1
 R0
@@ -490,7 +554,7 @@ w1524197274
 8source/tb_usb_encryptor.sv
 Fsource/tb_usb_encryptor.sv
 L0 6
-R5
+R7
 r1
 !s85 0
 31
@@ -498,14 +562,14 @@ r1
 !s107 source/tb_usb_encryptor.sv|
 !s90 -sv|-work|source_work|source/tb_usb_encryptor.sv|
 !i113 0
-R6
+R8
 vtcu
-R1
+R3
 !s110 1524184236
 !i10b 1
 !s100 Fi8[gY`fLVO]eLL8@SJdO1
 IOD>cf::VHX_mE<fF0HT971
-R3
+R5
 !s105 tcu_sv_unit
 S1
 R0
@@ -513,7 +577,7 @@ w1524184230
 8source/tcu.sv
 Fsource/tcu.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -521,22 +585,22 @@ r1
 !s107 source/tcu.sv|
 !s90 -sv|-work|source_work|source/tcu.sv|
 !i113 0
-R6
+R8
 vtimer
-R1
-R12
+R3
+R15
 !i10b 1
 !s100 <fi>eMKiaLGbVPhDdfYHi0
 I<K<NnCS<2=CEhHInl19lT2
-R3
+R5
 !s105 timer_sv_unit
 S1
 R0
 w1524197805
 8source/timer.sv
 Fsource/timer.sv
-R9
-R5
+R11
+R7
 r1
 !s85 0
 31
@@ -544,14 +608,14 @@ r1
 !s107 source/timer.sv|
 !s90 -sv|-work|source_work|source/timer.sv|
 !i113 0
-R6
+R8
 vusb_encryptor
-R1
+R3
 !s110 1524184913
 !i10b 1
 !s100 33^KG@;IML1Ll?PD@8bb31
 I;gjdjK;R[WRR7@C@_88:m1
-R3
+R5
 !s105 usb_encryptor_sv_unit
 S1
 R0
@@ -559,7 +623,7 @@ w1524184789
 8source/usb_encryptor.sv
 Fsource/usb_encryptor.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -567,14 +631,14 @@ r1
 !s107 source/usb_encryptor.sv|
 !s90 -sv|-work|source_work|source/usb_encryptor.sv|
 !i113 0
-R6
+R8
 vusb_receiver
-R1
+R3
 !s110 1524197726
 !i10b 1
 !s100 DkUjQkT^MiXZY0YQF^>z11
 IiFInC47`jX1eF2_^UW`>k0
-R3
+R5
 !s105 usb_receiver_sv_unit
 S1
 R0
@@ -582,7 +646,7 @@ w1524197476
 8source/usb_receiver.sv
 Fsource/usb_receiver.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -590,14 +654,14 @@ r1
 !s107 source/usb_receiver.sv|
 !s90 -sv|-work|source_work|source/usb_receiver.sv|
 !i113 0
-R6
+R8
 vusb_transmitter
-R1
-R10
+R3
+R12
 !i10b 1
 !s100 Q@N<`cUdEV356z__Kjl;I3
 IL[7E7ff52lf6TniZLcNVK3
-R3
+R5
 !s105 usb_transmitter_sv_unit
 S1
 R0
@@ -605,7 +669,7 @@ w1524184124
 8source/usb_transmitter.sv
 Fsource/usb_transmitter.sv
 L0 9
-R5
+R7
 r1
 !s85 0
 31
@@ -613,4 +677,4 @@ r1
 !s107 source/usb_transmitter.sv|
 !s90 -sv|-work|source_work|source/usb_transmitter.sv|
 !i113 0
-R6
+R8
