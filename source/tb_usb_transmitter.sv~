@@ -36,7 +36,7 @@ module tb_usb_transmitter();
 		// initialize
 		tb_n_rst = 0;
 		tb_trans_data = '0;
-		tb_status = 0;
+		tb_trans_data_ready = 0;
 	
 		// do asynch reset
 		@(negedge tb_clk);
@@ -47,10 +47,10 @@ module tb_usb_transmitter();
 		// Token Packet
 		// advance to receive sync
 		@(posedge tb_clk);
-		tb_status = 1;
+		tb_trans_data_ready = 1;
 
 		//send sync byte
-		tb_trans_data = 64'b1000100010001000100010001000100010001000100010001000100010001000;
+		tb_trans_data = 64'b1111111111111111000000000000000011111111111111110000000000000000;
 		@(posedge tb_clk); // DATA0
 	end
 endmodule

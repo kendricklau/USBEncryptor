@@ -50,7 +50,7 @@ module tb_usb_transmitter();
 		tb_trans_data_ready = 1;
 
 		//send sync byte
-		tb_trans_data = 64'b1000100010001000100010001000100010001000100010001000100010001000;
+		tb_trans_data = 64'b0000000000000000111111111111111100000000000000001111111111111111;
 		@(posedge tb_clk); // DATA0
 	end
 endmodule
