@@ -3,13 +3,16 @@ module key_counter
 	input wire clk,
 	input wire n_rst,
 	input wire count_enable,
-	output reg [1:0] key_count,
-	output reg key_rollover
+	output wire [1:0] key_count,
+	output wire key_rollover
 );
 
-reg [1:0] compare_val = 2'b11;
-reg next_count = 0;
+reg [1:0] key_reg;
+reg rollover_reg;
+reg [1:0] next_count = 0;
 reg next_rollover = 0;
+assign key_rollover = rollover_reg;
+assign key_count = key_reg;
 
 
 always_ff @ (posedge clk, negedge n_rst)
@@ -17,33 +20,34 @@ begin
 	if (n_rst == 0)
 	begin
 		//<Flip-Flop Signal Name> <= <reset value>;
-		key_count <= '0;
-		key_rollover <= '0;
+		key_reg <= '0;
+		rollover_reg <= '0;
 	end
 	else 
 	begin
 		//<Flip-Flop Signal Name> <= <Flip-Flop input signal>
-		key_count <= next_count;
-		key_rollover <= next_rollover;
+		key_reg <= next_count;
+		rollover_reg <= next_rollover;
 	end
 end
 
 always_comb
 begin
-	next_count = key_count;
-	next_rollover = key_rollover;	
+	next_count = key_reg;
+	next_rollover = rollover_reg;	
 
 	if (count_enable == 1)
 	begin
 		if (next_rollover == 0 && count_enable == 1)	
 		begin
-			next_count = (key_count + 1);	
+			next_count =  key_reg + 1;	
 		end
-		else if (key_rollover == 1 && count_enable == 1)
+		else if (rollover_reg == 1 && count_enable == 1)
 		begin
 			next_count = 0;
+			next_rollover = 0;
 		end
-		if (next_count == key_rollover && count_enable == 1)
+		if (key_reg == 2'b10 && count_enable == 1)
 		begin
 			next_rollover = 1;
 		end
