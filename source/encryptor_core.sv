@@ -18,7 +18,7 @@ module encryptor_core
 	output wire trans_data_ready
 );
 	wire [63:0] des_curr, des_in;
-	wire des_start, reverse, cnt_rollover, key_rollover, count_enable, encrypt_sync;
+	wire des_start, reverse, cnt_rollover, key_rollover, count_enable, encrypt_sync, des_enable;
 	wire [4:0] round_count;
 	wire [1:0] key_count;
 	wire [47:0] subkey;
@@ -36,7 +36,8 @@ module encryptor_core
 		.des_start(des_start),
 		.des_in(des_in),
 		.subkey(subkey),
-		.des_curr(des_curr));
+		.des_curr(des_curr),
+		.des_enable(des_enable));
 	
 	key_generator KEYGEN (
 		.clk(clk),
@@ -71,7 +72,8 @@ module encryptor_core
 		.count_enable(count_enable),
 		.reverse(reverse),
 		.des_start(des_start),
-		.data_out(trans_data_ready));
+		.data_out(trans_data_ready),
+		.des_enable(des_enable));
 
 	sync_high ENCRYPT_SYNC (
 		.clk(clk),

@@ -35,14 +35,10 @@ module rcu
 	output logic rcv_data_ready
 );
 
-	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5_1, COMPARE_TOKEN_CRC5_2, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16_1, COMPARE_DATA_CRC16_2, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
+	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
 } state_type;	
 	state_type state;
 	state_type nextstate;
-	logic crc5_compare_enable;
-	logic crc5_valid;
-	logic crc16_compare_enable;
-	logic crc16_valid;
 
 	always_ff @ (posedge clk, negedge n_rst)
 	begin
@@ -102,16 +98,13 @@ module rcu
 			RECEIVE_TOKEN_CRC5: begin
 				if (crc5_bits_received)
 				begin
-					nextstate = COMPARE_TOKEN_CRC5_1;
+					nextstate = COMPARE_TOKEN_CRC5;
 				end else begin
 					nextstate = RECEIVE_TOKEN_CRC5;
 				end
 			end
-			COMPARE_TOKEN_CRC5_1: begin
-				nextstate = COMPARE_TOKEN_CRC5_2;
-			end
-			COMPARE_TOKEN_CRC5_2: begin
-				if (crc5_valid)
+			COMPARE_TOKEN_CRC5: begin
+				if (1)
 				begin
 					nextstate = RECEIVE_TOKEN_EOP;
 				end else begin
@@ -195,16 +188,13 @@ module rcu
 			RECEIVE_DATA_CRC16: begin
 				if (crc16_bits_received)
 				begin
-					nextstate = COMPARE_DATA_CRC16_1;
+					nextstate = COMPARE_DATA_CRC16;
 				end else begin
 					nextstate = RECEIVE_DATA_CRC16;
 				end
 			end
-			COMPARE_DATA_CRC16_1: begin
-				nextstate = COMPARE_DATA_CRC16_2;
-			end
-			COMPARE_DATA_CRC16_2: begin
-				if (crc16_valid)
+			COMPARE_DATA_CRC16: begin
+				if (1)
 				begin
 					nextstate = RECEIVE_DATA_EOP;
 				end else begin
@@ -290,15 +280,10 @@ module rcu
 
 	assign sync_rcving = ((state == RECEIVE_TOKEN_SYNC) | (state == COMPARE_TOKEN_SYNC) | (state == RECEIVE_DATA_SYNC) | (state == COMPARE_DATA_SYNC) | (state == RECEIVE_HANDSHAKE_SYNC) | (state == COMPARE_HANDSHAKE_SYNC)) ? 1 : 0;
 	assign pid_rcving = ((state == RECEIVE_TOKEN_PID) | (state == COMPARE_TOKEN_PID) | (state == RECEIVE_DATA_PID) | (state == COMPARE_DATA_PID) | (state == RECEIVE_HANDSHAKE_PID) | (state == COMPARE_HANDSHAKE_PID)) ? 1 : 0;
-	assign crc5_rcving = ((state == RECEIVE_TOKEN_CRC5) | (state == COMPARE_TOKEN_CRC5_2)) ? 1 : 0;
-	assign crc16_rcving = ((state == RECEIVE_DATA_CRC16) | (state == COMPARE_DATA_CRC16_2)) ? 1 : 0;
+	assign crc5_rcving = ((state == RECEIVE_TOKEN_CRC5) | (state == COMPARE_TOKEN_CRC5)) ? 1 : 0;
+	assign crc16_rcving = ((state == RECEIVE_DATA_CRC16) | (state == COMPARE_DATA_CRC16)) ? 1 : 0;
 	assign data_rcving = ((state == RECEIVE_DATA_BITS) | (state == COMPARE_DATA_BITS)) ? 1 : 0;
 	
 	assign rcv_data_ready = ((state == EOP_HANDSHAKE_DELAY)) ? 1 : 0;
-	assign crc5_compare_enable = ((state == COMPARE_TOKEN_CRC5_1)) ? 1 : 0;
-	assign crc16_compare_enable = ((state == COMPARE_DATA_CRC16_1)) ? 1 : 0;
 
-	crc5_valid crc5_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_pid), .rcv_crc(rcv_crc5), .data_ready(crc5_compare_enable), .crc_valid(crc5_valid));
-	crc16_valid crc16_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_data), .rcv_crc(rcv_crc16), .data_ready(crc16_compare_enable), .crc_valid(crc16_valid));
-	
 endmodule
