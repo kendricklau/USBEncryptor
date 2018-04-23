@@ -1,9 +1,0 @@
-QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 12:26:14 on Apr 17,2018
-vlog -sv -work source_work source/t_timer.sv 
--- Compiling module t_timer
-
-Top level modules:
-	t_timer
-End time: 12:26:15 on Apr 17,2018, Elapsed time: 0:00:01
-Errors: 0, Warnings: 0
