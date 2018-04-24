@@ -65,7 +65,7 @@ module key_generator
 		begin
 			logic [6:0] i;
 			for (i = 0; i < 64; i = i+1)
-				rev[i] <= inKey[63-i];
+				rev[i] = inKey[63-i];
 		end
 	endfunction
 

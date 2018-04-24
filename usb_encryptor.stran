@@ -9,7 +9,7 @@
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
 # vsim -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work.tb_usb_encryptor 
-# Start time: 10:20:22 on Apr 23,2018
+# Start time: 20:14:13 on Apr 23,2018
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "rcu(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "tcu(fast)".
@@ -96,53 +96,8 @@
 # Loading work.flex_pts_sr(fast__3)
 # Loading work.t_timer(fast)
 # Loading work.tcu(fast)
-# Loading work.crc5_gen(fast)
-# Loading work.crc16_gen(fast)
 # ** Warning: (vsim-8634) Code was not compiled with coverage options.
 add wave -position insertpoint sim:/tb_usb_encryptor/*
-run 60000 ns
-add wave -position insertpoint  \
-sim:/tb_usb_encryptor/tb_test_case
-restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading sv_std.std
-# Loading work.tb_usb_encryptor(fast)
-# Loading work.usb_encryptor(fast)
-# Loading work.usb_receiver(fast)
-# Loading work.sync_high(fast)
-# Loading work.sync_low(fast)
-# Loading work.eop_detect(fast)
-# Loading work.decode(fast)
-# Loading work.edge_detect(fast)
-# Loading work.timer(fast)
-# Loading work.flex_counter(fast)
-# Loading work.shift_register(fast)
-# Loading work.flex_stp_sr(fast)
-# Loading work.flex_stp_sr(fast__1)
-# Loading work.flex_stp_sr(fast__2)
-# Loading work.flex_stp_sr(fast__3)
-# Loading work.rcu(fast)
-# Loading work.crc5_valid(fast)
-# Loading work.crc16_valid(fast)
-# Loading work.encryptor_core(fast)
-# Loading work.permutation(fast)
-# Loading work.des_round_computations(fast)
-# Loading work.key_generator(fast)
-# Loading work.key_counter(fast)
-# Loading work.round_counter(fast)
-# Loading work.des_controller(fast)
-# Loading work.usb_transmitter(fast)
-# Loading work.encode(fast)
-# Loading work.t_shift_register(fast)
-# Loading work.flex_pts_sr(fast)
-# Loading work.flex_pts_sr(fast__1)
-# Loading work.flex_pts_sr(fast__2)
-# Loading work.flex_pts_sr(fast__3)
-# Loading work.t_timer(fast)
-# Loading work.tcu(fast)
-# Loading work.crc5_gen(fast)
-# Loading work.crc16_gen(fast)
-# ** Warning: (vsim-8634) Code was not compiled with coverage options.
-run 60000 ns
-# End time: 10:22:28 on Apr 23,2018, Elapsed time: 0:02:06
-# Errors: 0, Warnings: 96
+run 20000 ns
+# End time: 20:15:16 on Apr 23,2018, Elapsed time: 0:01:03
+# Errors: 0, Warnings: 48

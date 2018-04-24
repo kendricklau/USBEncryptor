@@ -17,8 +17,6 @@ module usb_transmitter
 	output logic handshake_ack
 );
 	reg d_orig;
-	reg idle;
-	reg eop;
 	reg sync_shift_enable;
 	reg pid_shift_enable;
 	reg crc5_shift_enable;

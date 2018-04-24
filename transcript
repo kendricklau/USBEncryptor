@@ -8,75 +8,94 @@
 # //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
-# vsim -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps source_work.tb_usb_encryptor 
-# Start time: 10:20:22 on Apr 23,2018
+# vsim -Lf /home/ecegrid/a/ece337/Course_Prod/IP_Libs/Lab_IP_Lib/Vsim -L /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work "+no_glitch_msg" -coverage -voptargs="+acc" -i -t ps mapped_work.tb_usb_encryptor 
+# Start time: 20:17:07 on Apr 23,2018
 # ** Note: (vsim-3812) Design is being optimized...
-# ** Note: (vopt-143) Recognized 1 FSM in module "rcu(fast)".
-# ** Note: (vopt-143) Recognized 1 FSM in module "tcu(fast)".
-# ** Warning: source/timer.sv(94): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(94): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(95): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(95): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(96): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(96): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(97): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(97): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(98): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(98): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/timer.sv(106): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(106): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(107): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(107): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(108): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(108): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(109): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(109): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/timer.sv(110): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/timer.sv(110): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(94): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(94): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(95): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(95): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(96): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(96): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(97): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(97): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(98): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(98): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
-# ** Warning: source/t_timer.sv(106): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(106): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(107): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(107): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(108): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(108): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(109): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(109): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Warning: source/t_timer.sv(110): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
-# ** Warning: source/t_timer.sv(110): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
-# ** Note: (vopt-143) Recognized 1 FSM in module "des_controller(fast)".
-# ** Warning: source/encryptor_core.sv(65): (vopt-2685) [TFMPC] - Too few port connections for 'DES_CONTROLLER'.  Expected 10, found 9.
-# ** Warning: source/encryptor_core.sv(65): (vopt-2718) [TFMPC] - Missing connection for port 'key_rollover'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2685) [TFMPC] - Too few port connections for 'A1'.  Expected 10, found 6.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc16'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc5'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_pid'.
-# ** Warning: source/usb_encryptor.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_sync'.
+# ** Warning: mapped/usb_encryptor.v(10927): (vopt-2685) [TFMPC] - Too few port connections for 'tcu1'.  Expected 26, found 23.
+# ** Warning: mapped/usb_encryptor.v(10927): (vopt-2718) [TFMPC] - Missing connection for port 'trans_crc16'.
+# ** Warning: mapped/usb_encryptor.v(10927): (vopt-2718) [TFMPC] - Missing connection for port 'trans_crc5'.
+# ** Warning: mapped/usb_encryptor.v(10927): (vopt-2718) [TFMPC] - Missing connection for port 'trans_sync'.
+# ** Warning: mapped/usb_encryptor.v(10954): (vopt-2685) [TFMPC] - Too few port connections for 'A1'.  Expected 10, found 6.
+# ** Warning: mapped/usb_encryptor.v(10954): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc16'.
+# ** Warning: mapped/usb_encryptor.v(10954): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_crc5'.
+# ** Warning: mapped/usb_encryptor.v(10954): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_pid'.
+# ** Warning: mapped/usb_encryptor.v(10954): (vopt-2718) [TFMPC] - Missing connection for port 'rcv_sync'.
+# ** Warning: mapped/usb_encryptor.v(3100): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3100): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(3105): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3105): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(3110): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3110): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(3115): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3115): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(3120): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3120): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(3125): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3125): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(3131): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3131): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(3137): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3137): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(3143): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3143): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(3149): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(3149): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(10441): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10441): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(10447): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10447): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(10453): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10453): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(10459): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10459): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(10464): (vopt-2685) [TFMPC] - Too few port connections for 'data_bit_shift'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10464): (vopt-2718) [TFMPC] - Missing connection for port 'rollover_flag'.
+# ** Warning: mapped/usb_encryptor.v(10470): (vopt-2685) [TFMPC] - Too few port connections for 'sync_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10470): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(10476): (vopt-2685) [TFMPC] - Too few port connections for 'pid_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10476): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(10482): (vopt-2685) [TFMPC] - Too few port connections for 'crc5_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10482): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(10488): (vopt-2685) [TFMPC] - Too few port connections for 'crc16_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10488): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
+# ** Warning: mapped/usb_encryptor.v(10494): (vopt-2685) [TFMPC] - Too few port connections for 'data_bits_receive'.  Expected 7, found 6.
+# ** Warning: mapped/usb_encryptor.v(10494): (vopt-2718) [TFMPC] - Missing connection for port 'count_out'.
 # Loading sv_std.std
 # Loading work.tb_usb_encryptor(fast)
 # Loading work.usb_encryptor(fast)
 # Loading work.usb_receiver(fast)
-# Loading work.sync_high(fast)
+# Loading work.sync_high_1(fast)
 # Loading work.sync_low(fast)
 # Loading work.eop_detect(fast)
 # Loading work.decode(fast)
 # Loading work.edge_detect(fast)
 # Loading work.timer(fast)
-# Loading work.flex_counter(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_19(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_19_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_18(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_18_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_17(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_17_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_16(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_16_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_15(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_15_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_14(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_14_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_13(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_13_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_12(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_12_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_11(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_11_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_10(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_10_DW01_inc_0(fast)
 # Loading work.shift_register(fast)
-# Loading work.flex_stp_sr(fast)
-# Loading work.flex_stp_sr(fast__1)
-# Loading work.flex_stp_sr(fast__2)
-# Loading work.flex_stp_sr(fast__3)
+# Loading work.flex_stp_sr_NUM_BITS8_SHIFT_MSB0_1(fast)
+# Loading work.flex_stp_sr_NUM_BITS8_SHIFT_MSB0_0(fast)
+# Loading work.flex_stp_sr_NUM_BITS5_SHIFT_MSB0(fast)
+# Loading work.flex_stp_sr_NUM_BITS16_SHIFT_MSB0(fast)
+# Loading work.flex_stp_sr_NUM_BITS64_SHIFT_MSB0(fast)
 # Loading work.rcu(fast)
 # Loading work.crc5_valid(fast)
 # Loading work.crc16_valid(fast)
@@ -87,62 +106,67 @@
 # Loading work.key_counter(fast)
 # Loading work.round_counter(fast)
 # Loading work.des_controller(fast)
+# Loading work.sync_high_0(fast)
 # Loading work.usb_transmitter(fast)
 # Loading work.encode(fast)
 # Loading work.t_shift_register(fast)
-# Loading work.flex_pts_sr(fast)
-# Loading work.flex_pts_sr(fast__1)
-# Loading work.flex_pts_sr(fast__2)
-# Loading work.flex_pts_sr(fast__3)
+# Loading work.flex_pts_sr_NUM_BITS8_SHIFT_MSB0_1(fast)
+# Loading work.flex_pts_sr_NUM_BITS8_SHIFT_MSB0_0(fast)
+# Loading work.flex_pts_sr_NUM_BITS5_SHIFT_MSB0(fast)
+# Loading work.flex_pts_sr_NUM_BITS16_SHIFT_MSB0(fast)
+# Loading work.flex_pts_sr_NUM_BITS64_SHIFT_MSB0(fast)
 # Loading work.t_timer(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_9(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_9_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_8(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_8_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_7(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_7_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_6(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_6_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_5(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_5_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_4(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_4_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_3(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_3_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_2(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_2_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_1(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_1_DW01_inc_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_0(fast)
+# Loading work.flex_counter_NUM_CNT_BITS32_0_DW01_inc_0(fast)
 # Loading work.tcu(fast)
-# Loading work.crc5_gen(fast)
-# Loading work.crc16_gen(fast)
-# ** Warning: (vsim-8634) Code was not compiled with coverage options.
-add wave -position insertpoint sim:/tb_usb_encryptor/*
-run 60000 ns
-add wave -position insertpoint  \
-sim:/tb_usb_encryptor/tb_test_case
-restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading sv_std.std
-# Loading work.tb_usb_encryptor(fast)
-# Loading work.usb_encryptor(fast)
-# Loading work.usb_receiver(fast)
-# Loading work.sync_high(fast)
-# Loading work.sync_low(fast)
-# Loading work.eop_detect(fast)
-# Loading work.decode(fast)
-# Loading work.edge_detect(fast)
-# Loading work.timer(fast)
-# Loading work.flex_counter(fast)
-# Loading work.shift_register(fast)
-# Loading work.flex_stp_sr(fast)
-# Loading work.flex_stp_sr(fast__1)
-# Loading work.flex_stp_sr(fast__2)
-# Loading work.flex_stp_sr(fast__3)
-# Loading work.rcu(fast)
-# Loading work.crc5_valid(fast)
-# Loading work.crc16_valid(fast)
-# Loading work.encryptor_core(fast)
-# Loading work.permutation(fast)
-# Loading work.des_round_computations(fast)
-# Loading work.key_generator(fast)
-# Loading work.key_counter(fast)
-# Loading work.round_counter(fast)
-# Loading work.des_controller(fast)
-# Loading work.usb_transmitter(fast)
-# Loading work.encode(fast)
-# Loading work.t_shift_register(fast)
-# Loading work.flex_pts_sr(fast)
-# Loading work.flex_pts_sr(fast__1)
-# Loading work.flex_pts_sr(fast__2)
-# Loading work.flex_pts_sr(fast__3)
-# Loading work.t_timer(fast)
-# Loading work.tcu(fast)
-# Loading work.crc5_gen(fast)
-# Loading work.crc16_gen(fast)
-# ** Warning: (vsim-8634) Code was not compiled with coverage options.
-run 60000 ns
-# End time: 10:22:28 on Apr 23,2018, Elapsed time: 0:02:06
-# Errors: 0, Warnings: 96
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.math_real(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr(metastabilitywrapperarch)#1
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.prim(body)
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.dffsr_core(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.tbufx1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.xor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.mux2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.and2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.or2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.hax1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.bufx2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.and2x2(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.oai21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nand3x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.xnor2x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi21x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx8(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.latch(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.aoi22x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.oai22x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.nor3x1(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.invx4(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.bufx4(behavioral)#1
+# Loading /home/ecegrid/a/ece337/Course_Prod/Cell_Libs/AMI_05/vhdl_work.or2x2(behavioral)#1

@@ -124,9 +124,9 @@ module tb_usb_receiver();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
+		tb_crc5_data = 5'b01010; //00111100 DATA0
 		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
 		end
 		tb_crc5_data = temp_tb_crc5_data;
 		tb_d_prev = tb_d_plus;

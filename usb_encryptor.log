@@ -52,11 +52,12 @@ Compiling source file ./source/rcu.sv
 Compiling source file ./source/usb_receiver.sv
 Compiling source file ./source/encryptor_core.sv
 Compiling source file ./source/usb_transmitter.sv
-Warning:  ./source/usb_transmitter.sv:94: the undeclared symbol 'd_edge' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ./source/usb_transmitter.sv:92: the undeclared symbol 'd_edge' assumed to have the default net type, which is 'wire'. (VER-936)
 Compiling source file ./source/flex_counter.sv
 Compiling source file ./source/flex_pts_sr.sv
 Compiling source file ./source/flex_stp_sr.sv
 Compiling source file ./source/crc5_gen.sv
+Warning:  ./source/crc5_gen.sv:17: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Warning:  ./source/crc5_gen.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Warning:  ./source/crc5_gen.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Compiling source file ./source/crc16_gen.sv
@@ -65,7 +66,7 @@ Warning:  ./source/crc16_gen.sv:19: The construct 'declaration initial assignmen
 Compiling source file ./source/crc5_valid.sv
 Warning:  ./source/crc5_valid.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Warning:  ./source/crc5_valid.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
-Warning:  ./source/crc5_valid.sv:22: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Warning:  ./source/crc5_valid.sv:21: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Compiling source file ./source/crc16_valid.sv
 Warning:  ./source/crc16_valid.sv:18: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
 Warning:  ./source/crc16_valid.sv:19: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
@@ -188,14 +189,14 @@ Presto compilation completed successfully.
 Information: Building the design 'shift_register'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'rcu'. (HDL-193)
-Warning:  ./source/rcu.sv:291: signed to unsigned assignment occurs. (VER-318)
-Warning:  ./source/rcu.sv:292: signed to unsigned assignment occurs. (VER-318)
-Warning:  ./source/rcu.sv:293: signed to unsigned assignment occurs. (VER-318)
-Warning:  ./source/rcu.sv:294: signed to unsigned assignment occurs. (VER-318)
-Warning:  ./source/rcu.sv:295: signed to unsigned assignment occurs. (VER-318)
 Warning:  ./source/rcu.sv:297: signed to unsigned assignment occurs. (VER-318)
 Warning:  ./source/rcu.sv:298: signed to unsigned assignment occurs. (VER-318)
 Warning:  ./source/rcu.sv:299: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:300: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:301: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:303: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:304: signed to unsigned assignment occurs. (VER-318)
+Warning:  ./source/rcu.sv:305: signed to unsigned assignment occurs. (VER-318)
 
 Statistics for case statements in always block at line 57 in file
 	'./source/rcu.sv'
@@ -244,9 +245,23 @@ Inferred memory devices in process
 ===============================================================================
 Presto compilation completed successfully.
 Information: Building the design 'key_generator'. (HDL-193)
-Warning:  ./source/key_generator.sv:63: Value of function 'rev' is used before being assigned; the synthesized result may not match simulations. (ELAB-393)
-Error:  ./source/key_generator.sv:67: Internal error.  (VER-37)
-*** Presto compilation terminated with 1 errors. ***
+
+Inferred memory devices in process
+	in routine key_generator line 78 in file
+		'./source/key_generator.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      left_reg       | Flip-flop |  15   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      left_reg       | Flip-flop |  13   |  Y  | N  | N  | Y  | N  | N  | N  |
+|     keyOut_reg      | Flip-flop |  33   |  Y  | N  | N  | Y  | N  | N  | N  |
+|     keyOut_reg      | Flip-flop |  31   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     keyOutR_reg     | Flip-flop |  28   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     keyOutR_reg     | Flip-flop |  28   |  Y  | N  | N  | Y  | N  | N  | N  |
+|      right_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      right_reg      | Flip-flop |  18   |  Y  | N  | N  | Y  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
 Information: Building the design 'key_counter'. (HDL-193)
 
 Inferred memory devices in process
@@ -379,8 +394,10 @@ Inferred memory devices in process
 ===========================================================================
 |    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================
-|    trans_pid_reg    | Latch |   8   |  Y  | N  | N  | N  | -  | -  | -  |
+|   trans_crc16_reg   | Latch |  16   |  Y  | N  | N  | N  | -  | -  | -  |
 |   trans_sync_reg    | Latch |   8   |  Y  | N  | N  | N  | -  | -  | -  |
+|    trans_pid_reg    | Latch |   8   |  Y  | N  | N  | N  | -  | -  | -  |
+|   trans_crc5_reg    | Latch |   5   |  Y  | N  | N  | N  | -  | -  | -  |
 ===========================================================================
 Warning:  ./source/tcu.sv:83: Netlist for always_comb block contains a latch. (ELAB-974)
 Presto compilation completed successfully.
@@ -452,23 +469,13 @@ Presto compilation completed successfully.
 Information: Building the design 'crc5_valid'. (HDL-193)
 
 Inferred memory devices in process
-	in routine crc5_valid line 24 in file
+	in routine crc5_valid line 23 in file
 		'./source/crc5_valid.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
 |    crc_valid_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
-
-Inferred memory devices in process
-	in routine crc5_valid line 34 in file
-		'./source/crc5_valid.sv'.
-===========================================================================
-|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
-===========================================================================
-| next_crc_valid_reg  | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
-===========================================================================
-Warning:  ./source/crc5_valid.sv:34: Netlist for always_comb block contains a latch. (ELAB-974)
 Presto compilation completed successfully.
 Information: Building the design 'crc16_valid'. (HDL-193)
 
@@ -551,4 +558,2101 @@ Inferred memory devices in process
 |   serial_out_reg    | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'crc5_gen'. (HDL-193)
+uniquify
+Information: Uniquified 2 instances of design 'sync_high'. (OPT-1056)
+Information: Uniquified 20 instances of design 'flex_counter_NUM_CNT_BITS32'. (OPT-1056)
+Information: Uniquified 2 instances of design 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0'. (OPT-1056)
+Information: Uniquified 2 instances of design 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0'. (OPT-1056)
+# Step 2: Set design constraints
+# Uncomment below to set timing, area, power, etc. constraints
+# set_max_delay <delay> -from "<input>" -to "<output>"
+# set_max_area <area>
+# set_max_total_power <power> mW
+# Step 3: Compile the design
+compile -map_effort medium
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | K-2015.06-DWBB_201506.1 |     *     |
+| Licensed DW Building Blocks        | K-2015.06-DWBB_201506.1 |     *     |
+============================================================================
+
+
+Information: There are 922 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'tcu'
+Information: The register 'trans_crc16_reg[15]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[12]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[11]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[10]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[9]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[8]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc16_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_sync_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_pid_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_pid_reg[6]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_pid_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_pid_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc5_reg[4]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc5_reg[3]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc5_reg[2]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc5_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'trans_crc5_reg[0]' is a constant and will be removed. (OPT-1206)
+  Processing 'flex_counter_NUM_CNT_BITS32_0'
+Information: Added key list 'DesignWare' to design 'flex_counter_NUM_CNT_BITS32_0'. (DDB-72)
+  Processing 't_timer'
+  Processing 'flex_pts_sr_NUM_BITS64_SHIFT_MSB0'
+  Processing 'flex_pts_sr_NUM_BITS16_SHIFT_MSB0'
+  Processing 'flex_pts_sr_NUM_BITS5_SHIFT_MSB0'
+  Processing 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Processing 't_shift_register'
+  Processing 'encode'
+  Processing 'usb_transmitter'
+  Processing 'sync_high_0'
+  Processing 'des_controller'
+  Processing 'round_counter'
+  Processing 'key_counter'
+Information: The register 'key_count_reg[1]' is a constant and will be removed. (OPT-1206)
+  Processing 'key_generator'
+Information: The register 'keyOut_reg[60]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[58]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[55]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[50]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[47]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[38]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[37]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[33]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[32]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[26]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[22]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[20]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[14]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[7]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOut_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[62]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[58]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[49]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[43]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[41]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[37]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[31]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[30]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[25]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[16]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[13]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[8]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[5]' is a constant and will be removed. (OPT-1206)
+Information: The register 'keyOutR_reg[3]' is a constant and will be removed. (OPT-1206)
+  Processing 'des_round_computations'
+  Processing 'permutation'
+  Processing 'encryptor_core'
+  Processing 'crc16_valid'
+  Processing 'crc5_valid'
+  Processing 'rcu'
+  Processing 'flex_stp_sr_NUM_BITS64_SHIFT_MSB0'
+  Processing 'flex_stp_sr_NUM_BITS16_SHIFT_MSB0'
+  Processing 'flex_stp_sr_NUM_BITS5_SHIFT_MSB0'
+  Processing 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Processing 'shift_register'
+  Processing 'timer'
+  Processing 'edge_detect'
+  Processing 'decode'
+  Processing 'eop_detect'
+  Processing 'sync_low'
+  Processing 'usb_receiver'
+  Processing 'usb_encryptor'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'usb_encryptor' has no optimization constraints set. (OPT-108)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'flex_counter_NUM_CNT_BITS32_0_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_1_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_2_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_3_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_4_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_5_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_6_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_7_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_8_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_9_DW01_inc_0'
+  Processing 'round_counter_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_10_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_11_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_12_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_13_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_14_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_15_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_16_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_17_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_18_DW01_inc_0'
+  Processing 'flex_counter_NUM_CNT_BITS32_19_DW01_inc_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Structuring 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Mapping 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Structuring 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Mapping 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0_0'
+  Structuring 'flex_counter_NUM_CNT_BITS32_18'
+  Mapping 'flex_counter_NUM_CNT_BITS32_18'
+  Structuring 'flex_counter_NUM_CNT_BITS32_17'
+  Mapping 'flex_counter_NUM_CNT_BITS32_17'
+  Structuring 'flex_counter_NUM_CNT_BITS32_16'
+  Mapping 'flex_counter_NUM_CNT_BITS32_16'
+  Structuring 'flex_counter_NUM_CNT_BITS32_15'
+  Mapping 'flex_counter_NUM_CNT_BITS32_15'
+  Structuring 'flex_counter_NUM_CNT_BITS32_14'
+  Mapping 'flex_counter_NUM_CNT_BITS32_14'
+  Structuring 'flex_counter_NUM_CNT_BITS32_13'
+  Mapping 'flex_counter_NUM_CNT_BITS32_13'
+  Structuring 'flex_counter_NUM_CNT_BITS32_12'
+  Mapping 'flex_counter_NUM_CNT_BITS32_12'
+  Structuring 'flex_counter_NUM_CNT_BITS32_11'
+  Mapping 'flex_counter_NUM_CNT_BITS32_11'
+  Structuring 'flex_counter_NUM_CNT_BITS32_10'
+  Mapping 'flex_counter_NUM_CNT_BITS32_10'
+  Structuring 'flex_counter_NUM_CNT_BITS32_9'
+  Mapping 'flex_counter_NUM_CNT_BITS32_9'
+  Structuring 'flex_counter_NUM_CNT_BITS32_8'
+  Mapping 'flex_counter_NUM_CNT_BITS32_8'
+  Structuring 'flex_counter_NUM_CNT_BITS32_7'
+  Mapping 'flex_counter_NUM_CNT_BITS32_7'
+  Structuring 'flex_counter_NUM_CNT_BITS32_6'
+  Mapping 'flex_counter_NUM_CNT_BITS32_6'
+  Structuring 'flex_counter_NUM_CNT_BITS32_5'
+  Mapping 'flex_counter_NUM_CNT_BITS32_5'
+  Structuring 'flex_counter_NUM_CNT_BITS32_4'
+  Mapping 'flex_counter_NUM_CNT_BITS32_4'
+  Structuring 'flex_counter_NUM_CNT_BITS32_3'
+  Mapping 'flex_counter_NUM_CNT_BITS32_3'
+  Structuring 'flex_counter_NUM_CNT_BITS32_2'
+  Mapping 'flex_counter_NUM_CNT_BITS32_2'
+  Structuring 'flex_counter_NUM_CNT_BITS32_1'
+  Mapping 'flex_counter_NUM_CNT_BITS32_1'
+  Structuring 'flex_counter_NUM_CNT_BITS32_0'
+  Mapping 'flex_counter_NUM_CNT_BITS32_0'
+  Structuring 'flex_pts_sr_NUM_BITS64_SHIFT_MSB0'
+  Mapping 'flex_pts_sr_NUM_BITS64_SHIFT_MSB0'
+  Structuring 'flex_pts_sr_NUM_BITS16_SHIFT_MSB0'
+  Mapping 'flex_pts_sr_NUM_BITS16_SHIFT_MSB0'
+  Structuring 'flex_pts_sr_NUM_BITS5_SHIFT_MSB0'
+  Mapping 'flex_pts_sr_NUM_BITS5_SHIFT_MSB0'
+  Structuring 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0_1'
+  Mapping 'flex_pts_sr_NUM_BITS8_SHIFT_MSB0_1'
+  Structuring 'crc16_valid'
+  Mapping 'crc16_valid'
+  Structuring 'crc5_valid'
+  Mapping 'crc5_valid'
+  Structuring 'flex_stp_sr_NUM_BITS64_SHIFT_MSB0'
+  Mapping 'flex_stp_sr_NUM_BITS64_SHIFT_MSB0'
+  Structuring 'flex_stp_sr_NUM_BITS16_SHIFT_MSB0'
+  Mapping 'flex_stp_sr_NUM_BITS16_SHIFT_MSB0'
+  Structuring 'flex_stp_sr_NUM_BITS5_SHIFT_MSB0'
+  Mapping 'flex_stp_sr_NUM_BITS5_SHIFT_MSB0'
+  Structuring 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0_1'
+  Mapping 'flex_stp_sr_NUM_BITS8_SHIFT_MSB0_1'
+  Structuring 'flex_counter_NUM_CNT_BITS32_19'
+  Mapping 'flex_counter_NUM_CNT_BITS32_19'
+  Structuring 'tcu'
+  Mapping 'tcu'
+  Structuring 't_timer'
+  Mapping 't_timer'
+  Structuring 't_shift_register'
+  Mapping 't_shift_register'
+  Structuring 'encode'
+  Mapping 'encode'
+  Structuring 'des_controller'
+  Mapping 'des_controller'
+  Structuring 'round_counter'
+  Mapping 'round_counter'
+  Structuring 'key_counter'
+  Mapping 'key_counter'
+  Structuring 'key_generator'
+  Mapping 'key_generator'
+  Structuring 'des_round_computations'
+  Mapping 'des_round_computations'
+  Structuring 'rcu'
+  Mapping 'rcu'
+  Structuring 'timer'
+  Mapping 'timer'
+  Structuring 'edge_detect'
+  Mapping 'edge_detect'
+  Structuring 'decode'
+  Mapping 'decode'
+  Structuring 'eop_detect'
+  Mapping 'eop_detect'
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:11 3747861.0      0.00       0.0      35.1                          
+    0:00:11 3747861.0      0.00       0.0      35.1                          
+    0:00:11 3747861.0      0.00       0.0      35.1                          
+    0:00:11 3747861.0      0.00       0.0      35.1                          
+    0:00:11 3747861.0      0.00       0.0      35.1                          
+    0:00:11 3747717.0      0.00       0.0      35.1                          
+    0:00:11 3747717.0      0.00       0.0      35.1                          
+    0:00:11 3747717.0      0.00       0.0      35.1                          
+    0:00:11 3747717.0      0.00       0.0      35.1                          
+    0:00:11 3747717.0      0.00       0.0      35.1                          
+    0:00:11 3751965.0      0.00       0.0      12.0                          
+    0:00:11 3752829.0      0.00       0.0       8.2                          
+    0:00:11 3753261.0      0.00       0.0       7.4                          
+    0:00:11 3753477.0      0.00       0.0       6.7                          
+    0:00:11 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+
+
+  Beginning Design Rule Fixing  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:12 3753693.0      0.00       0.0       6.0                          
+    0:00:12 3754989.0      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:12 3754989.0      0.00       0.0       0.0                          
+    0:00:12 3754989.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+    0:00:13 3754701.0      0.00       0.0       0.0                          
+Loading db file '/package/eda/cells/OSU/v2.7/synopsys/lib/ami05/osu05_stdcells.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'usb_encryptor' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'C1/t_shift_register1/pid_shift_reg/clk': 1136 load(s), 1 driver(s)
+     Net 'C1/t_shift_register1/pid_shift_reg/n_rst': 1136 load(s), 1 driver(s)
+# Step 4: Output reports
+report_timing -path full -delay max -max_paths 1 -nworst 1 > reports/usb_encryptor.rep
+report_area >> reports/usb_encryptor.rep
+report_power -hier >> reports/usb_encryptor.rep
+# Step 5: Output final VHDL and Verilog files
+write_file -format verilog -hierarchy -output "mapped/usb_encryptor.v"
+Writing verilog file '/home/ecegrid/a/mg45/USBEncryptor/mapped/usb_encryptor.v'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 1 nets to module encryptor_core using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Warning: Verilog writer has added 4 nets to module usb_transmitter using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+echo "\nScript Done\n"
+
+Script Done
+
+echo "\nChecking Design\n"
+
+Checking Design
+
+check_design
+ 
+****************************************
+check_design summary:
+Version:     K-2015.06-SP1
+Date:        Mon Apr 23 20:16:59 2018
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                    325
+    Unconnected ports (LINT-28)                                   153
+    Feedthrough (LINT-29)                                         129
+    Shorted outputs (LINT-31)                                       9
+    Constant outputs (LINT-52)                                     34
+
+Cells                                                             698
+    Connected to power or ground (LINT-32)                        676
+    Nets connected to multiple pins on same cell (LINT-33)         22
+
+Tristate                                                            1
+    Single tristate driver drives an input pin (LINT-63)            1
+--------------------------------------------------------------------------------
+
+Warning: In design 'edge_detect', port 'd_minus' is not connected to any nets. (LINT-28)
+Warning: In design 'rcu', port 'sync_shift_enable' is not connected to any nets. (LINT-28)
+Warning: In design 'rcu', port 'pid_shift_enable' is not connected to any nets. (LINT-28)
+Warning: In design 'rcu', port 'crc5_shift_enable' is not connected to any nets. (LINT-28)
+Warning: In design 'rcu', port 'crc16_shift_enable' is not connected to any nets. (LINT-28)
+Warning: In design 'rcu', port 'data_shift_enable' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[39]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[38]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[37]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[36]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[35]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[34]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[33]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', port 'des_curr[32]' is not connected to any nets. (LINT-28)
+Warning: In design 't_shift_register', port 'eop_transmitting' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'crc5_bits_transmitted' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'crc16_bits_transmitted' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[63]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[62]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[61]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[60]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[59]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[58]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[57]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[56]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[55]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[54]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[53]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[52]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[51]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[50]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[49]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[48]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[47]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[46]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[45]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[44]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[43]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[42]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[41]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[40]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[39]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[38]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[37]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[36]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[35]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[34]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[33]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[32]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[22]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[21]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[20]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[19]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[18]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[17]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[16]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'tcu', port 'trans_data[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc5_valid', port 'rcv_data[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[63]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[62]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[61]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[60]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[59]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[58]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[57]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[56]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[55]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[54]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[53]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[52]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[51]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[50]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[49]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[48]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[47]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[46]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[45]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[44]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[43]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[42]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[41]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[40]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[39]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[38]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[37]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[36]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[35]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[34]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[33]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[32]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[31]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[30]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[29]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[28]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[27]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[26]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[25]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[24]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[23]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[22]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[21]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[20]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[19]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[18]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[17]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[16]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[15]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[14]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'crc16_valid', port 'rcv_data[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'permutation', input port 'rcv_data[63]' is connected directly to output port 'des_in[24]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[62]' is connected directly to output port 'des_in[56]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[61]' is connected directly to output port 'des_in[16]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[60]' is connected directly to output port 'des_in[48]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[59]' is connected directly to output port 'des_in[8]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[58]' is connected directly to output port 'des_in[40]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[57]' is connected directly to output port 'des_in[0]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[56]' is connected directly to output port 'des_in[32]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[55]' is connected directly to output port 'des_in[25]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[54]' is connected directly to output port 'des_in[57]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[53]' is connected directly to output port 'des_in[17]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[52]' is connected directly to output port 'des_in[49]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[51]' is connected directly to output port 'des_in[9]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[50]' is connected directly to output port 'des_in[41]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[49]' is connected directly to output port 'des_in[1]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[48]' is connected directly to output port 'des_in[33]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[47]' is connected directly to output port 'des_in[26]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[46]' is connected directly to output port 'des_in[58]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[45]' is connected directly to output port 'des_in[18]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[44]' is connected directly to output port 'des_in[50]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[43]' is connected directly to output port 'des_in[10]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[42]' is connected directly to output port 'des_in[42]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[41]' is connected directly to output port 'des_in[2]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[40]' is connected directly to output port 'des_in[34]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[39]' is connected directly to output port 'des_in[27]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[38]' is connected directly to output port 'des_in[59]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[37]' is connected directly to output port 'des_in[19]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[36]' is connected directly to output port 'des_in[51]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[35]' is connected directly to output port 'des_in[11]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[34]' is connected directly to output port 'des_in[43]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[33]' is connected directly to output port 'des_in[3]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[32]' is connected directly to output port 'des_in[35]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[31]' is connected directly to output port 'des_in[28]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[30]' is connected directly to output port 'des_in[60]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[29]' is connected directly to output port 'des_in[20]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[28]' is connected directly to output port 'des_in[52]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[27]' is connected directly to output port 'des_in[12]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[26]' is connected directly to output port 'des_in[44]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[25]' is connected directly to output port 'des_in[4]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[24]' is connected directly to output port 'des_in[36]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[23]' is connected directly to output port 'des_in[29]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[22]' is connected directly to output port 'des_in[61]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[21]' is connected directly to output port 'des_in[21]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[20]' is connected directly to output port 'des_in[53]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[19]' is connected directly to output port 'des_in[13]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[18]' is connected directly to output port 'des_in[45]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[17]' is connected directly to output port 'des_in[5]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[16]' is connected directly to output port 'des_in[37]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[15]' is connected directly to output port 'des_in[30]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[14]' is connected directly to output port 'des_in[62]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[13]' is connected directly to output port 'des_in[22]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[12]' is connected directly to output port 'des_in[54]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[11]' is connected directly to output port 'des_in[14]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[10]' is connected directly to output port 'des_in[46]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[9]' is connected directly to output port 'des_in[6]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[8]' is connected directly to output port 'des_in[38]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[7]' is connected directly to output port 'des_in[31]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[6]' is connected directly to output port 'des_in[63]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[5]' is connected directly to output port 'des_in[23]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[4]' is connected directly to output port 'des_in[55]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[3]' is connected directly to output port 'des_in[15]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[2]' is connected directly to output port 'des_in[47]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[1]' is connected directly to output port 'des_in[7]'. (LINT-29)
+Warning: In design 'permutation', input port 'rcv_data[0]' is connected directly to output port 'des_in[39]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[63]' is connected directly to output port 'tx_data[6]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[62]' is connected directly to output port 'tx_data[14]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[61]' is connected directly to output port 'tx_data[22]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[60]' is connected directly to output port 'tx_data[30]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[59]' is connected directly to output port 'tx_data[38]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[58]' is connected directly to output port 'tx_data[46]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[57]' is connected directly to output port 'tx_data[54]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[56]' is connected directly to output port 'tx_data[62]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[55]' is connected directly to output port 'tx_data[4]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[54]' is connected directly to output port 'tx_data[12]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[53]' is connected directly to output port 'tx_data[20]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[52]' is connected directly to output port 'tx_data[28]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[51]' is connected directly to output port 'tx_data[36]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[50]' is connected directly to output port 'tx_data[44]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[49]' is connected directly to output port 'tx_data[52]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[48]' is connected directly to output port 'tx_data[60]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[47]' is connected directly to output port 'tx_data[2]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[46]' is connected directly to output port 'tx_data[10]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[45]' is connected directly to output port 'tx_data[18]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[44]' is connected directly to output port 'tx_data[26]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[43]' is connected directly to output port 'tx_data[34]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[42]' is connected directly to output port 'tx_data[42]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[41]' is connected directly to output port 'tx_data[50]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[40]' is connected directly to output port 'tx_data[58]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[31]' is connected directly to output port 'tx_data[7]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[30]' is connected directly to output port 'tx_data[15]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[29]' is connected directly to output port 'tx_data[0]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[29]' is connected directly to output port 'tx_data[23]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[28]' is connected directly to output port 'tx_data[8]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[28]' is connected directly to output port 'tx_data[31]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[27]' is connected directly to output port 'tx_data[16]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[27]' is connected directly to output port 'tx_data[39]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[26]' is connected directly to output port 'tx_data[24]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[26]' is connected directly to output port 'tx_data[47]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[25]' is connected directly to output port 'tx_data[32]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[25]' is connected directly to output port 'tx_data[55]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[24]' is connected directly to output port 'tx_data[40]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[24]' is connected directly to output port 'tx_data[63]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[23]' is connected directly to output port 'tx_data[5]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[23]' is connected directly to output port 'tx_data[48]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[22]' is connected directly to output port 'tx_data[13]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[22]' is connected directly to output port 'tx_data[56]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[21]' is connected directly to output port 'tx_data[21]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[20]' is connected directly to output port 'tx_data[29]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[19]' is connected directly to output port 'tx_data[37]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[18]' is connected directly to output port 'tx_data[45]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[17]' is connected directly to output port 'tx_data[53]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[16]' is connected directly to output port 'tx_data[61]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[15]' is connected directly to output port 'tx_data[3]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[14]' is connected directly to output port 'tx_data[11]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[13]' is connected directly to output port 'tx_data[19]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[12]' is connected directly to output port 'tx_data[27]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[11]' is connected directly to output port 'tx_data[35]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[10]' is connected directly to output port 'tx_data[43]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[9]' is connected directly to output port 'tx_data[51]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[8]' is connected directly to output port 'tx_data[59]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[7]' is connected directly to output port 'tx_data[1]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[6]' is connected directly to output port 'tx_data[9]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[5]' is connected directly to output port 'tx_data[17]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[4]' is connected directly to output port 'tx_data[25]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[3]' is connected directly to output port 'tx_data[33]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[2]' is connected directly to output port 'tx_data[41]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[1]' is connected directly to output port 'tx_data[49]'. (LINT-29)
+Warning: In design 'permutation', input port 'des_curr[0]' is connected directly to output port 'tx_data[57]'. (LINT-29)
+Warning: In design 'des_controller', input port 'encrypt_sync' is connected directly to output port 'reverse'. (LINT-29)
+Warning: In design 'permutation', output port 'tx_data[63]' is connected directly to output port 'tx_data[40]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[56]' is connected directly to output port 'tx_data[13]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[55]' is connected directly to output port 'tx_data[32]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[48]' is connected directly to output port 'tx_data[5]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[47]' is connected directly to output port 'tx_data[24]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[39]' is connected directly to output port 'tx_data[16]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[31]' is connected directly to output port 'tx_data[8]'. (LINT-31)
+Warning: In design 'permutation', output port 'tx_data[23]' is connected directly to output port 'tx_data[0]'. (LINT-31)
+Warning: In design 'key_generator', output port 'subkey[27]' is connected directly to output port 'subkey[1]'. (LINT-31)
+Warning: In design 'encryptor_core', a pin on submodule 'KEYGEN' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'key_count[1]' is connected to logic 0. 
+Warning: In design 'encryptor_core', a pin on submodule 'DES_CONTROLLER' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'key_rollover' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[7]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[6]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[5]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[4]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[3]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[2]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[1]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_sync[0]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_pid[7]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_pid[6]' is connected to logic 0. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_pid[3]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_pid[2]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc5[4]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc5[3]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc5[2]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc5[1]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc5[0]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[15]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[14]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[13]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[12]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[11]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[10]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[9]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[8]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[7]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[6]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[5]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[4]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[3]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[2]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[1]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_shift_register1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'trans_crc16[0]' is connected to logic 1. 
+Warning: In design 'usb_transmitter', a pin on submodule 't_timer1' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'd_edge' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 1. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 'timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bit_shift' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'sync_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'pid_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc5_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'crc16_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[31]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[30]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[29]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[28]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[27]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[26]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[25]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[24]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[23]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[22]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[21]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[20]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[19]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[18]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[17]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[16]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[15]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[14]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[13]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[12]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[11]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[10]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[9]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[8]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[7]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[6]' is connected to logic 1. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[5]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[4]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[3]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[2]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[1]' is connected to logic 0. 
+Warning: In design 't_timer', a pin on submodule 'data_bits_receive' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'rollover_val[0]' is connected to logic 0. 
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'sync_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'pid_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'crc5_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'crc16_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'data_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'sync_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'pid_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'crc5_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[3]', 'rollover_val[1]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'crc5_bits_receive'. (LINT-33)
+   Net '*Logic1*' is connected to pins 'rollover_val[2]', 'rollover_val[0]''.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'crc16_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[3]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'timer', the same net is connected to more than one pin on submodule 'data_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[3]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'sync_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'pid_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'crc5_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'crc16_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'data_bit_shift'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'sync_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'pid_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'crc5_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[3]', 'rollover_val[1]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'crc5_bits_receive'. (LINT-33)
+   Net '*Logic1*' is connected to pins 'rollover_val[2]', 'rollover_val[0]''.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'crc16_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[6]', 'rollover_val[5]', 'rollover_val[3]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 't_timer', the same net is connected to more than one pin on submodule 'data_bits_receive'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'rollover_val[31]', 'rollover_val[30]'', 'rollover_val[29]', 'rollover_val[28]', 'rollover_val[27]', 'rollover_val[26]', 'rollover_val[25]', 'rollover_val[24]', 'rollover_val[23]', 'rollover_val[22]', 'rollover_val[21]', 'rollover_val[20]', 'rollover_val[19]', 'rollover_val[18]', 'rollover_val[17]', 'rollover_val[16]', 'rollover_val[15]', 'rollover_val[14]', 'rollover_val[13]', 'rollover_val[12]', 'rollover_val[11]', 'rollover_val[10]', 'rollover_val[9]', 'rollover_val[8]', 'rollover_val[7]', 'rollover_val[5]', 'rollover_val[4]', 'rollover_val[3]', 'rollover_val[2]', 'rollover_val[1]', 'rollover_val[0]'.
+Warning: In design 'key_counter', output port 'key_count[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[7]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[3]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[2]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[1]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_sync[0]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_pid[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_pid[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_pid[3]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_pid[2]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc5[4]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc5[3]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc5[2]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc5[1]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc5[0]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[15]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[14]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[13]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[12]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[11]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[10]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[9]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[8]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[7]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[6]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[5]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[4]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[3]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[2]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[1]' is connected directly to 'logic 1'. (LINT-52)
+Warning: In design 'tcu', output port 'trans_crc16[0]' is connected directly to 'logic 1'. (LINT-52)
+Warning: Net 'A1/d_orig' has a single tri-state driver.  (LINT-63)
+quit
+
+Thank you...
+Done
+
+

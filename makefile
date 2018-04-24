@@ -33,7 +33,7 @@ TEST_BENCH	:= tb_$(TOP_LEVEL_FILE)
 TB_MODULE		:= $(notdir $(basename $(TEST_BENCH)))
 TOP_MODULE	:= $(notdir $(basename $(TOP_LEVEL_FILE)))
 
-# Select the Cell Library to use with simulations
+# Select the Cell Library to use with simula`tions
 GATE_LIB		:= $(AMI_05_LIB)
 
 S_WORK_LIB := source_work

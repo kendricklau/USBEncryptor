@@ -132,6 +132,7 @@ module usb_transmitter
 		.data_load_enable(data_load_enable),
 		.trans_sync(trans_sync),
 		.trans_pid(trans_pid),
+		.trans_data(trans_data),
 		.trans_crc5(trans_crc5),
 		.trans_crc16(trans_crc16),
 		.handshake_ack(handshake_ack)

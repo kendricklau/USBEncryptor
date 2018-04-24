@@ -1,0 +1,628 @@
+CRTE_SNAPSHOT_START
+
+SECTION_CRTE_VERSION
+3.0
+
+SECTION_PID
+43930
+
+SECTION_POLLING_INTERVAL
+5
+
+SECTION_DATE_TIME
+Mon Apr 23 18:11:54 EDT 2018 (1524521514)
+
+SECTION_OS_VERSION
+osname: Linux
+hostname: ecegrid-thin5.ecn.purdue.edu
+arch: x86_64
+release_version: 2.6.32-696.23.1.el6.x86_64
+
+SECTION_IPC_INFOError: command <ipcs -msq 2>/dev/null> can not be executed.
+SECTION_ULIMIT
+Error: command <sh -c "ulimit -a"> can not be executed.
+SECTION_SYSCONF
+_SC_THREAD_SAFE_FUNCTIONS= 200809
+_SC_CLK_TCK= 100
+_SC_OPEN_MAX= 4096
+_SC_PAGE_SIZE= 4096
+_SC_ARG_MAX= 2621440
+_SC_CHILD_MAX= 1024
+_SC_LINE_MAX= 2048
+
+SECTION_FULL_COMMAND
+/package/eda/synopsys/syn-K-2015.06-SP1/linux64/syn/bin/common_shell_exec -shell dc_shell -r /package/eda/synopsys/syn-K-2015.06-SP1 -x source -echo do_mapping.tcl
+
+SECTION_CPUINFO
+total_core: 48
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+model_name:  Intel(R) Xeon(R) CPU E5-2697 v2 @ 2.70GHz
+flags:  fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat xsaveopt pln pts dtherm pti retpoline tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+cpu_family: 6
+core_frequency_mhz: 2699
+core_per_socket: 0
+stepping: 4
+cache_size_kb: 30720
+ht: 0
+
+SECTION_OS_RELEASE_VERSION
+Error: command <cat /etc/redhat-release> can not be executed.
+
+SECTION_QSC_CHECKER
+Cannot run QSC checker utility : Cannot open the qsc checker output 
+
+Return code from the QSC checker script is -1
+
+SECTION_SYS/VM
+Error: command <grep '' /proc/sys/vm/* 2> /dev/null> can not be executed.
+
+SECTION_SWAP
+swap_partition: /dev/dm-1
+size_gb: 7
+
+CRTE_SNAPSHOT_END
+
+CRTE_PERIODIC_START 1 0
+
+SECTION_MPSTAT
+total_core: 48
+
+CPU     %user   %kernel %wait   %idle   
+all   14.391583 2.106373 0.127193 83.374855
+0     35.653580 5.247583 0.093931 59.004906
+1     34.919147 4.045966 0.142531 60.892357
+2     27.894011 4.516119 0.104535 67.485336
+3     26.428555 3.688658 0.052069 69.830719
+4     20.155535 3.034155 0.104904 76.705406
+5     19.023756 2.504127 0.053310 78.418816
+6     15.906734 2.070519 0.089848 81.932899
+7     15.203319 1.786096 0.041739 82.968849
+8     13.635592 1.587819 0.061684 84.714905
+9     13.423704 1.439198 0.029064 85.108040
+10     12.615620 1.362610 0.044657 85.977119
+11     12.278853 1.253047 0.020339 86.447769
+12     13.745687 2.465158 0.124788 83.664375
+13     12.041858 1.142933 0.016480 86.798721
+14     14.957421 4.043167 1.918698 79.080711
+15     11.809594 1.034051 0.012675 87.143677
+16     14.648540 2.479827 2.057744 80.813889
+17     11.570007 0.958480 0.012649 87.458862
+18     12.359068 1.289891 0.038839 86.312202
+19     11.515398 0.906123 0.011603 87.566879
+20     11.160089 0.903232 0.018713 87.917969
+21     11.384679 0.863254 0.009721 87.742348
+22     11.468540 0.887420 0.249141 87.394905
+23     11.415187 0.848654 0.010387 87.725777
+24     13.398355 1.808754 0.031040 84.761848
+25     13.109603 1.695828 0.071004 85.123566
+26     14.754012 5.598045 0.031673 79.616264
+27     14.411516 5.560318 0.024092 80.004074
+28     13.586835 4.131111 0.029711 82.252342
+29     13.859306 4.225749 0.023461 81.891487
+30     13.580575 3.605422 0.024162 82.789841
+31     14.802307 4.439965 0.017100 80.740623
+32     12.137153 2.188418 0.018481 85.655952
+33     13.259310 2.855548 0.013474 83.871674
+34     11.540281 1.449374 0.013028 86.997314
+35     12.225289 1.773859 0.012055 85.988800
+36     11.602800 1.535120 0.022700 86.839386
+37     11.634406 1.217850 0.010523 87.137222
+38     11.592939 1.380719 0.167186 86.859154
+39     11.304721 0.980415 0.009728 87.705132
+40     11.005075 0.987567 0.210604 87.796753
+41     11.436559 0.869095 0.009795 87.684547
+42     10.948034 0.811997 0.011551 88.228416
+43     11.325844 0.824980 0.007647 87.841530
+44     11.015811 0.704243 0.008594 88.271355
+45     11.378409 0.807375 0.008901 87.805313
+46     10.897501 0.685105 0.031150 88.386246
+47     11.397079 0.770700 0.008387 87.823830
+
+SECTION_PID_STATUS
+name: common_shell_ex
+state: 1
+vmsize: 25687020
+vmrss: 24803964
+vmdata: 25236028
+vmstk: 7496
+vmexe: 246276
+vmlib: 9016
+threads: 1
+
+SECTION_PROCESS_CPU_UTIL
+pid: 43930
+cpu_total_time: 12315355292
+cpu_used_time: 1379462
+cpu_p: 
+
+SECTION_SYSTEM_CPU_UTIL
+sys_cpu_p: 
+
+SECTION_MEMINFO
+memtotal: 132249660
+memfree: 10567912
+cached: 6461396
+swapcached: 1298324
+active: 107784672
+swaptotal: 8388604
+swapfree: 306028
+
+SECTION_SMAPS
+shared_kb: 756
+private_kb: 24803248
+
+SECTION_DF
+Filesystem  Size  Used Avail Use%
+filesystem        10G  1G  8G    15
+
+Filesystem    Inodes   IUsed   IFree   IUse%
+filesystem          16513671  32209 16481462   4294916226
+
+SECTION_CWD
+Filesystem  Size  Used Avail Use%
+filesystem        1862G  1729G  132G    93
+
+Filesystem    Inodes   IUsed   IFree   IUse%
+filesystem          390702912  17314252 373388660   4294967224
+
+SECTION_SWAP_RATE
+blk_read: 27661824
+blk_wrtn: 45585232
+swap_in_rate: 
+swap_out_rate: 
+swap_in_rate: 
+swap_out_rate: 
+
+SECTION_FD_SIZE
+files: 8
+total_size: 35887
+
+SECTION_NET_INTERFACE
+total_eth_avbl: 4
+
+name net_rx_err net_rx_drp net_tx_err net_tx_drp 
+    lo:         0        0        0        0
+   em1:         0        5        0        0
+   em2:               0        0        0        0
+   em3:               0        0        0        0
+
+SECTION_NFSSTAT
+readlink: 0
+write: 13
+getattr: 48
+retrans: 0
+raw_data: 
+net 0 0 0 0
+rpc 243083198 6518 243128505
+proc2 18 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+proc3 22 0 117404534 5674567 11342372 48624189 39944 8219291 32069202 4749512 150492 11566 0 3914266 111000 1270637 61885 45814 4072302 5041443 11760 5880 263972
+proc4 48 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+
+SECTION_THREAD_CPU_UTIL
+43930 : 43930 (common_shell_ex) R 43927 43833 19863 34890 43833 4202496 42128154 7927 20 0 1367800 11686 2 3 30 10 1 0 256574122 26303508480 6201004 18446744073709551615 4194304 256377869 140723659924304 140723656305992 258935416848 0 0 4096 1132490495 0 0 0 17 12 0 0 3185 0 0
+
+CRTE_PERIODIC_END 1 0
