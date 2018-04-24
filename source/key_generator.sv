@@ -15,13 +15,14 @@ module key_generator
 	input wire reverse,
 	input wire cnt_rollover,
 	input wire key_rollover,
+	input wire key_enable,
 	input wire [4:0] round_count,
 	input wire [1:0] key_count,
 	output wire [47:0] subkey
 );
 	//solitary first key, the 2nd and third keys will be generated from the first
 	//key
-	logic [63:0] key0;	//generate the other keys probably using assign statements
+	logic [63:0] key0;	
 	logic [63:0] key1;
 	logic [63:0] key2;
 	logic [63:0] keyOut;
@@ -30,8 +31,6 @@ module key_generator
 	logic [27:0] right;
 	logic [27:0] nxtleft;
 	logic [27:0] nxtright;
-	logic [63:0] keyOutR;
-	logic [63:0] rkey1;
 	
 	function [57:0] perm1;
 		input [63:0] inNum;
@@ -61,31 +60,24 @@ module key_generator
 		end
 	endfunction
 
-	function [63:0] rev;
-		input [63:0] inKey;
-		begin
-			logic [6:0] i;
-			for (i = 0; i < 64; i = i+1)
-				rev[i] = inKey[63-i];
-		end
-	endfunction
-
 	assign key0 = 64'h5B5A_5767_6A56_676E;
 	//generate the 2nd and 3rd keys
 	assign key1 = key0 ^ '1 ^ 64'hDE45_AC29_45FE_96E3; //value is 7ae0_04b1_d057_0e72
-	assign rkey1 = rev(key1);
 	assign key2 = key1 ^ 64'hCAF3_385A_438B_D219; //value is b013_3ceb_93dc_dc6b
 	
 	always_ff @(posedge clk, negedge n_rst)
 	begin : keyOutReg
 		if(n_rst == 1'b0)
 		begin
-			keyOut <= key0;
-			keyOutR <= rev(key0);
-			{left, right} <= perm1(key0);
+			if (reverse == 0) begin
+				keyOut <= key0;
+				{left, right} <= perm1(key0);
+			end else begin
+				keyOut <= key2;
+				{left, right} <= perm1(key2);
+			end	
 		end else begin
 			keyOut <= keyNext;
-			keyOutR <= rev(keyNext);
 			left <= nxtleft;
 			right <= nxtright;
 		end
@@ -93,32 +85,75 @@ module key_generator
 
 	always_comb begin : keyNextLogic
 		keyNext = keyOut;
-		if (key_rollover == 1)
-		begin
-			keyNext = key0;
-		end else if ((key_count == 2'b0) & (cnt_rollover == 1))
-		begin
-			keyNext = rkey1;
-		end else if ((key_count == 2'b01) & (cnt_rollover == 1))
-		begin
-			keyNext = key2;
+		if (reverse == 0) begin
+			if (key_count == 0) begin
+				keyNext = key0;
+			end
+			if (key_rollover == 1)
+			begin
+				keyNext = key0;
+			end else if ((key_count == 2'b0) & (cnt_rollover == 1))
+			begin
+				keyNext = key1;
+			end else if ((key_count == 2'b01) & (cnt_rollover == 1))
+			begin
+				keyNext = key2;
+			end
+		end else begin
+			if (key_count == 0) begin
+				keyNext = key2;
+			end
+			if (key_rollover == 1)
+			begin
+				keyNext = key2;
+			end else if ((key_count == 2'b0) & (cnt_rollover == 1))
+			begin
+				keyNext = key1;
+			end else if ((key_count == 2'b01) & (cnt_rollover == 1))
+			begin
+				keyNext = key0;
+			end
 		end
+			
 	end
 
 	always_comb begin : subkeyNext
-		nxtleft = {left[25:0],left[27:26]};
-		nxtright = {right[25:0],right[27:26]};
-		if (round_count == 0)
-		begin
-			{nxtleft,nxtright} = perm1(keyOut);
-			if (reverse == 1)
-			begin
-				{nxtleft, nxtright} = perm1(keyOutR); //decryption
+		nxtleft = left;
+		nxtright = right;
+		// if we are decrypting, we need to reverse the subkey order of the function
+		if (key_enable == 1) begin
+			if (((key_count == 0 || key_count == 2) && reverse == 0) || (key_count == 1 && reverse == 1)) begin	
+				nxtleft = {left[25:0],left[27],left[26]}; 
+				nxtright = {right[25:0],right[27],right[26]};
+				if (round_count == 0)
+				begin
+					{nxtleft,nxtright} = perm1(keyOut);
+				end else if (round_count == 1) begin
+					{nxtleft, nxtright} = perm1(keyOut);
+					nxtleft = {nxtleft[26:0],nxtleft[27]};
+					nxtright = {nxtright[26:0],nxtright[27]};
+				
+				//end else if (round_count == 1) begin
+				//	{nxtleft[26:0],nxtleft[27],nxtright[26:0], nxtright[27]} = perm1(keyOut);
+				end else if (round_count == 2 || round_count == 9 || round_count == 16)
+				begin
+					nxtleft = {left[26:0],left[27]};
+					nxtright = {right[26:0],right[27]};
+				end
+			end else begin
+				nxtleft = {left[1], left[0],left[27:2]}; 
+				nxtright = {right[1],right[0], right[27:2]};
+				if (round_count == 0 || round_count == 1)
+				begin
+					{nxtleft,nxtright} = perm1(keyOut);
+					//nxtleft = {nxtleft[26:0],nxtleft[27]};
+					//nxtright = {nxtright[26:0],nxtright[27]};
+				end else if (round_count == 2 || round_count == 9 || round_count == 16)
+				begin
+					nxtleft = {left[0],left[27:1]};
+					nxtright = {right[0],right[27:1]};
+				end
 			end
-		end else if (round_count == 1 || round_count == 2 || round_count == 9 || round_count == 16)
-		begin
-			nxtleft = {left[26:0],left[27]};
-			nxtright = {right[26:0],right[27]};
 		end
 	end
 

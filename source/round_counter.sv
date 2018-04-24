@@ -26,7 +26,11 @@ begin
 	else 
 	begin
 		//<Flip-Flop Signal Name> <= <Flip-Flop input signal>
-		count_reg <= next_count;
+		if (next_count != 5'b10001) begin //if statement was added
+			count_reg <= next_count;
+		end else begin
+			count_reg <= '0;
+		end
 		rollover_reg <= next_rollover;
 	end
 end
@@ -50,7 +54,7 @@ begin
 		//	next_count = 0;
 		//	next_rollover = 0;
 		//end
-		if (next_count == 5'b10000 && count_enable == 1)
+		if (next_count == 5'b10001 && count_enable == 1)
 		begin
 			next_rollover = 1;
 		end

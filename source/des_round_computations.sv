@@ -14,6 +14,7 @@ module des_round_computations
 	input wire n_rst,
 	input wire des_start, //coming from the des controller
 	input wire des_enable,
+	input wire [4:0] round_count,
 	input wire [63:0] des_in,
 	input wire [47:0] subkey,
 	output wire [63:0] des_curr
@@ -627,7 +628,7 @@ module des_round_computations
 		end
 	endfunction
 //-----------------------------------------------------
-	logic [32:0] left, right, nxtLeft, nxtRight;
+	logic [31:0] left, right, nxtLeft, nxtRight;
 	logic [47:0] expandRight;
 	
 	assign des_curr = {left,right};
@@ -651,7 +652,7 @@ module des_round_computations
 		end else begin
 			nxtLeft = left;
 			nxtRight = right;
-			if(des_enable == 1)
+			if(des_enable == 1 && round_count != 0)
 			begin
 				nxtLeft = right;
 				nxtRight = right;
@@ -668,6 +669,10 @@ module des_round_computations
 				nxtRight[3:0] = sb8f(expandRight[5:0]);
 				nxtRight = perm(nxtRight);
 				nxtRight = left ^ nxtRight;
+				if (round_count == 16) begin
+					nxtLeft = nxtRight;
+					nxtRight = right;
+				end
 			end
 		end
 	end
