@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : K-2015.06-SP1
-// Date      : Tue Apr 24 10:15:26 2018
+// Date      : Tue Apr 24 13:19:22 2018
 /////////////////////////////////////////////////////////////
 
 
@@ -10694,26 +10694,26 @@ module tcu ( clk, n_rst, trans_data_ready, sync_bits_transmitted,
   assign trans_pid[3] = 1'b1;
   assign trans_pid[2] = 1'b1;
   assign trans_crc5[4] = 1'b1;
-  assign trans_crc5[3] = 1'b1;
-  assign trans_crc5[2] = 1'b1;
+  assign trans_crc5[3] = 1'b0;
+  assign trans_crc5[2] = 1'b0;
   assign trans_crc5[1] = 1'b1;
-  assign trans_crc5[0] = 1'b1;
+  assign trans_crc5[0] = 1'b0;
   assign trans_crc16[15] = 1'b1;
-  assign trans_crc16[14] = 1'b1;
+  assign trans_crc16[14] = 1'b0;
   assign trans_crc16[13] = 1'b1;
-  assign trans_crc16[12] = 1'b1;
-  assign trans_crc16[11] = 1'b1;
-  assign trans_crc16[10] = 1'b1;
+  assign trans_crc16[12] = 1'b0;
+  assign trans_crc16[11] = 1'b0;
+  assign trans_crc16[10] = 1'b0;
   assign trans_crc16[9] = 1'b1;
-  assign trans_crc16[8] = 1'b1;
-  assign trans_crc16[7] = 1'b1;
+  assign trans_crc16[8] = 1'b0;
+  assign trans_crc16[7] = 1'b0;
   assign trans_crc16[6] = 1'b1;
-  assign trans_crc16[5] = 1'b1;
-  assign trans_crc16[4] = 1'b1;
+  assign trans_crc16[5] = 1'b0;
+  assign trans_crc16[4] = 1'b0;
   assign trans_crc16[3] = 1'b1;
-  assign trans_crc16[2] = 1'b1;
+  assign trans_crc16[2] = 1'b0;
   assign trans_crc16[1] = 1'b1;
-  assign trans_crc16[0] = 1'b1;
+  assign trans_crc16[0] = 1'b0;
   assign idle_transmitting = N225;
   assign sync_transmitting = N226;
   assign pid_transmitting = N227;
@@ -10894,9 +10894,9 @@ module usb_transmitter ( clk, n_rst, trans_data_ready, trans_data, d_plus,
         .crc16_load_enable(crc16_load_enable), .data_load_enable(
         data_load_enable), .trans_sync({1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0, 1'b0}), .trans_pid({1'b0, 1'b0, trans_pid[5:4], 1'b1, 1'b1, 
-        trans_pid[1:0]}), .trans_crc5({1'b1, 1'b1, 1'b1, 1'b1, 1'b1}), 
-        .trans_crc16({1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 
-        1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1}), .trans_data(trans_data), 
+        trans_pid[1:0]}), .trans_crc5({1'b1, 1'b0, 1'b0, 1'b1, 1'b0}), 
+        .trans_crc16({1'b1, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 
+        1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, 1'b0}), .trans_data(trans_data), 
         .sync_transmitting(sync_transmitting), .pid_transmitting(
         pid_transmitting), .crc5_transmitting(crc5_transmitting), 
         .crc16_transmitting(crc16_transmitting), .data_transmitting(
