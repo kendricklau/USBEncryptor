@@ -60,7 +60,7 @@ module key_generator
 		end
 	endfunction
 
-	assign key0 = 64'h5B5A_5767_6A56_676E;
+	assign key0 = 64'hCA3A_3E98_9AA7_AE58;
 	//generate the 2nd and 3rd keys
 	assign key1 = key0 ^ '1 ^ 64'hDE45_AC29_45FE_96E3; //value is 7ae0_04b1_d057_0e72
 	assign key2 = key1 ^ 64'hCAF3_385A_438B_D219; //value is b013_3ceb_93dc_dc6b

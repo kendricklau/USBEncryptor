@@ -1656,7 +1656,7 @@ module tb_usb_encryptor();
 		end
 
 		// send Data 8 byte
-		tb_data_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
+		tb_data_data = 64'h2A8C023981B1D25F; //00111100 DATA0
 		for(i = 0; i < 64; i++) begin
 			temp_tb_data_data[63-i] = tb_data_data[i];
 		end
@@ -2006,7 +2006,7 @@ module tb_usb_encryptor();
 		end
 
 		// send Data 8 byte
-		tb_data_data = 64'b0000000000000000111111111111111100000000000000001111111111111111; //00111100 DATA0
+		tb_data_data = 64'h39A0AB1F58E8B208; //00111100 DATA0
 		for(i = 0; i < 64; i++) begin
 			temp_tb_data_data[63-i] = tb_data_data[i];
 		end
