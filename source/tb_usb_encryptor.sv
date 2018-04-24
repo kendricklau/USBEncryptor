@@ -408,14 +408,9 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		
-		for(i=0; i<1000; i=i+1) begin
+		for(i=0; i<2000; i=i+1) begin
 			@(posedge tb_clk);
 		end
-	// do asynch reset
-		@(negedge tb_clk);
-		tb_n_rst = 0;
-		@(posedge tb_clk);
-		tb_n_rst = 1;
 
 		//NOMINAL CASE #2 - NOMINAL DATA #2
 		// Token Packet
@@ -760,6 +755,11 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		@(posedge tb_clk);
+
+
+		for(i=0; i<2000; i=i+1) begin
+			@(posedge tb_clk);
+		end
 
 		// do asynch reset
 		@(negedge tb_clk);
@@ -1461,6 +1461,12 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 
+		// do asynch reset
+		@(negedge tb_clk);
+		tb_n_rst = 0;
+		@(posedge tb_clk);
+		tb_n_rst = 1;
+
 		//NOMINAL CASE #5 -- NOMINAL DATA TO DECRYPT#5
 		// Token Packet
 		// advance to receive sync
@@ -1807,11 +1813,9 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		
 
-	// do asynch reset
-		@(negedge tb_clk);
-		tb_n_rst = 0;
-		@(posedge tb_clk);
-		tb_n_rst = 1;
+		for(i=0; i<2000; i=i+1) begin
+			@(posedge tb_clk);
+		end
 
 		//NOMINAL CASE #6 - NOMINAL DATA #6
 		// Token Packet
@@ -2156,6 +2160,10 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		@(posedge tb_clk);
+
+		for(i=0; i<2000; i=i+1) begin
+			@(posedge tb_clk);
+		end
 
 		// do asynch reset
 		@(negedge tb_clk);
