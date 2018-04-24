@@ -118,7 +118,7 @@ module tcu
 				end
 			end
 			LOAD_TOKEN_CRC5: begin
-				trans_crc5 = 5'b11111;
+				trans_crc5 = 5'b10010;
 				nextstate = TRANSMIT_TOKEN_CRC5;
 			end
 			TRANSMIT_TOKEN_CRC5: begin
@@ -179,7 +179,7 @@ module tcu
 				end
 			end
 			LOAD_DATA_CRC16: begin
-				trans_crc16 = 16'b1111111111111111;
+				trans_crc16 = 16'b1010001001001010;
 				nextstate = TRANSMIT_DATA_CRC16;
 			end
 			TRANSMIT_DATA_CRC16: begin
