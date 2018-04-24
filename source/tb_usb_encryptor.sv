@@ -6,7 +6,7 @@
 module tb_usb_encryptor();
 
 	// Define local parameters used by the test bench
-	localparam	CLK_PERIOD	= 10.5;
+	localparam	CLK_PERIOD	= 8.33;
 	localparam	CHECK_DELAY = 1;
 
 	// Declare DUT portmap signals
@@ -404,13 +404,10 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		
-
-	// do asynch reset
-		@(negedge tb_clk);
-		tb_n_rst = 0;
-		@(posedge tb_clk);
-		tb_n_rst = 1;
-	//NOMINAL CASE #2 - NOMINAL DATA #2
+		for(i=0; i < 10000; i++) begin
+			@(posedge tb_clk);
+		end
+		//NOMINAL CASE #2 - NOMINAL DATA #2
 		// Token Packet
 		// advance to receive sync
 		@(posedge tb_clk);

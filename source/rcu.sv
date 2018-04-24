@@ -35,7 +35,7 @@ module rcu
 	output logic rcv_data_ready
 );
 
-	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE
+	typedef enum logic [4:0] {TOKEN_IDLE, RECEIVE_TOKEN_SYNC, COMPARE_TOKEN_SYNC, RECEIVE_TOKEN_PID, COMPARE_TOKEN_PID, RECEIVE_TOKEN_CRC5, COMPARE_TOKEN_CRC5_1, COMPARE_TOKEN_CRC5_2, RECEIVE_TOKEN_EOP, EOP_TOKEN_DELAY, DATA_IDLE, RECEIVE_DATA_SYNC, COMPARE_DATA_SYNC, RECEIVE_DATA_PID, COMPARE_DATA_PID, RECEIVE_DATA_BITS, COMPARE_DATA_BITS, RECEIVE_DATA_CRC16, COMPARE_DATA_CRC16_1, COMPARE_DATA_CRC16_2, RECEIVE_DATA_EOP, EOP_DATA_DELAY, HANDSHAKE_IDLE, RECEIVE_HANDSHAKE_SYNC, COMPARE_HANDSHAKE_SYNC, RECEIVE_HANDSHAKE_PID, COMPARE_HANDSHAKE_PID, RECEIVE_HANDSHAKE_EOP, EOP_HANDSHAKE_DELAY, EIDLE1, EIDLE2
 } state_type;	
 	state_type state;
 	state_type nextstate;
@@ -76,7 +76,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_TOKEN_PID;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_TOKEN_PID: begin
@@ -92,7 +92,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_TOKEN_CRC5;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_TOKEN_CRC5: begin
@@ -108,7 +108,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_TOKEN_EOP;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_TOKEN_EOP: begin
@@ -150,7 +150,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_DATA_PID;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_DATA_PID: begin
@@ -166,7 +166,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_DATA_BITS;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_DATA_BITS: begin
@@ -182,7 +182,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_DATA_CRC16;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_DATA_CRC16: begin
@@ -198,7 +198,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_DATA_EOP;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_DATA_EOP: begin
@@ -240,7 +240,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_HANDSHAKE_PID;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_HANDSHAKE_PID: begin
@@ -256,7 +256,7 @@ module rcu
 				begin
 					nextstate = RECEIVE_HANDSHAKE_EOP;
 				end else begin
-					nextstate = EIDLE;
+					nextstate = EIDLE1;
 				end
 			end
 			RECEIVE_HANDSHAKE_EOP: begin
@@ -274,6 +274,12 @@ module rcu
 				end else begin
 					nextstate = EOP_HANDSHAKE_DELAY;
 				end
+			end
+			EIDLE1: begin
+				nextstate = EIDLE2;
+			end
+			EIDLE2: begin
+				nextstate = TOKEN_IDLE;
 			end
 		endcase
 	end

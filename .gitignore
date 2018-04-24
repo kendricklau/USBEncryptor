@@ -18,4 +18,6 @@ default.svf
 *.bak
 *.BAK
 covhtmlreport/
+source_work/@_opt/*
+vsim.wlf
 #*#
