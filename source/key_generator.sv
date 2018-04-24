@@ -31,6 +31,7 @@ module key_generator
 	logic [27:0] nxtleft;
 	logic [27:0] nxtright;
 	logic [63:0] keyOutR;
+	logic [63:0] rkey1;
 	
 	function [57:0] perm1;
 		input [63:0] inNum;
@@ -40,7 +41,7 @@ module key_generator
 					inNum[54],inNum[62],inNum[5],inNum[13],inNum[21],inNum[29],inNum[37],
 					inNum[45],inNum[53],inNum[61],inNum[4],inNum[12],inNum[20],inNum[28],
 					inNum[1],inNum[9],inNum[17],inNum[25],inNum[33],inNum[41],inNum[49],
-					inNum[57],inNum[2],inNum[10],inNum[8],inNum[16],inNum[24],inNum[32],
+					inNum[57],inNum[2],inNum[10],inNum[18],inNum[26],inNum[34],inNum[42],
 					inNum[50],inNum[58],inNum[3],inNum[11],inNum[19],inNum[27],inNum[35],
 					inNum[43],inNum[51],inNum[59],inNum[36],inNum[44],inNum[52],inNum[60]};
 		end
@@ -65,15 +66,15 @@ module key_generator
 		begin
 			logic [6:0] i;
 			for (i = 0; i < 64; i = i+1)
-				rev[i] <= inKey[63-i];
+				rev[i] = inKey[63-i];
 		end
 	endfunction
 
-	assign key0 = 64'hCA3A_3E98_9AA7_AE58;
+	assign key0 = 64'h5B5A_5767_6A56_676E;
 	//generate the 2nd and 3rd keys
-	assign key1 = key0 ^ '1 ^ 64'hDE45_AC29_45FE_96E3; //value is EB80_6D4E_20A6_C744
+	assign key1 = key0 ^ '1 ^ 64'hDE45_AC29_45FE_96E3; //value is 7ae0_04b1_d057_0e72
 	assign rkey1 = rev(key1);
-	assign key2 = key1 ^ 64'hCAF3_385A_438B_D219; //value is 2173_5514_632D_155D
+	assign key2 = key1 ^ 64'hCAF3_385A_438B_D219; //value is b013_3ceb_93dc_dc6b
 	
 	always_ff @(posedge clk, negedge n_rst)
 	begin : keyOutReg

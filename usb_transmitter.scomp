@@ -1,9 +1,9 @@
 QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 10:19:35 on Apr 23,2018
+Start time: 11:45:50 on Apr 23,2018
 vlog -sv -work source_work source/usb_transmitter.sv 
 -- Compiling module usb_transmitter
 
 Top level modules:
 	usb_transmitter
-End time: 10:19:35 on Apr 23,2018, Elapsed time: 0:00:00
+End time: 11:45:50 on Apr 23,2018, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

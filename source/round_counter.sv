@@ -35,18 +35,21 @@ always_comb
 begin
 	next_count = count_reg;
 	next_rollover = rollover_reg;	
-
-	if (count_enable == 1)
+	if (rollover_reg == 1) begin
+		next_count = 0;
+		next_rollover = 0;
+	end
+	else if (count_enable == 1)
 	begin
 		if (next_rollover == 0 && count_enable == 1)	
 		begin
 			next_count = (round_count + 1);	
 		end
-		else if (rollover_reg == 1 && count_enable == 1)
-		begin
-			next_count = 0;
-			next_rollover = 0;
-		end
+		//else if (rollover_reg == 1 && count_enable == 1)
+		//begin
+		//	next_count = 0;
+		//	next_rollover = 0;
+		//end
 		if (next_count == 5'b10000 && count_enable == 1)
 		begin
 			next_rollover = 1;

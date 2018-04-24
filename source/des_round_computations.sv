@@ -13,6 +13,7 @@ module des_round_computations
 	input wire clk,
 	input wire n_rst,
 	input wire des_start, //coming from the des controller
+	input wire des_enable,
 	input wire [63:0] des_in,
 	input wire [47:0] subkey,
 	output wire [63:0] des_curr

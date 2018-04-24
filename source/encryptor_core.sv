@@ -68,6 +68,7 @@ module encryptor_core
 		.n_rst(n_rst),
 		.receive(rcv_data_ready),
 		.empty(handshake_ack),
+		.key_rollover(key_rollover),
 		.encrypt_sync(encrypt_sync),
 		.count_enable(count_enable),
 		.reverse(reverse),

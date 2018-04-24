@@ -19,12 +19,12 @@ include /home/ecegrid/a/ece337/Course_Prod/course_make_vars
 # The contents of these variables must either be plain text (no functions or variable references)
 # or references to the Phase 1 submodule code file variables
 
-COMPONENT_FILES += encode.sv t_shift_register.sv t_timer.sv tcu.sv permutation.sv des_round_computations.sv key_generator.sv key_counter.sv round_counter.sv des_controller.sv sync_high.sv sync_low.sv eop_detect.sv decode.sv edge_detect.sv timer.sv shift_register.sv rcu.sv usb_receiver.sv encryptor_core.sv usb_transmitter.sv flex_counter.sv flex_pts_sr.sv flex_stp_sr.sv crc5_gen.sv crc16_gen.sv crc5_valid.sv crc16_valid.sv
+COMPONENT_FILES += encode.sv t_shift_register.sv t_timer.sv tcu.sv permutation.sv des_round_computations.sv key_generator.sv key_counter.sv round_counter.sv des_controller.sv sync_high.sv sync_low.sv eop_detect.sv decode.sv edge_detect.sv timer.sv shift_register.sv rcu.sv usb_receiver.sv usb_transmitter.sv flex_counter.sv flex_pts_sr.sv flex_stp_sr.sv crc5_gen.sv crc16_gen.sv crc5_valid.sv crc16_valid.sv
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-TOP_LEVEL_FILE	:= usb_encryptor.sv
+TOP_LEVEL_FILE	:= encryptor_core.sv
 
 # Specify the filename of the test bench you want to use (without the 'source/')
 TEST_BENCH	:= tb_$(TOP_LEVEL_FILE)
