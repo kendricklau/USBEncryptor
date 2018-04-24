@@ -12,11 +12,14 @@ module tb_usb_encryptor();
 	// Declare DUT portmap signals
 	reg tb_clk; // input
 	reg tb_n_rst; // input
+	reg tb_d_plus;
+	reg tb_d_minus;
 	reg tb_d_plus_in; // input
 	reg tb_d_minus_in; // input
 	reg tb_d_plus_out;
 	reg tb_d_minus_out;
 	reg tb_encrypt;
+	reg in_out = 1;
 	reg [7:0] rcv_sync; // output
 	reg [7:0] rcv_pid; // output
 	reg [4:0] rcv_crc5; // output
@@ -47,7 +50,9 @@ module tb_usb_encryptor();
 	
 	// DUT Port map
 	usb_encryptor DUT(.clk(tb_clk), .n_rst(tb_n_rst), .encrypt(tb_encrypt), .d_plus_in(tb_d_plus_in), .d_minus_in(tb_d_minus_in), .d_plus_out(tb_d_plus_out), .d_minus_out(tb_d_minus_out));
-	
+	assign tb_d_plus = in_out ? tb_d_plus_in : tb_d_plus_out;
+	assign tb_d_minus = in_out ? tb_d_minus_in : tb_d_minus_out;
+
 	// Test bench main process
 	initial
 	begin
@@ -408,9 +413,11 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		
+		in_out = 0;
 		for(i=0; i<2000; i=i+1) begin
 			@(posedge tb_clk);
 		end
+		in_out = 1;
 
 		//NOMINAL CASE #2 - NOMINAL DATA #2
 		// Token Packet
@@ -756,10 +763,11 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 
-
+		in_out = 0;
 		for(i=0; i<2000; i=i+1) begin
 			@(posedge tb_clk);
 		end
+		in_out = 1;
 
 		// do asynch reset
 		@(negedge tb_clk);
@@ -1812,10 +1820,11 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		
-
+		in_out = 0;
 		for(i=0; i<2000; i=i+1) begin
 			@(posedge tb_clk);
 		end
+		in_out = 1;
 
 		//NOMINAL CASE #6 - NOMINAL DATA #6
 		// Token Packet
@@ -2160,11 +2169,11 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		@(posedge tb_clk);
-
+		in_out = 0;
 		for(i=0; i<2000; i=i+1) begin
 			@(posedge tb_clk);
 		end
-
+		in_out = 1;
 		// do asynch reset
 		@(negedge tb_clk);
 		tb_n_rst = 0;
