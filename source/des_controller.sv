@@ -24,7 +24,7 @@ module des_controller
 );
 
 	reg count_enable_reg, des_start_reg, data_out_reg, des_enable_reg, key_enable_reg;
-	typedef enum logic [3:0] {IDLE, LOAD, PERMUTE_WAIT, START_ROUND, KEYGEN, ROUND_COMP, CHECK_DONE, INV_PERMUTE_WAIT, DATA_READY} state_type; //maybe save room for some ERROR states
+	typedef enum logic [3:0] {IDLE, LOAD, PERMUTE_WAIT, START_ROUND, KEYGEN, ROUND_COMP, CHECK_DONE, INV_PERMUTE_WAIT, DATA_READY, IDLE2} state_type; //maybe save room for some ERROR states
 	state_type state;
 	state_type nextstate;
 
@@ -32,7 +32,7 @@ module des_controller
 	begin
 		if (!n_rst)
 		begin
-			state <= IDLE;
+			state <= IDLE2;
 		end else begin
 			state <= nextstate;
 		end
@@ -49,6 +49,10 @@ module des_controller
 				end else begin
 					nextstate = IDLE;
 				end
+			end
+
+			IDLE2: begin
+				nextstate = IDLE;
 			end
 			
 			LOAD: begin

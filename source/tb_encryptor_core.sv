@@ -10,6 +10,7 @@
 
 module tb_encryptor_core
 ();
+	localparam CLK_PERIOD = 8.33;
 	reg tb_clk; //clock
 	reg tb_n_rst; //reset
 	reg tb_rcv_data_ready; //receive flag
@@ -36,9 +37,9 @@ module tb_encryptor_core
 
 	always begin
 		tb_clk = 1'b1;
-		#(2.5/2.0);
+		#(CLK_PERIOD/2.0);
 		tb_clk = 1'b0;
-		#(2.5/2.0);
+		#(CLK_PERIOD/2.0);
 	end
 
 	initial
@@ -61,19 +62,6 @@ module tb_encryptor_core
 			// -keygen, permutations, counters
 
 		tick = 1'b1;
-
-	//	while (tb_trans_data != 64'hb533f124beb485ec)
-	//	begin
-	//		#(1)
-	//		if (tick == 1)
-	//		begin
-	//			tick = 0;
-	//		end			
-	//		else
-	//		begin
-	//			tick = 1;
-	//		end
-	//	end
 
 		//KEYS: 64'h5B5A57676A56676E
 		//	64'h7ae004b1d0570e72
