@@ -13,6 +13,7 @@ module des_round_computations
 	input wire clk,
 	input wire n_rst,
 	input wire des_start, //coming from the des controller
+	input wire des_enable,
 	input wire [63:0] des_in,
 	input wire [47:0] subkey,
 	output wire [63:0] des_curr
@@ -648,21 +649,26 @@ module des_round_computations
 		begin
 			{nxtLeft, nxtRight} = des_in;
 		end else begin
-			nxtLeft = right;
+			nxtLeft = left;
 			nxtRight = right;
-			expandRight = expand(nxtRight);
-			expandRight = expandRight ^ subkey;
-			 //do the substitution here
-			nxtRight[31:28] = sb1f(expandRight[47:42]);
-			nxtRight[27:24] = sb2f(expandRight[41:36]);
-			nxtRight[23:20] = sb3f(expandRight[35:30]);
-			nxtRight[19:16] = sb4f(expandRight[29:24]);
-			nxtRight[15:12] = sb5f(expandRight[23:18]);
-			nxtRight[11:8] = sb6f(expandRight[17:12]);
-			nxtRight[7:4] = sb7f(expandRight[11:6]);
-			nxtRight[3:0] = sb8f(expandRight[5:0]);
-			nxtRight = perm(nxtRight);
-			nxtRight = left ^ nxtRight;
+			if(des_enable == 1)
+			begin
+				nxtLeft = right;
+				nxtRight = right;
+				expandRight = expand(nxtRight);
+				expandRight = expandRight ^ subkey;
+				 //do the substitution here
+				nxtRight[31:28] = sb1f(expandRight[47:42]);
+				nxtRight[27:24] = sb2f(expandRight[41:36]);
+				nxtRight[23:20] = sb3f(expandRight[35:30]);
+				nxtRight[19:16] = sb4f(expandRight[29:24]);
+				nxtRight[15:12] = sb5f(expandRight[23:18]);
+				nxtRight[11:8] = sb6f(expandRight[17:12]);
+				nxtRight[7:4] = sb7f(expandRight[11:6]);
+				nxtRight[3:0] = sb8f(expandRight[5:0]);
+				nxtRight = perm(nxtRight);
+				nxtRight = left ^ nxtRight;
+			end
 		end
 	end
 	
