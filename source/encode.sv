@@ -36,7 +36,7 @@ module encode
 			d_plus <= 1'b0;
 			d_minus <= 1'b0;
 		end else if (sync_shift_enable | pid_shift_enable | crc5_shift_enable | crc16_shift_enable | data_shift_enable) begin
-			if (d_orig)
+			if (!d_orig)
 			begin
 				d_plus <= !d_plus;
 				d_minus <= !d_minus;
