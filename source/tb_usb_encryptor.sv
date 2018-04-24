@@ -126,7 +126,7 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
+		tb_crc5_data = 5'b01010; //00111100 DATA0
 		for(i = 0; i < 6; i++) begin
 			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
 		end
@@ -407,6 +407,8 @@ module tb_usb_encryptor();
 		for(i=0; i < 10000; i++) begin
 			@(posedge tb_clk);
 		end
+
+
 		//NOMINAL CASE #2 - NOMINAL DATA #2
 		// Token Packet
 		// advance to receive sync
