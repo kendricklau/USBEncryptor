@@ -94,7 +94,7 @@ module key_generator
 				keyNext = key1;
 			end else if ((key_count == 2'b01) & (cnt_rollover == 1))
 			begin
-				keyNext = key0; //keyNext = key2;
+				keyNext = key2;
 			end
 		end else begin
 			if (key_rollover == 1)
@@ -121,10 +121,15 @@ module key_generator
 				nxtright = {right[25:0],right[27],right[26]};
 				if (round_count == 0)
 				begin
-					{nxtleft,nxtright} = perm1(keyNext);
+					{nxtleft,nxtright} = perm1(keyOut);
+				end else if (round_count == 1) begin
+					{nxtleft, nxtright} = perm1(keyOut);
+					nxtleft = {nxtleft[26:0],nxtleft[27]};
+					nxtright = {nxtright[26:0],nxtright[27]};
+				
 				//end else if (round_count == 1) begin
 				//	{nxtleft[26:0],nxtleft[27],nxtright[26:0], nxtright[27]} = perm1(keyOut);
-				end else if (round_count == 1 || round_count == 2 || round_count == 9 || round_count == 16)
+				end else if (round_count == 2 || round_count == 9 || round_count == 16)
 				begin
 					nxtleft = {left[26:0],left[27]};
 					nxtright = {right[26:0],right[27]};
