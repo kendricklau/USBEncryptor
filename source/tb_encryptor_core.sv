@@ -77,17 +77,18 @@ module tb_encryptor_core
 
 		//KEYS: 64'h5B5A57676A56676E
 		//	64'h7ae004b1d0570e72
-		//	64'hb0133ceb93dcdc6b			
+		//	64'hb0133ceb93dcdc6b
+		//	reverse 2nd key is 4e70ea0b8d20075e			
 
 		//ENCRYPTION	
 		//Data before encryption: 
-		//			  64'h675A69675E5A6B5A
+		//		64'h675A69675E5A6B5A
 		//Data after 1st encryption:
 		//		64'h974AFFBF86022D1F
 		//Data after 2nd encryption: 
-		//		64'h6ca7c3f173252118 **
+		//		64'hD30C3E1239D19420 //correct up to here
 		//Data after 3rd encryption:
-		//		64'hb533f124beb485ec **
+		//		64'hC1392F3D4C0A6588
 	
 		//encrypt, decrypt, encrypt
 
