@@ -53,7 +53,7 @@ module key_generator
 			perm2 = {inNum[42],inNum[39],inNum[45],inNum[32],inNum[55],inNum[51],
 					inNum[53],inNum[28],inNum[41],inNum[50],inNum[35],inNum[46],
 					inNum[33],inNum[37],inNum[44],inNum[52],inNum[30],inNum[48],
-					inNum[40],inNum[49],inNum[27],inNum[36],inNum[43],inNum[54],
+					inNum[40],inNum[49],inNum[29],inNum[36],inNum[43],inNum[54],
 					inNum[15],inNum[4],inNum[25],inNum[19],inNum[9],inNum[1],
 					inNum[26],inNum[16],inNum[5],inNum[11],inNum[23],inNum[8],
 					inNum[12],inNum[7],inNum[17],inNum[0],inNum[22],inNum[3],
