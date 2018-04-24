@@ -55,6 +55,7 @@ module encryptor_core
 		.clk(clk),
 		.n_rst(n_rst),
 		.count_enable(cnt_rollover),
+		.empty(handshake_ack),
 		.key_count(key_count),
 		.key_rollover(key_rollover));
 

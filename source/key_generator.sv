@@ -86,6 +86,9 @@ module key_generator
 	always_comb begin : keyNextLogic
 		keyNext = keyOut;
 		if (reverse == 0) begin
+			if (key_count == 0) begin
+				keyNext = key0;
+			end
 			if (key_rollover == 1)
 			begin
 				keyNext = key0;
@@ -97,6 +100,9 @@ module key_generator
 				keyNext = key2;
 			end
 		end else begin
+			if (key_count == 0) begin
+				keyNext = key2;
+			end
 			if (key_rollover == 1)
 			begin
 				keyNext = key2;

@@ -3,6 +3,7 @@ module key_counter
 	input wire clk,
 	input wire n_rst,
 	input wire count_enable,
+	input wire empty,
 	output wire [1:0] key_count,
 	output wire key_rollover
 );
@@ -35,8 +36,11 @@ always_comb
 begin
 	next_count = key_reg;
 	next_rollover = rollover_reg;	
-
-	if (count_enable == 1)
+	if (empty == 1) begin
+		next_count = 0;
+		next_rollover = 0;
+	end
+	else if (count_enable == 1)
 	begin
 		if (next_rollover == 0 && count_enable == 1)	
 		begin
