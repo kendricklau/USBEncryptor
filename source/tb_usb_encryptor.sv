@@ -6,7 +6,7 @@
 module tb_usb_encryptor();
 
 	// Define local parameters used by the test bench
-	localparam	CLK_PERIOD	= 8.33;
+	localparam	CLK_PERIOD	= 10.5;
 	localparam	CHECK_DELAY = 1;
 
 	// Declare DUT portmap signals
@@ -34,6 +34,7 @@ module tb_usb_encryptor();
 	reg [63:0] temp_tb_data_data;
 	reg tb_d_prev;
 	integer i;
+	string tb_test_case;
 
 	// Clock generation block
 	always
@@ -45,7 +46,7 @@ module tb_usb_encryptor();
 	end
 	
 	// DUT Port map
-	usb_encryptor DUT(.clk(tb_clk), .n_rst(tb_n_rst), .encrypt(encrypt), .d_plus_in(tb_d_plus_in), .d_minus_in(tb_d_minus_in), .d_plus_out(tb_d_plus_out), .d_minus_out(tb_d_minus_out));
+	usb_encryptor DUT(.clk(tb_clk), .n_rst(tb_n_rst), .encrypt(tb_encrypt), .d_plus_in(tb_d_plus_in), .d_minus_in(tb_d_minus_in), .d_plus_out(tb_d_plus_out), .d_minus_out(tb_d_minus_out));
 	
 	// Test bench main process
 	initial
@@ -61,9 +62,12 @@ module tb_usb_encryptor();
 		tb_n_rst = 0;
 		@(posedge tb_clk);
 		tb_n_rst = 1;
-//NOMINAL CASE #1 -- NOMINAL DATA #1
+
+
+		//NOMINAL CASE #1 -- NOMINAL DATA #1
 		// Token Packet
 		// advance to receive sync
+		tb_test_case = "Case 1 - NOMINAL DATA";
 		@(posedge tb_clk);
 		tb_d_plus_in = 0;
 		tb_d_minus_in = 1;
@@ -128,7 +132,7 @@ module tb_usb_encryptor();
 		//send IN CRC5 bits
 		tb_crc5_data = 5'b01010; //00111100 DATA0
 		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
 		end
 		tb_crc5_data = temp_tb_crc5_data;
 		tb_d_prev = tb_d_plus_in;
@@ -268,7 +272,7 @@ module tb_usb_encryptor();
 		end
 
 		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		tb_crc16_data = 16'b0000001011110100; //00111100 DATA0
 		for(i = 0; i < 16; i++) begin
 			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
 		end
@@ -404,14 +408,19 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 		
-		for(i=0; i < 10000; i++) begin
+		for(i=0; i<1000; i=i+1) begin
 			@(posedge tb_clk);
 		end
-
+	// do asynch reset
+		@(negedge tb_clk);
+		tb_n_rst = 0;
+		@(posedge tb_clk);
+		tb_n_rst = 1;
 
 		//NOMINAL CASE #2 - NOMINAL DATA #2
 		// Token Packet
 		// advance to receive sync
+		tb_test_case = "Case 2 - NOMINAL DATA";
 		@(posedge tb_clk);
 		tb_d_plus_in = 0;
 		tb_d_minus_in = 1;
@@ -474,9 +483,9 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
+		tb_crc5_data = 5'b01010; //00111100 DATA0
 		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
 		end
 		tb_crc5_data = temp_tb_crc5_data;
 		tb_d_prev = tb_d_plus_in;
@@ -616,7 +625,7 @@ module tb_usb_encryptor();
 		end
 
 		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		tb_crc16_data = 16'b1000000011010101; //00111100 DATA0
 		for(i = 0; i < 16; i++) begin
 			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
 		end
@@ -752,364 +761,16 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 
-	// do asynch reset
+		// do asynch reset
 		@(negedge tb_clk);
 		tb_n_rst = 0;
 		@(posedge tb_clk);
 		tb_n_rst = 1;
-	//NOMINAL CASE #3 - BIT STUFFING
-		// Token Packet
-		// advance to receive sync
-		@(posedge tb_clk);
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 1;
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-
-		//send sync byte
-		tb_sync_data = 8'b10000000; // DATA0
-		for(i = 0; i < 8; i++) begin
-			temp_tb_sync_data[7-i] = tb_sync_data[i];
-		end
-		tb_sync_data = temp_tb_sync_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_sync_data[i]) begin
-			if (tb_sync_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_sync_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-		//send IN PID byte
-		tb_pid_data = 8'b10010110; // DATA0
-		for(i = 0; i < 8; i++) begin
-			temp_tb_pid_data[7-i] = tb_pid_data[i];
-		end
-		tb_pid_data = temp_tb_pid_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_pid_data[i]) begin
-			if (tb_pid_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_pid_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
-		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
-		end
-		tb_crc5_data = temp_tb_crc5_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_crc5_data[i]) begin
-			if (tb_crc5_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_crc5_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-		// send EOP and then IDLE
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-
-		// Data packet
-		// advance to receive sync
-		@(posedge tb_clk);
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 1;
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-
-		// send sync byte
-		tb_sync_data = 8'b10000000; //00111100 DATA0
-		for(i = 0; i < 8; i++) begin
-			temp_tb_sync_data[7-i] = tb_sync_data[i];
-		end
-		tb_sync_data = temp_tb_sync_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_sync_data[i]) begin
-			if (tb_sync_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_sync_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		// send IN PID byte
-		tb_pid_data = 8'b00111100; //00111100 DATA0
-		for(i = 0; i < 8; i++) begin
-			temp_tb_pid_data[7-i] = tb_pid_data[i];
-		end
-		tb_pid_data = temp_tb_pid_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_pid_data[i]) begin
-			if (tb_pid_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_pid_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		// send Data 8 byte
-		//tb_data_data = 64'b00000000000000001111110111111011110000000000000000111111011111101111; //00111100 DATA0
-		tb_data_data = 64'b0000000000000000111111111111111100000000000000001111111111111111; //00111100 DATA0
-		for(i = 0; i < 64; i++) begin
-			temp_tb_data_data[63-i] = tb_data_data[i];
-		end
-		tb_data_data = temp_tb_data_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_data_data[i]) begin
-			if (tb_data_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_data_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
-		for(i = 0; i < 16; i++) begin
-			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
-		end
-		tb_crc16_data = temp_tb_crc16_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_crc16_data[i]) begin
-			if (tb_crc16_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_crc16_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		// send EOP and then IDLE
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-
-		// Handshake Packet
-		// advance to receive sync
-		@(posedge tb_clk);
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 1;
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-
-		//send sync byte
-		tb_sync_data = 8'b10000000; //00111100 DATA0
-		for(i = 0; i < 8; i++) begin
-			temp_tb_sync_data[7-i] = tb_sync_data[i];
-		end
-		tb_sync_data = temp_tb_sync_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_sync_data[i]) begin
-			if (tb_sync_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_sync_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		//send IN PID byte
-		tb_pid_data = 8'b00101101; // 10010110
-		for(i = 0; i < 8; i++) begin
-			temp_tb_pid_data[7-i] = tb_pid_data[i];
-		end
-		tb_pid_data = temp_tb_pid_data;
-		tb_d_prev = tb_d_plus_in;
-		foreach(tb_pid_data[i]) begin
-			if (tb_pid_data[i] == 0)
-			begin
-				tb_d_plus_in = !tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-				tb_d_prev = !tb_d_prev;
-			end else if (tb_pid_data[i] == 1)
-			begin
-				tb_d_plus_in = tb_d_prev;
-				tb_d_minus_in = !tb_d_plus_in;
-			end
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-			@(posedge tb_clk);
-		end
-
-		// send EOP and then IDLE
-		tb_d_plus_in = 0;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		tb_d_plus_in = 1;
-		tb_d_minus_in = 0;
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
-		@(posedge tb_clk);
 	
-	
-	// do asynch reset
-		@(negedge tb_clk);
-		tb_n_rst = 0;
-		@(posedge tb_clk);
-		tb_n_rst = 1;
-	//NOMINAL CASE #4 -- ERROR IN CRC DATA
+		//NOMINAL CASE #3 -- ERROR IN CRC DATA
 		// Token Packet
 		// advance to receive sync
+		tb_test_case = "Case 3 - BAD CRC GENERATED";
 		@(posedge tb_clk);
 		tb_d_plus_in = 0;
 		tb_d_minus_in = 1;
@@ -1172,9 +833,9 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
+		tb_crc5_data = 5'b10000; //00111100 WRONG CRC
 		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
 		end
 		tb_crc5_data = temp_tb_crc5_data;
 		tb_d_prev = tb_d_plus_in;
@@ -1314,7 +975,7 @@ module tb_usb_encryptor();
 		end
 
 		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		tb_crc16_data = 16'b1000000011010101; //00111100 DATA0
 		for(i = 0; i < 16; i++) begin
 			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
 		end
@@ -1455,9 +1116,11 @@ module tb_usb_encryptor();
 		tb_n_rst = 0;
 		@(posedge tb_clk);
 		tb_n_rst = 1;
-	//NOMINAL CASE #5 ERROR IN DATA CASE (NOT ENOUGH BITS)
+
+	//NOMINAL CASE #4 ERROR IN DATA CASE (BAD DATA)
 		// Token Packet
 		// advance to receive sync
+		tb_test_case = "Case 4 - CORRUPTED DATA SENT";
 		@(posedge tb_clk);
 		tb_d_plus_in = 0;
 		tb_d_minus_in = 1;
@@ -1520,9 +1183,705 @@ module tb_usb_encryptor();
 			@(posedge tb_clk);
 		end
 		//send IN CRC5 bits
-		tb_crc5_data = 5'b10000; //00111100 DATA0
+		tb_crc5_data = 5'b01010; //00111100 DATA0
 		for(i = 0; i < 6; i++) begin
-			temp_tb_crc5_data[5-i] = tb_crc5_data[i];
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
+		end
+		tb_crc5_data = temp_tb_crc5_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_crc5_data[i]) begin
+			if (tb_crc5_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc5_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+
+		// Data packet
+		// advance to receive sync
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+
+		// send sync byte
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send IN PID byte
+		tb_pid_data = 8'b00111100; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send Data 8 byte
+		tb_data_data = 64'b0000000000000000111111111111111100000000000000001111111111111110; //bad data
+		for(i = 0; i < 64; i++) begin
+			temp_tb_data_data[63-i] = tb_data_data[i];
+		end
+		tb_data_data = temp_tb_data_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_data_data[i]) begin
+			if (tb_data_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_data_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send CRC16 bytes
+		tb_crc16_data = 16'b1000000011010101; //00111100 DATA0
+		for(i = 0; i < 16; i++) begin
+			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
+		end
+		tb_crc16_data = temp_tb_crc16_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_crc16_data[i]) begin
+			if (tb_crc16_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc16_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+
+		// Handshake Packet
+		// advance to receive sync
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+
+		//send sync byte
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		//send IN PID byte
+		tb_pid_data = 8'b00101101; // 10010110
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+
+		//NOMINAL CASE #5 -- NOMINAL DATA TO DECRYPT#5
+		// Token Packet
+		// advance to receive sync
+		tb_test_case = "Case 5 - NOMINAL DATA TO DECRYPT";
+		tb_encrypt = 0;
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		
+		//send sync byte
+		tb_sync_data = 8'b10000000; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		//send IN PID byte
+		tb_pid_data = 8'b10010110; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		//send IN CRC5 bits
+		tb_crc5_data = 5'b01010; //00111100 DATA0
+		for(i = 0; i < 6; i++) begin
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
+		end
+		tb_crc5_data = temp_tb_crc5_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_crc5_data[i]) begin
+			if (tb_crc5_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc5_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+
+		// Data packet
+		// advance to receive sync
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+
+		// send sync byte
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send IN PID byte
+		tb_pid_data = 8'b00111100; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send Data 8 byte
+		tb_data_data = 64'b1111111111111111000000000000000011111111111111110000000000000000; //00111100 DATA0
+		for(i = 0; i < 64; i++) begin
+			temp_tb_data_data[63-i] = tb_data_data[i];
+		end
+		tb_data_data = temp_tb_data_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_data_data[i]) begin
+			if (tb_data_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_data_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send CRC16 bytes
+		tb_crc16_data = 16'b0000001011110100; //00111100 DATA0
+		for(i = 0; i < 16; i++) begin
+			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
+		end
+		tb_crc16_data = temp_tb_crc16_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_crc16_data[i]) begin
+			if (tb_crc16_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_crc16_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+
+		// Handshake Packet
+		// advance to receive sync
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+
+		//send sync byte
+		tb_sync_data = 8'b10000000; //00111100 DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		//send IN PID byte
+		tb_pid_data = 8'b00101101; // 10010110
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+
+		// send EOP and then IDLE
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		@(posedge tb_clk);
+		
+
+	// do asynch reset
+		@(negedge tb_clk);
+		tb_n_rst = 0;
+		@(posedge tb_clk);
+		tb_n_rst = 1;
+
+		//NOMINAL CASE #6 - NOMINAL DATA #6
+		// Token Packet
+		// advance to receive sync
+		tb_test_case = "Case 6 - NOMINAL DATA TO DECRYPT";
+		@(posedge tb_clk);
+		tb_d_plus_in = 0;
+		tb_d_minus_in = 1;
+		@(posedge tb_clk);
+		tb_d_plus_in = 1;
+		tb_d_minus_in = 0;
+
+		//send sync byte
+		tb_sync_data = 8'b10000000; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_sync_data[7-i] = tb_sync_data[i];
+		end
+		tb_sync_data = temp_tb_sync_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_sync_data[i]) begin
+			if (tb_sync_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_sync_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		//send IN PID byte
+		tb_pid_data = 8'b10010110; // DATA0
+		for(i = 0; i < 8; i++) begin
+			temp_tb_pid_data[7-i] = tb_pid_data[i];
+		end
+		tb_pid_data = temp_tb_pid_data;
+		tb_d_prev = tb_d_plus_in;
+		foreach(tb_pid_data[i]) begin
+			if (tb_pid_data[i] == 0)
+			begin
+				tb_d_plus_in = !tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+				tb_d_prev = !tb_d_prev;
+			end else if (tb_pid_data[i] == 1)
+			begin
+				tb_d_plus_in = tb_d_prev;
+				tb_d_minus_in = !tb_d_plus_in;
+			end
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+			@(posedge tb_clk);
+		end
+		//send IN CRC5 bits
+		tb_crc5_data = 5'b01010; //00111100 DATA0
+		for(i = 0; i < 6; i++) begin
+			temp_tb_crc5_data[4-i] = tb_crc5_data[i];
 		end
 		tb_crc5_data = temp_tb_crc5_data;
 		tb_d_prev = tb_d_plus_in;
@@ -1662,7 +2021,7 @@ module tb_usb_encryptor();
 		end
 
 		// send CRC16 bytes
-		tb_crc16_data = 16'b1111000011110000; //00111100 DATA0
+		tb_crc16_data = 16'b1000000011010101; //00111100 DATA0
 		for(i = 0; i < 16; i++) begin
 			temp_tb_crc16_data[15-i] = tb_crc16_data[i];
 		end
@@ -1798,5 +2157,10 @@ module tb_usb_encryptor();
 		@(posedge tb_clk);
 		@(posedge tb_clk);
 
+		// do asynch reset
+		@(negedge tb_clk);
+		tb_n_rst = 0;
+		@(posedge tb_clk);
+		tb_n_rst = 1;
 	end
 endmodule
