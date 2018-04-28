@@ -33,7 +33,7 @@ TEST_BENCH	:= tb_$(TOP_LEVEL_FILE)
 TB_MODULE		:= $(notdir $(basename $(TEST_BENCH)))
 TOP_MODULE	:= $(notdir $(basename $(TOP_LEVEL_FILE)))
 
-# Select the Cell Library to use with simula`tions
+# Select the Cell Library to use with simulations
 GATE_LIB		:= $(AMI_05_LIB)
 
 S_WORK_LIB := source_work
@@ -360,4 +360,5 @@ syn_mapped do_mapping.tcl:
 	@echo -e '$(subst $(newline),\n,$(subst \n,\\n,${SYN_CMDS}))' > do_mapping.tcl
 	$(DC_SHELL) -x "source -echo do_mapping.tcl"
 	@echo -e "Done\n\n"
+
 

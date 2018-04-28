@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys DC Expert(TM) in wire load mode
 // Version   : K-2015.06-SP1
-// Date      : Mon Apr 23 20:16:59 2018
+// Date      : Mon Apr 23 21:06:31 2018
 /////////////////////////////////////////////////////////////
 
 
@@ -10943,7 +10943,7 @@ module usb_transmitter ( clk, n_rst, trans_data_ready, trans_data, d_plus,
 endmodule
 
 
-module usb_encryptor ( clk, n_rst, encrypt, d_plus_in, d_minus_in, d_plus_out, 
+module usb_encryptor_t ( clk, n_rst, encrypt, d_plus_in, d_minus_in, d_plus_out, 
         d_minus_out );
   input clk, n_rst, encrypt, d_plus_in, d_minus_in;
   output d_plus_out, d_minus_out;
@@ -10960,3 +10960,22 @@ module usb_encryptor ( clk, n_rst, encrypt, d_plus_in, d_minus_in, d_plus_out,
         .d_minus(d_minus_out), .handshake_ack(handshake_ack) );
 endmodule
 
+module  usb_encryptor ( clk, n_rst, encrypt, d_plus_in, d_minus_in, d_plus_out, 
+	d_minus_out );
+
+input   clk, n_rst, encrypt, d_plus_in, d_minus_in;
+output  d_plus_out, d_minus_out;
+wire	nclk, nn_rst, nencrypt, nd_plus_in, nd_minus_in, nd_plus_out, nd_minus_out;
+
+        usb_encryptor_t I0 ( .clk(nclk), .n_rst(nn_rst), .encrypt(nencrypt), .d_plus_in(nd_plus_in), 
+	.d_minus_in(nd_minus_in), .d_plus_out(nd_plus_out), .d_minus_out(nd_minus_out) );
+
+PADOUT U1 ( .DO(nd_minus_out), .YPAD(d_minus_out) );
+PADOUT U2 ( .DO(nd_plus_out), .YPAD(d_plus_out) );
+PADINC U3 ( .DI(nclk), .YPAD(clk) );
+PADINC U4 ( .DI(nd_minus_in), .YPAD(d_minus_in) );
+PADINC U5 ( .DI(nd_plus_in), .YPAD(d_plus_in) );
+PADINC U6 ( .DI(nencrypt), .YPAD(encrypt) );
+PADINC U7 ( .DI(nn_rst), .YPAD(n_rst) );
+
+endmodule

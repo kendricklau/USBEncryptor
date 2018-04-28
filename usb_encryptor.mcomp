@@ -1,9 +1,84 @@
 QuestaSim-64 vlog 10.3b Compiler 2014.05 May 29 2014
-Start time: 20:17:03 on Apr 23,2018
-vlog -sv -work mapped_work source/tb_usb_encryptor.sv 
--- Compiling module tb_usb_encryptor
+Start time: 21:28:47 on Apr 23,2018
+vlog -sv -work mapped_work mapped/usb_encryptor.v 
+-- Compiling module sync_high_1
+-- Compiling module sync_low
+-- Compiling module eop_detect
+-- Compiling module decode
+-- Compiling module edge_detect
+-- Compiling module flex_counter_NUM_CNT_BITS32_19_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_19
+-- Compiling module flex_counter_NUM_CNT_BITS32_18_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_18
+-- Compiling module flex_counter_NUM_CNT_BITS32_17_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_17
+-- Compiling module flex_counter_NUM_CNT_BITS32_16_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_16
+-- Compiling module flex_counter_NUM_CNT_BITS32_15_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_15
+-- Compiling module flex_counter_NUM_CNT_BITS32_14_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_14
+-- Compiling module flex_counter_NUM_CNT_BITS32_13_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_13
+-- Compiling module flex_counter_NUM_CNT_BITS32_12_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_12
+-- Compiling module flex_counter_NUM_CNT_BITS32_11_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_11
+-- Compiling module flex_counter_NUM_CNT_BITS32_10_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_10
+-- Compiling module timer
+-- Compiling module flex_stp_sr_NUM_BITS8_SHIFT_MSB0_1
+-- Compiling module flex_stp_sr_NUM_BITS8_SHIFT_MSB0_0
+-- Compiling module flex_stp_sr_NUM_BITS5_SHIFT_MSB0
+-- Compiling module flex_stp_sr_NUM_BITS16_SHIFT_MSB0
+-- Compiling module flex_stp_sr_NUM_BITS64_SHIFT_MSB0
+-- Compiling module shift_register
+-- Compiling module crc5_valid
+-- Compiling module crc16_valid
+-- Compiling module rcu
+-- Compiling module usb_receiver
+-- Compiling module permutation
+-- Compiling module des_round_computations
+-- Compiling module key_generator
+-- Compiling module key_counter
+-- Compiling module round_counter
+-- Compiling module des_controller
+-- Compiling module sync_high_0
+-- Compiling module encryptor_core
+-- Compiling module encode
+-- Compiling module flex_pts_sr_NUM_BITS8_SHIFT_MSB0_1
+-- Compiling module flex_pts_sr_NUM_BITS8_SHIFT_MSB0_0
+-- Compiling module flex_pts_sr_NUM_BITS5_SHIFT_MSB0
+-- Compiling module flex_pts_sr_NUM_BITS16_SHIFT_MSB0
+-- Compiling module flex_pts_sr_NUM_BITS64_SHIFT_MSB0
+-- Compiling module t_shift_register
+-- Compiling module flex_counter_NUM_CNT_BITS32_9_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_9
+-- Compiling module flex_counter_NUM_CNT_BITS32_8_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_8
+-- Compiling module flex_counter_NUM_CNT_BITS32_7_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_7
+-- Compiling module flex_counter_NUM_CNT_BITS32_6_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_6
+-- Compiling module flex_counter_NUM_CNT_BITS32_5_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_5
+-- Compiling module flex_counter_NUM_CNT_BITS32_4_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_4
+-- Compiling module flex_counter_NUM_CNT_BITS32_3_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_3
+-- Compiling module flex_counter_NUM_CNT_BITS32_2_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_2
+-- Compiling module flex_counter_NUM_CNT_BITS32_1_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_1
+-- Compiling module flex_counter_NUM_CNT_BITS32_0_DW01_inc_0
+-- Compiling module flex_counter_NUM_CNT_BITS32_0
+-- Compiling module t_timer
+-- Compiling module tcu
+-- Compiling module usb_transmitter
+-- Compiling module usb_encryptor_t
+-- Compiling module usb_encryptor
 
 Top level modules:
-	tb_usb_encryptor
-End time: 20:17:03 on Apr 23,2018, Elapsed time: 0:00:00
+	usb_encryptor
+End time: 21:28:48 on Apr 23,2018, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0

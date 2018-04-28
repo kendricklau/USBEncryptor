@@ -35,6 +35,9 @@ module tb_usb_encryptor();
 	reg tb_d_prev;
 	integer i;
 	string tb_test_case;
+	tri1 tb_portname_oe;
+	tri1 tb_porname_i;
+	tri1 tb_portname_o;
 
 	// Clock generation block
 	always
