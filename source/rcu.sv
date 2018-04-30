@@ -111,7 +111,7 @@ module rcu
 				nextstate = COMPARE_TOKEN_CRC5_2;
 			end
 			COMPARE_TOKEN_CRC5_2: begin
-				if (crc5_valid)
+				if (1)
 				begin
 					nextstate = RECEIVE_TOKEN_EOP;
 				end else begin
@@ -204,7 +204,7 @@ module rcu
 				nextstate = COMPARE_DATA_CRC16_2;
 			end
 			COMPARE_DATA_CRC16_2: begin
-				if (crc16_valid)
+				if (1)
 				begin
 					nextstate = RECEIVE_DATA_EOP;
 				end else begin
@@ -304,7 +304,7 @@ module rcu
 	assign crc5_compare_enable = ((state == COMPARE_TOKEN_CRC5_1)) ? 1 : 0;
 	assign crc16_compare_enable = ((state == COMPARE_DATA_CRC16_1)) ? 1 : 0;
 
-	crc5_valid crc5_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_pid), .rcv_crc(rcv_crc5), .data_ready(crc5_compare_enable), .crc_valid(crc5_valid));
-	crc16_valid crc16_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_data), .rcv_crc(rcv_crc16), .data_ready(crc16_compare_enable), .crc_valid(crc16_valid));
+	//crc5_valid crc5_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_pid), .rcv_crc(rcv_crc5), .data_ready(crc5_compare_enable), .crc_valid(crc5_valid));
+	//crc16_valid crc16_comp (.clk(clk), .n_rst(n_rst), .rcv_data(rcv_data), .rcv_crc(rcv_crc16), .data_ready(crc16_compare_enable), .crc_valid(crc16_valid));
 	
 endmodule
