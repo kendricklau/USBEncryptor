@@ -1,10 +1,10 @@
 // $Id: 
-// File name:   crc16_gen.sv
+// File name:   crc16_valid.sv
 // Created:     2/19/2018
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Decode from NRZI encoding
+// Description: CRC16 validation
 
 module crc16_valid
 (

@@ -1,10 +1,10 @@
 // $Id: $
-// File name:   tb_flex_stp_sr.sv
-// Created:     9/2/2013
-// Author:      foo
-// Lab Section: 99
+// File name:   tb_key_counter.sv
+// Created:     2/25/2018
+// Author:      Jonathan Reitz
+// Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Flexible Serial to Parallel Shift register test bench
+// Description: Test bench for the key counter
 
 `timescale 1ns / 10ps
 

@@ -1,3 +1,10 @@
+// $Id: $
+// File name:   tb_usb_encryptor.sv
+// Created:     2/21/2018
+// Author:      Kendrick Lau
+// Lab Section: 337-02
+// Version:     1.0  Initial Design Entry
+// Description: Top-level USB encryptor test bench
 // 337 Lab 6 Testbench EOP Detect
 // This code serves as a starer test bench for the synchronizer design
 

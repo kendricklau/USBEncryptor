@@ -4,7 +4,7 @@
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Decode from NRZI encoding
+// Description: CRC16 generation
 
 module crc16_gen
 (

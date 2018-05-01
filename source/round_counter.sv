@@ -1,3 +1,11 @@
+// $Id: $
+// File name:   round_counter.sv
+// Created:     2/25/2018
+// Author:      Jonathan Reitz
+// Lab Section: 337-02
+// Version:     1.0  Initial Design Entry
+// Description: DES Round Counter block
+
 module round_counter
 (
 	input wire clk,

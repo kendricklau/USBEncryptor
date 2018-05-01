@@ -1,10 +1,10 @@
 // $Id: $
-// File name:   tb_usb_receiver.sv
+// File name:   tb_key_generator.sv
 // Created:     2/25/2018
 // Author:      Jonathan Reitz
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Test bench for the top level USB block
+// Description: Test bench for the key generator
 `timescale 1ns / 10ps
 
 module tb_usb_receiver();

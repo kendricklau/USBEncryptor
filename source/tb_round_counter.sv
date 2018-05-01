@@ -1,10 +1,10 @@
 // $Id: $
 // File name:   tb_round_counter.sv
 // Created:     9/2/2013
-// Author:      foo
+// Author:      Jon Reitz
 // Lab Section: 99
 // Version:     1.0  Initial Design Entry
-// Description: Flexible Serial to Parallel Shift register test bench
+// Description: DES Round Counter block
 
 `timescale 1ns / 10ps
 

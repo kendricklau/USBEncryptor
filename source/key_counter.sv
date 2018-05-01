@@ -1,3 +1,11 @@
+// $Id: $
+// File name:   key_counter.sv
+// Created:     2/25/2018
+// Author:      Jonathan Reitz
+// Lab Section: 337-02
+// Version:     1.0  Initial Design Entry
+// Description: Key counter block
+
 module key_counter
 (
 	input wire clk,

@@ -1,10 +1,10 @@
 // $Id: $
-// File name:   usb_receiver.sv
+// File name:   usb_transmitter.sv
 // Created:     2/21/2018
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Top-level USB Block
+// Description: Top-level USB Transmitter Block
 
 module usb_transmitter
 (

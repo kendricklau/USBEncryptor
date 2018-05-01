@@ -4,7 +4,7 @@
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Receiver Control Unit Block
+// Description: Transmitter Control Unit Block
 
 module tcu
 (

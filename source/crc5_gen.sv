@@ -4,7 +4,7 @@
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Decode from NRZI encoding
+// Description: CRC5 generation
 
 module crc5_gen
 (

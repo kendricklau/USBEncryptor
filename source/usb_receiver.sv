@@ -4,7 +4,7 @@
 // Author:      Kendrick Lau
 // Lab Section: 337-02
 // Version:     1.0  Initial Design Entry
-// Description: Top-level USB Block
+// Description: Top-level USB receiver Block
 
 module usb_receiver
 (
